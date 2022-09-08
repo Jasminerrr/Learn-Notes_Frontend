@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            float: left;
+            width: 100px;
+            height: 100px;
+            border: 1px solid skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        let divs = document.querySelectorAll('div');
+        // for (var i = 0; i < divs.length; i++) {
+        //     divs[i].onclick = function () {
+        //         this.style.backgroundColor = 'pink';
+        //         // divs[i].style.backgroundColor = 'pink'; // 此时循环完i变成3 报错
+        //     }
+        // }
+        // 用let申明循环变量
+        for (let i = 0; i < divs.length; i++) {
+            divs[i].onclick = function () {
+                // this.style.backgroundColor = 'pink';
+                divs[i].style.backgroundColor = 'pink'; // 循环3次分别有三个块级作用域，3个变量i
+            }
+        }
+    </script>
+</body>
+
+</html>

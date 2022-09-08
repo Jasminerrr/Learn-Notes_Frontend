@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue -->
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h2>人员列表</h2>
+        <button @click="updataMei">点击更新马冬梅信息</button>
+        <ul>
+            <!-- 遍历过滤后的filPersons数组 -->
+            <li v-for="(p,index) of persons" :key="index">
+                {{p.name}}-{{p.age}}-{{p.sex}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        Vue.config.productionTip = false;// 设置为 false 以阻止 vue 在启动时生成生产提示
+        new Vue({
+            el: '#root',
+            data: {
+                keyWords: '',
+                sortType: 0,
+                persons: [
+                    { id: '001', name: '马冬梅', age: 28, sex: '女' },
+                    { id: '002', name: '周冬雨', age: 19, sex: '女' },
+                    { id: '003', name: '周杰伦', age: 20, sex: '男' },
+                    { id: '004', name: '温兆伦', age: 18, sex: '男' }
+                ]
+            },
+            methods: {
+                updataMei() {
+                    // this.persons[0].name = '张学友'; //奏效
+                    // this.persons[0].age = 50;  // 奏效
+                    // this.persons[0].sex = '男';  // 奏效
+                    // this.persons[0] = { id: '004', name: '张学友', age: 50, sex: '男' }; // 不奏效
+                    // splice(索引,被替换的数量，信息)
+                    this.persons.splice(0, 1, { id: '004', name: '张学友', age: 50, sex: '男' })
+                }
+            },
+
+        });
+    </script>
+</body>
+
+</html>

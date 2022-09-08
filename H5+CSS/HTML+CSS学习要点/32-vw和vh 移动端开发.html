@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vw / vh 移动端开发</title>
+    <style>
+        /* 要将50*50的盒子转换为vw */
+        /* ip6 视口是 375px  1vw=3.75  */
+        div {
+            /* width: (50px / 3.75); */
+            width: 13.33333vw;
+            height: 13.3333vw;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>1. vw / vh 是什么</h2>
+    1.vw/vh是一个相对单位（类似em和rem相对单位）
+    vw:viewport width 视口宽度单位<br>
+    vh:viewport hight 视口高度单位<br>
+    相对视口得尺寸计算结果：
+    <!-- 把视口分成100份，1vw就是占一份 -->
+    1vw = 1/100 视口宽度<br>
+    1vh = 1/100 视口高度<br>
+    注意：和百分比布局区别：百分比是相对父元素来说，而vw/vh总是针对于当前视口来说！！！！
+    <div></div>
+    <h2>2. 开发中使用vw，像素大厨有哪些改动</h2>
+    1. 把模式改为2x模式 <br>
+    2. 确定设计稿视口高度。比如375。<br>
+    3. 直接使用 测量数值 / (视口宽度/100) <br>
+    4. 比如：50/（375/100）<br>
+    <h2>3. 注意事项</h2>
+    本质是根据视口宽度来等比缩放页面元素高度和宽度，实际开发使用vw就够了，vh很少使用。
+    兼容性网站：http://caniuse.com/
+</body>
+
+</html>

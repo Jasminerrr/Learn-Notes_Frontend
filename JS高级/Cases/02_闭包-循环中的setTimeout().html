@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul class="nav">
+        <li>看看</li>
+        <li>刚刚</li>
+        <li>方法</li>
+        <li>让人</li>
+    </ul>
+    <script>
+        // 利用闭包，3秒打印出每个小li内容
+        var lis = document.querySelector('.nav').querySelectorAll('li');
+        for (var i = 0; i < lis.length; i++) {
+            (function (i) {
+                setTimeout(function () {
+                    console.log(lis[i].innerHTML);
+                }, 3000)
+            })(i);
+        }
+    </script>
+</body>
+
+</html>

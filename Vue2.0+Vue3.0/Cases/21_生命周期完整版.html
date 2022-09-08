@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue -->
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <!-- {opacity:opacity} 对象简写 -->
+        <h2 :style="{opacity}">你好</h2>
+        <button @click="stop">点我停止变换</button>
+    </div>
+    <script>
+        Vue.config.productionTip = false;// 设置为 false 以阻止 vue 在启动时生成生产提示
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                opacity: 1
+            },
+            methods: {
+                stop() {
+                    // 1. 点击按钮销毁vm
+                    this.$destroy()
+                }
+            },
+            // Vue完成模板的解析 并把初始的真是DOM元素放入页面后（挂载完毕），调用mounted生命周期函数
+            mounted() {
+                this.timer = setInterval(() => {
+                    this.opacity -= 0.01;
+                    if (this.opacity <= 0) this.opacity = 1
+                }, 16)
+
+            },
+            // 2. 调用销毁流程
+            beforeDestroy() {
+                // 清除定时器
+                clearInterval(this.timer)
+            },
+        });
+
+        // 通过外部的定时器实现（不推荐）
+        /* setInterval(() => {
+            this.opacity -= 0.01;
+            if (this.opacity <= 0) this.opacity = 1
+        }, 16); */
+    </script>
+</body>
+
+</html>

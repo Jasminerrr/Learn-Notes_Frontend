@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //获取数组元素
+
+        //练习1:
+        var arr = ['星期1', '星期2', '星期3', '星期4', '星期5', '星期6', '星期7'];
+        console.log(arr[6]);
+
+        //遍历数组
+
+        //练习1:请将  [“关羽”,“张飞”,“马超”,“赵云”,“黄忠”,“刘备”,“姜维”]; 数组里的元素依次打印到控制台
+        var arr = ['星期1', '星期2', '星期3', '星期4', '星期5', '星期6', '星期7'];
+        for (var i = 0; i < 7; i++) {
+            console.log(arr[i]);
+        }
+
+        // 练习2： 求数组 [2,6,1,7, 4] 里面所有元素的和以及平均值。
+        // 1. 先声明求和变量 sum
+        //2. 遍历这个数组，把里面每个数组元素加到 sum 里面。
+        //3. 用求和变量 sum 除以数组的长度就可以得到数组的平均值。
+        var arr = [2, 6, 1, 7, 4];
+        var sum = 0;
+        var average = 0;
+        for (var i = 0; i < arr.length; i++) {
+            sum += arr[i]; // 加的是数组元素 arr[i], 不是计数器 i
+        }
+        average = sum / arr.length;
+        console.log(sum, average); //输出多个变量，用逗号 , 分开
+
+        //练习3：求数组[2,6,1,77,52,25,7]中的最大值。
+        // 1.声明一个保存最大元素的变量 max。
+        // 2.默认最大值可以取数组中的第一个元素。
+        // 3.遍历这个数组， 把里面每个数组元素和 max 相比较。
+        // 4.如果这个数组元素大于max 就把这个数组元素存到 max 里面， 否则继续下一轮比较。
+        // 5.最后输出这个 max。
+        var arr = [2, 6, 1, 77, 52, 25, 7, 99];
+        var max = arr[0];
+        for (var i = 1; i < arr.length; i++) { //第一个值相同，可以从第二个开始
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+        console.log('最大值是：' + max);
+
+        //最小值
+        var arr = [2, 6, 1, 77, 52, 25, 7, 99];
+        var max = arr[0];
+        for (var i = 1; i < arr.length; i++) {
+            if (arr[i] < max) {
+                max = arr[i];
+            }
+        }
+        console.log('最小值是：' + max);
+
+        //练习4：将数组 ['red', 'green', 'blue', 'pink'] 里面的元素转换为字符串，并且用 | 或者其他符号分割，输出： 'redgreenbluepink'
+        var str = '';
+        var sep = '|';
+        var arr = ['red', 'green', 'blue', 'pink'];
+        for (var i = 0; i < arr.length; i++) {
+            str += arr[i] + sep;
+
+        }
+        console.log(str);
+        //练习5 ：新建一个数组，里面存放10个整数（ 1~10）， 要求使用循环追加的方式输出： [1,2,3,4,5,6,7,8,9,10]
+        // 使用循环来追加数组。
+        // 声明一个空数组 arr。
+        // 循环中的计数器 i  可以作为数组元素存入。
+        // 由于数组的索引号是从0开始的， 因此计数器从 0 开始更合适，存入的数组元素要+1
+        var arr = [];
+        for (var i = 0; i < 10; i++) {
+            //arr = i; 不要直接给数组名赋值，否则以前的元素都没了
+            arr[i] = i + 1;
+            console.log(arr[i]);
+        }
+        //练习6：将数组 [2, 0, 6, 1, 77, 0, 52, 0, 25, 7] 中大于等于 10 的元素选出来，放入新数组。
+        // 1.声明一个新的数组用于存放新数据。
+        // 2. 遍历原来的数组，找出大于等于 10 的元素。
+        // 3.依次追加给新数组 newArr。
+        //方法一：
+        var arr = [2, 0, 6, 1, 77, 0, 52, 0, 25, 7];
+        var newArr = [];
+        var j = 0;
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] >= 10) {
+                //索引号应该从0开始，依次递增！！！！
+                newArr[j] = arr[i];
+                j++;
+            }
+        }
+        console.log(newArr);
+        //方法二：
+        var arr = [2, 0, 6, 1, 77, 0, 52, 0, 25, 7];
+        var newArr = [];
+        //刚开始 newArr.length的长度为0
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] < 10) {
+                //索引号应该从0开始，依次递增！
+                newArr[newArr.length] = arr[i]; // 每次存入一个值，newArr长度都会 +1  
+            }
+        }
+        console.log(newArr);
+
+        // 删除指定数组元素
+        // 案例一：将数组[2, 0, 6, 1, 77, 0, 52, 0, 25, 7]中的 0 去掉后，形成一个不包含 0 的新数组。
+        var arr = [2, 0, 6, 1, 77, 0, 52, 0, 25, 7];
+        var newArr = [];
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] !== 0) {
+                newArr[newArr.length] = arr[i];
+            }
+        }
+        console.log(newArr);
+
+        //翻转数组
+        //案例二：将数组 ['red', 'green', 'blue', 'pink', 'purple'] 的内容反过来存放。
+        var arr = ['red', 'green', 'blue', 'pink', 'purple'];
+        var newArr = [];
+        for (var i = arr.length - 1; i >= 0; i--) {
+            newArr[newArr.length] = arr[i];
+        }
+        console.log(newArr);
+
+        //冒泡排序:
+        //将数组 [5, 4, 3, 2, 1]中的元素按照从小到大的顺序排序，输出： 1，2，3，4，5
+        var arr = [4, 1, 2, 3, 5];
+        for (var i = 0; i <= arr.length - 1; i++) { // 外层循环管趟数 趟数=长度-1
+            for (var j = 0; j <= arr.length - i - 1; j++) { //所有数组从 0 开始,里层循环管每一趟交换的次数
+                //内部交换两个变量的值，前一个和后一个数组元素作比较
+                if (arr[j] > arr[j + 1]) {
+                    var temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+        console.log(arr);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

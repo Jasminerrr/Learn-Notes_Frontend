@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>封装一个简单的ajax请求</title>
+</head>
+
+<body>
+    <script>
+        /* 定义一个sendAjax函数，对xhr的get请求进行封装：
+            1. 该函数接收两个参数：url(请求地址)、data(参数对象)；
+            2. 该函数返回一个Promise实例：
+                (1)如果ajax请求成功，则Promise实例成功，成功的value是返回的数据；
+                (2)如果ajax请求失败，则Promise实例失败，失败的reason是错误提示；
+         */
+        function sendAjax(url, data) {
+            return p = new Promise(function (resolve, reject) {
+                // 实例xhr
+                const xhr = new XMLHttpRequest();
+                // 绑定监听
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            resolve(xhr.response);
+                        } else {
+                            reject('请求出了点问题');
+                        }
+                    }
+                };
+                // 整理data参数
+                let str = '';
+                for (let k in data) {
+                    str += `${k}=${data[k]}&`;
+                }
+                str = str.slice(0, -1);
+                xhr.open('GET', url + '?' + str);
+                xhr.responseType = 'json';
+                xhr.send();
+            });
+        }
+        // 第1次发送请求
+        sendAjax('https://api.apiopen.top/api/getHaoKanVideo', { page: 1 })
+            .then(
+                (value) => {
+                    console.log('成功了1', value);
+                    // 要用return返回：为一个新的Promise实例 
+                    // 第2次发送请求 
+                    return sendAjax('https://api.apiopen.top/api/getHaoKanVideo', { page: 1 });
+                },
+                (reason) => {
+                    console.log('失败了1', reason);
+                })
+            .then(
+                (value) => {
+                    console.log('成功了2', value);
+                    // 第3次发送请求
+                    return sendAjax('https://api.apiopen.top/api/getHaoKanVideo', { page: 1 });
+                },
+                (reason) => {
+                    console.log('失败了2', reason);
+                })
+            .then(
+                (value) => {
+                    console.log('成功了3', value);
+                },
+                (reason) => {
+                    console.log('失败了3', reason);
+                });
+    </script>
+</body>
+
+</html>

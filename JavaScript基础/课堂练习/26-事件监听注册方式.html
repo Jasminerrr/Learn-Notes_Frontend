@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father {
+            overflow: hidden;
+            width: 300px;
+            height: 300px;
+            margin: 100px auto;
+            background-color: pink;
+            text-align: center;
+        }
+
+        .son {
+            width: 200px;
+            height: 200px;
+            margin: 50px;
+            background-color: purple;
+            line-height: 200px;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="father">
+        <div class="son">son</div>
+    </div>
+    <script>
+        //1. 捕获阶段 document-html-body-father-son
+        /* var son = document.querySelector('.son');
+        son.addEventListener('click', function () {
+            alert('son');
+        }, true);
+        var father = document.querySelector('.father');
+        father.addEventListener('click', function () {
+            alert('father');
+        }, true); */
+        // 2. 冒泡阶段 son-father-body-html-document
+        var son = document.querySelector('.son');
+        son.addEventListener('click', function (e) {
+            alert('son');
+            // 阻止事件冒泡
+            e.stopPropagation();
+        }, false);
+        var father = document.querySelector('.father');
+        father.addEventListener('click', function () {
+            alert('father');
+            // 阻止事件冒泡
+            e.stopPropagation();
+        }, false);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSONP实践</title>
+</head>
+
+<body>
+    用户名：<input type="text" id="username">
+    <p></p>
+    <script>
+        const input = document.querySelector('input');
+        const p = document.querySelector('p');
+
+        // 声明handle 函数 
+        function handle(data){
+            // 改变表单边框颜色 
+            input.style.border = '1px solid red';
+            // 修改p标签的提示文本
+            p.innerHTML = data.msg;
+        }
+
+        input.onblur = function(){
+            let username = this.value;
+            // 向服务端发送请求 检测用户名是否存在
+            // 1. 创建script标签
+            const script = document.createElement('script');
+            // 2. 设置标签的src属性
+            script.src = 'http://127.0.0.1:8000/check-username';
+            // 3. 将script标签插入到文档中body标签的最后
+            document.body.appendChild(script);
+            // 4. 移除已经使用过的script节点
+            document.body.removeChild(script);
+        }
+    </script>
+</body>
+
+</html>

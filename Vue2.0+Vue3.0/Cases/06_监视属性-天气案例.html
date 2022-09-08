@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue -->
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h2>今天天气很{{info}}</h2>
+
+        <!-- 当事件绑定的时候：@xxx = "yyy" yyy可以写一些简单的语句 -->
+        <!-- <button @click="isHot = !isHot">点击切换天气</button> -->
+        <button @click="changeWeather">点击切换天气</button><br><br>
+        <button @click="number.a++">a+1</button><br><br>
+        <button @click="number.b++">b+1</button>
+
+
+    </div>
+    <script>
+        Vue.config.productionTip = false;// 设置为 false 以阻止 vue 在启动时生成生产提示
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                isHot: true,
+                number: {
+                    a: 1,
+                    b: 1
+                }
+            },
+            computed: {
+                info() {
+                    return this.isHot ? '炎热' : '凉爽';
+                }
+            },
+            methods: {
+                changeWeather() {
+                    this.isHot = !this.isHot;
+                }
+            },
+            watch: {
+                // 1. 监视正常写法
+                isHot: {
+                    // immediate:true,// 初始化的时候让handler调用一下
+                    // handler是监视对象的函数，当isHot发生改变时，才会被调用
+                    // 返回新的值和旧的值（可以用来做逻辑）
+                    handler(newValue, oldValue) {
+                        console.log(newValue, oldValue);
+                    }
+                },
+                // 2. 监视正常写法简写：只有handler时候才能简写
+                /* isHot(newValue, oldValue) {
+                    console.log('isHot被修改了',newValue, oldValue);
+                } */
+
+                // 3. 监视多级解构中的【某个】属性的变化
+                // 此处'number.a'应该加引号
+                /* 'number.a':{
+                    handler(){
+                        console.log('a被改变了');
+                    }
+                }, */
+
+                // 4. 深度监视deep:true 默认false
+                // 监视多级解构中的【所有】属性的变化
+                number: {
+                    deep: true,
+                    handler() {
+                        console.log('number被改变了');
+                    }
+                }
+            },
+        });
+
+        //  监视第二种写法
+        // isHot此处应该加引号，因为isHot不是一个变量
+        /* vm.$watch('isHot', {
+            immediate: true,// 初始化的时候让handler调用一下
+            // handler是监视对象的函数，当isHot发生改变时，才会被调用
+            // 返回新的值和旧的值（可以用来做逻辑）
+            handler(newValue, oldValue) {
+                console.log('isHot被修改了',newValue, oldValue);
+            }
+        }) */
+
+        // 第二种写法 监视简写：只有handler时候才能简写
+        /* vm.$watch('isHot',function(newValue,oldValue){
+            console.log('isHot被修改了',newValue, oldValue);
+        }) */
+    </script>
+</body>
+
+</html>

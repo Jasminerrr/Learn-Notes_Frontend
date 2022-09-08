@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 1.1 属性选择器是[] */
+        /* 1. 必须是input 但是同时具有value这个属性 选择这个元素  */
+        input[value] {
+            color: blue;
+        }
+
+        /* 2. 只选择 type=text 文本框的input  */
+        input[type=text] {
+            color: blueviolet;
+        }
+
+        /* 3. 选择div，具有class属性，并且属性值必须为icon开头的元素  ^ 代表开头   */
+        div[class^=icon] {
+            color: brown;
+        }
+
+        /* 4. 选择section，具有class属性并且值必须以data结尾的元素  $ 代表结尾 */
+        section[class$=data] {
+            color: burlywood;
+        }
+
+        /* 5. 选择section，其中class属性有icon值就可以 * 代表任意位置 */
+        section[class*=icon] {
+            color: chartreuse;
+        }
+
+        /* 1.2 结构伪类选择器 */
+
+        /* 1. 选择ul里面的第一个孩子 小li */
+        /* ul+空格是后代选择器,:first-child是结构伪类选择器 */
+        ul li:first-child {
+            background-color: chartreuse;
+        }
+
+        /* 2. 选择ul里面的最后一个孩子 小li */
+        ul li:last-child {
+            background-color: coral;
+        }
+
+        /* 3. 选择ul里面的第2个孩子 小li */
+        ul li:nth-child(2) {
+            background-color: cornflowerblue;
+        }
+
+        /* 4. 选择ul里面的偶数孩子 */
+        ul li:nth-child(even) {
+            background-color: darkblue;
+        }
+
+        /* 5. 选择ul里面的奇数孩子 */
+        ul li:nth-child(odd) {
+            background-color: darkolivegreen;
+        }
+
+        /* 6. nth-child(n) 从0开始 每次+1，往后计算，必须是字母n，是选择所有子对象 */
+        ol li:nth-child(n) {
+            background-color: darkorchid;
+        }
+
+        /* 公式 */
+        /* nth-child(2n) 是选择所有偶数对象，等价于even */
+        /* nth-child(2n+1) 是选择所有奇数对象，等价于odd */
+        /* nth-child(5n) 5的倍数，5，10，15 */
+        /* nth-child(n+5) 从5开始（包括5）一直到最后 */
+        /* nth-child(-n+5) 从5开始（包括5）往前 */
+        ol li:first-of-type {
+            background-color: darksalmon;
+        }
+
+        ol li:last-of-type {
+            background-color: deepskyblue;
+        }
+
+        ol li:nth-of-type(even) {
+            background-color: darkred;
+        }
+
+        /* nth-child 会把所有的盒子都排列序号 */
+        /* 执行的时候首先看  :nth-child(1) 之后回去看 前面 div */
+        section div:nth-child(1) {
+            background-color: red;
+        }
+
+        /* nth-of-type 会把指定元素的盒子排列序号 */
+        /* 执行的时候首先看  div指定的元素  之后回去看 :nth-of-type(1) 第几个孩子 */
+        section div:nth-of-type(1) {
+            background-color: blue;
+        }
+
+        /* 1.3 伪元素选择器（重点） */
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: blueviolet;
+        }
+
+        /* div+::before权重是2 */
+        div::before {
+            /* content是必须写的 */
+            content: "我";
+        }
+
+        div::after {
+            content: "某某";
+        }
+    </style>
+</head>
+
+<body>
+    <h2>1.新增选择器</h2>
+    类/属性/伪类选择器 权重都是10 ！！！
+    <h3>1.1 属性选择器</h3>
+    <!-- 1. 可以不用借助类或者id选择器 -->
+    <input type="text" value="请输入用户名">
+    <input type="text">
+    <!-- 2. 重点！！选择属性=值得某些元素  -->
+    <input type="text" name="" id="">
+    <input type="password" name="" id="">
+    <!-- 3. 属性选择器可以选择属性值开头的某些元素 -->
+    <div class="icon1">小图标1</div>
+    <div class="icon2">小图标2</div>
+    <div class="icon3">小图标3</div>
+    <div class="icon4">小图标4</div>
+    <div>我是打酱油的</div>
+    <!-- 4. 属性选择器可以选择属性值结尾的某些元素 -->
+    <section class="icon1-data">我是安其拉</section>
+    <section class="icon2-data">我是哥斯拉</section>
+    <section class="icon3-ico">哪我是谁</section>
+
+    <h3>1.2 结构伪类选择器</h3>
+    E:first-child <br>
+    E:last-child <br>
+    E:nth-child(n) 选择某个父元素的一个或多个特定的子元素<br>
+    n可以是数字/关键字/公式<br>
+    n如果是数字,就是选择第n个子元素,里面数字从1开始... <br>
+    n可以是关键字：even 偶数，odd 奇数<br>
+    n 可以是公式：常见的公式如下 ( 如果n是公式，则从0开始计算，但是第 0 个元素或者超出了元素的个数会被忽略 ) <br>
+    E:first-of-type <br>
+    E:last-of-type <br>
+    E:nth-of-type(n) <br>
+    <ul>
+        <li>我是第1个孩子</li>
+        <li>我是第2个孩子</li>
+        <li>我是第3个孩子</li>
+        <li>我是第4个孩子</li>
+        <li>我是第5个孩子</li>
+        <li>我是第6个孩子</li>
+        <li>我是第7个孩子</li>
+        <li>我是第8个孩子</li>
+    </ul>
+    <ol>
+        <li>我是第1个孩子</li>
+        <li>我是第2个孩子</li>
+        <li>我是第3个孩子</li>
+        <li>我是第4个孩子</li>
+        <li>我是第5个孩子</li>
+        <li>我是第6个孩子</li>
+        <li>我是第7个孩子</li>
+        <li>我是第8个孩子</li>
+    </ol>
+    <!-- 区别 -->
+    <section>
+        <p>1233</p>
+        <div>456</div>
+        <div>789</div>
+    </section>
+    <h3>1.3 伪元素选择器（重点）</h3>
+    ::before 在元素内部的前面插入内容<br>
+    ::after 在元素内部的后面插入内容<br>
+    都是盒子，也是父元素的孩子
+    before 和 after 创建一个元素，但是属于行内元素<br>
+    新创建的这个元素在文档树中是找不到的，所以我们称为伪元素<br>
+    语法： element::before <br>
+    before 和 after 必须有 content 属性，伪元素选择器和标签选择器一样，权重为 1 <br>
+    <div>
+        是
+    </div>
+</body>
+
+</html>

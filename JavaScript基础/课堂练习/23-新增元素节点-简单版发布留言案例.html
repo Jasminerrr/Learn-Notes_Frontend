@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 100px;
+        }
+
+        textarea {
+            width: 200px;
+            height: 100px;
+            border: 1px solid pink;
+            outline: none;
+            resize: none;
+        }
+
+        ul {
+            margin-top: 50px;
+        }
+
+        li {
+            width: 300px;
+            padding: 5px;
+            background-color: rgb(245, 209, 243);
+            color: red;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+
+        li a {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea name="" id=""></textarea>
+    <button>发布</button>
+    <ul>
+
+    </ul>
+    <script>//创建 li的同时，把文本域里面的值通过li.innerHTML 赋值给li
+        // 1. 获取元素 按钮、文本域、ul
+        var btn = document.querySelector('button');
+        var text = document.querySelector('textarea');
+        var ul = document.querySelector('ul');
+        // 2. 注册事件 点击按钮，则创建新li 放在ul 里面
+        btn.onclick = function () {
+            if (text.value === '') {
+                alert('内容为空，请输入');
+                return false;// 停止程序运行
+            } else {
+                //(1) 创建元素
+                var li = document.createElement('li');
+                //先有 li，才能把文本域里面的值通过li.innerHTML 赋值给li
+                // 阻止链接跳转需要添加 javascript:void(0); 或者 javascript:;
+                li.innerHTML = text.value + "<a href='javescript:;'>删除</a>";// 把文本域的值赋值给li显示的内容 并添加链接
+                // (2) 添加元素
+                // ul.appendChild(li); //在后面插入
+                ul.insertBefore(li, ul.children[0]);
+                //(3) 删除元素 删除的是当前链接所在的li a的父亲
+                var as = document.querySelectorAll('a');
+                for (var i = 0; i < as.length; i++) {
+                    as[i].onclick = function () {
+                        //node.removeChild(child); 删除的是当前连接所在的 li =this.parentNode
+                        ul.removeChild(this.parentNode);
+                    }
+                }
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set实践</title>
+</head>
+
+<body>
+    <script>
+        
+        // 1. 数组去重
+        
+       /*  let arr = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+        let result = [...new Set(arr)]; // 使用扩展运算符转换成数组
+        console.log(result);//[1,2,3,4,5] */
+
+        // 2. 求交集
+
+        // filter()遍历数组，里面是一个函数，返回一个新的、符合条件元素组成的新数组；如果没有通过，则返回空数组
+
+        /* let arr = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+        let arr2 = [4, 5, 6, 5, 6];
+        // let result = [...new Set(arr)].filter(
+        //     (item) => {
+        //         let s2 = new Set(arr2);// 先去重，集合为：4,5,6
+        //         if (s2.has(item)) {
+        //             return true;
+        //         } else {
+        //             return false;
+        //         }
+        //     });
+        // 简化代码
+        let result = [...new Set(arr)].filter(item=> new Set(arr2).has(item));
+        console.log(result); */
+
+        // 3. 求并集
+
+        /* let arr = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+        let arr2 = [4, 5, 6, 5, 6];
+        // 先合并，再去重,再转换为数组
+        let union = [...new Set([...arr,...arr2])];
+        console.log(union); */
+
+        // 4. 求差集：数组1有，但数组2没有或者是 数组2有，但数组1没有(主体不同，结果不同)
+        // 用求交集的方法，把返回值取反交换
+        /* let arr = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+        let arr2 = [4, 5, 6, 5, 6];
+        let result = [...new Set(arr)].filter(item=> !(new Set(arr2).has(item))); */
+
+    </script>
+</body>
+
+</html>

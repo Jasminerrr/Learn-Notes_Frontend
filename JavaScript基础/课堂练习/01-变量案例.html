@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-变量案例</title>
+    <script>
+        //练习1：
+        var myname = 'Jasmine';
+        var address = '火影村';
+        var age = 20;
+        var email = 'jasmine@qq.com';
+        var salary = 2000;
+        console.log(myname);
+        console.log(address);
+        console.log(age);
+        console.log(email);
+        console.log(salary);
+
+        //练习2：弹出用户名
+        //1.用户输入姓名 存储到一个myname的变量里面去
+        var myname = prompt('请输入你的名字');
+        //2. 输出这个用户名
+        alert(myname);
+
+        //练习3：交换两个变量的值
+        /* var a = true;
+        a = a + "";
+        console.log("a = " + a);//"true"
+        console.log(typeof a);//string */
+        //交换两个变量的值:js语言是有很强的逻辑性在里面，实现这个要求的思路，先怎么做 后怎么做
+        //1. 需要一个临时变量
+        //2. 把apple1里面的苹果给临时变量temp
+        //3. 把apple2里面的苹果给apple1
+        //4. 把临时变量temp里面的值给apple2
+        var temp;//声明临时变量为空
+        var apple1 = '青苹果';
+        var apple2 = '红苹果';
+        temp = apple1;//把右边给左边
+        apple1 = apple2;
+        apple2 = temp;
+        console.log(apple1);
+        console.log(apple2);
+
+        //练习4：输入年龄
+        /*  1.弹出一个输入框（prompt)，让用户输入年龄（用户输入）
+            2.把用户输入的值用变量保存起来,把刚才输入的年龄与所要输出的字符串拼接 （程序内部处理）
+            3.使用alert语句弹出警示框（输出结果） */
+        var age = prompt('请输入年龄');
+        var str = ('你的年龄是' + age + '岁');
+        alert(str);
+
+        //练习5：计算年龄
+        /* 1.弹出一个输入框（prompt)，让用户输入出生年份 （用户输入）
+            2.把用户输入的值用变量保存起来，然后用今年的年份减去变量值，结果就是现在的年龄  （程序内部处理）
+            3.弹出警示框（alert) ， 把计算的结果输出 （输出结果） */
+
+        var year = prompt('请输入你的出生年份');
+        var age = 2022 - year;//year是字符串型，这里减法做隐式转换，如果是加法要转换
+        alert('你的年龄是' + age + '岁');
+
+        //练习6：简单加法器
+        /* 1.先弹出第一个输入框，提示用户输入第一个值  保存起来
+            2.再弹出第二个框，提示用户输入第二个值  保存起来
+            3.把这两个值相加，并将结果赋给新的变量（注意数据类型转换）  
+            4.弹出警示框（alert) ， 把计算的结果输出 （输出结果） */
+        var num1 = prompt('输入第一个值');
+        var num2 = prompt('输入第二个值');
+        var result = parseFloat(num1) + parseFloat(num2);
+        alert('结果是：' + result);
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

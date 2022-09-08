@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //练习1：利用函数计算1-100之间的累加和 
+        function getSum() {
+            var sum = 0;
+            for (var i = 1; i <= 100; i++) {
+                sum += i;
+            }
+            console.log(sum);
+        }
+        getSum();
+
+        //练习2：利用函数求任意两个数的和 
+        /* function getSum(num1, num2) {
+            console.log(num1 + num2);//不要在内部输出结果
+        }
+        getSum(1, 10);
+        getSum(2, 7); */
+
+        function getSum(num1, num2) {
+            return num1 + num2;
+        }
+        console.log(getSum(1, 2));
+
+        //练习3：利用函数求任意两个数之间的和
+        function getSums(start, end) {
+            sum = 0;
+            for (var i = start; i <= end; i++) {
+                sum += i;
+            }
+            console.log(sum);
+        }
+        getSums(1, 100);
+        getSums(1, 50);
+
+        //练习4：利用函数求任意两个数的最大值 
+        function getMax(num1, num2) {
+            /* if (num1 > num2) {
+                return num1;
+            } else {
+                return num2;
+            } */
+
+            //利用三元运算符
+            return num1 > num2 ? num1 : num2;
+        }
+        console.log(getMax(99, 32));
+
+        //练习5：利用函数求数组 [5,2,99,101,67,77] 中的最大数值。
+        function getArrMax(arr) {// 接收一个数组 arr = [5,2,99,101,67,77]
+            var max = arr[0];
+            for (var i = 1; i <= arr.length; i++) {// i从1开始，因为0已经给max了
+                if (arr[i] > max) {
+                    max = arr[i];
+                }
+            }
+            return max;
+        }
+        //getArrMax([5, 2, 99, 101, 67, 77]);// 实参是一个数组，送过去
+        //在实际开发中，经常用一个变量来接收 函数的返回结果 使用更简单
+        var re = getArrMax([5, 2, 99, 101, 67, 77]);
+        console.log(re);
+
+        //练习6：求任意两个数的 加减乘除 结果
+        /* function getResult(num1, num2) {
+            return [num1 + num2, num1 - num2, num1 * num2, num1 / num2];
+        }
+        var re = getResult(1, 2);//返回的是一个数组
+        console.log(re); */
+
+        // 作业1：写一个函数，用户输入任意两个数字的任意算术运算（简单的计算器小功能），并能弹出运算后的结果。
+        /* function getResult() {
+            var i = prompt('欢迎使用简易计算器：' + '\n' + '1.加法运算' + '\n' + '2.减法运算' + '\n' + '3.乘法运算' + '\n' + '4.除法运算');
+            var a = parseFloat(prompt('请输入数字1：'));
+            var b = parseFloat(prompt('请输入数字2：'));
+            var re = 0;
+            switch (i) {
+                case '1':
+                    return re = a + b;
+                case '2':
+                    return re = a - b;
+                case '3':
+                    return re = a * b;
+                case '4':
+                    return re = a / b;
+                default:
+                    break;
+            }
+        }
+        alert(getResult()); */
+
+        // 作业2：写一个函数，用户输入任意两个数字的最大值，并能出弹运算后的结果。
+        /* function getMax() {
+            if (i > j) {
+                return i;
+            } else {
+                return j;
+            }
+        }
+        var i = prompt('请输入数字1：');
+        var j = prompt('请输入数字2：');
+        alert(getMax()); */
+
+        // 作业3：写一个函数，用户输入任意三个不同数字的最大值，并能弹出运算后的结果。
+        /* function getMax(a, b, c) {
+            var max = a;
+            if (b > a) {
+                max = b;
+                if (c > b) {
+                    return c;
+                } else {
+                    return b;
+                }
+            } else if (c > a) {
+                return c;
+            } else {
+                return a;
+            }
+        }
+        var re = getMax(prompt('请输入数字1：'), prompt('请输入数字2：'), prompt('请输入数字3：'));
+        alert(re); */
+
+        // 作业4：写一个函数，用户输入一个数判断是否是素数，并返弹出回值(又叫质数，只能被1和自身整除的数)
+        /* function getNum(num) {
+            if (num == 0 || num == 1) {
+                return ('既不是质数，也不是合数')
+            } if (num == 2) {
+                return ('是素数');
+            }
+            for (var i = 2; i <= num - 1; i++) {
+                if (num % i == 0) {
+                    return ('是合数');
+                }
+            }
+            return ('是素数');
+        }
+        var re = getNum(prompt('请输入一个整数：'));
+        alert(re); */
+
+        //打印2-num之间所有的质数
+        function getNum(num) {
+            // var arr = [i];
+            if (num <= 1) {
+                return ('既不是质数，也不是合数');
+            }
+            var flag = true;
+            //判断是否为质数，要获取 2——num 之间的数，看能不能被 i 整除
+            for (var i = 2; i <= num - 1; i++) {
+                if (num % i == 0) {
+                    return ('是合数');
+                }
+            }
+            if (flag) {
+                return ('是素数');
+            }
+        }
+        var re = getNum(prompt('请输入一个整数：'));
+        alert(re);
+
+        // arguments的使用
+        //练习1：利用函数求任意个数的最大值 
+        function getMax() {
+            var max = arguments[0];// 将第一个值取出来
+            for (var i = 1; i < arguments.length; i++) {// 从1开始 部比较完以后再return
+                if (arguments[i] > max) {
+                    max = arguments[i];
+                }
+            }
+            return max;
+        }
+        console.log(getMax(5, 99, 33));
+
+        //函数案例
+        //案例1：利用函数封装方式，翻转任意一个数组
+        function reverse(arr) {
+            var newArr = [];
+            for (var i = arr.length - 1; i >= 0; i--) {
+                newArr[newArr.length] = arr[i];
+            }
+            return newArr;
+        }
+        var arr1 = reverse([1, 3, 5, 7]);
+        console.log(arr1);
+        var arr2 = reverse(['red', 'green', 'blue']);
+        console.log(arr2);
+
+        //案例2：利用函数封装方式，对数组排序 -- 冒泡排序
+        function sort(arr) {// sort 排序
+            for (var i = 0; i < arr.length - 1; i++) {
+                for (var j = 0; j < arr.length - i - 1; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        var temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+            return arr;
+        }
+        var arr1 = sort([1, 4, 2, 9])
+        console.log(arr1);
+
+        //案例3：利用函数 判断闰年
+        //输入一个年份，判断是否是闰年（闰年：能被4整除并且不能被100整数，或者能被400整除）
+        function isRunYear(year) {
+            //如果是闰年 返回true，不是则返回 false
+            var flag = false;
+            if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+                flag = true;
+            }
+            return flag;
+        }
+        // alert(isRunYear(prompt('请输入一个年份：')));
+        console.log(isRunYear(2000));
+
+        //案例4：用户输入年份，输出当前年份2月份的天数；如果是闰年，则2月份是 29天， 如果是平年，则2月份是 28天；
+        function backDay() {
+            var year = prompt('请输入年份：');
+            if (isRunYear(year)) {
+                alert('是闰年，当年2月份是 29天');
+            } else {
+                alert('不是闰年，当年2月份是 28天');
+            }
+        }
+        backDay();
+
+        //判断是否为闰年的函数
+        function isRunYear(year) {
+            var flag = false;
+            if (year % 4 == 0 && year % 100 !== 0 || year % 400 == 0) {
+                flag = true;
+            }
+            return flag;
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

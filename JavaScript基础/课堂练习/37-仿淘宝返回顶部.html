@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .slider-bar {
+            position: absolute;
+            left: 50%;
+            top: 300px;
+            margin-left: 600px;
+            width: 45px;
+            height: 130px;
+            background-color: pink;
+        }
+
+        .w {
+            width: 1200px;
+            margin: 10px auto;
+        }
+
+        .header {
+            height: 150px;
+            background-color: purple;
+        }
+
+        .banner {
+            height: 250px;
+            background-color: skyblue;
+        }
+
+        .main {
+            height: 1000px;
+            background-color: yellowgreen;
+        }
+
+        span {
+            display: none;
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider-bar">
+        <span class="goBack">返回顶部</span>
+    </div>
+    <div class="header w">头部区域</div>
+    <div class="banner w">banner区域</div>
+    <div class="main w">主体部分</div>
+    <script>
+        // 1. 获取元素
+        var sliderbar = document.querySelector('.slider-bar');// js里面不识别短横线 -
+        var banner = document.querySelector('.banner');
+        // 被卷去头部的距离，写在外面是因为要在滚动事件发生前获取
+        var bannerTop = banner.offsetTop;
+        // 让侧边栏不跳，侧边栏变成固定定位后的距离 = 侧边栏的offsetTop - 被卷头部的距离
+        var sliderbarTop = sliderbar.offsetTop - bannerTop;
+        // 获取main 主体元素
+        var main = document.querySelector('.main');
+        var goBack = document.querySelector('.goBack');
+        // 得到main的offsetTop 值
+        var mainTop = main.offsetTop;
+        // 2. 添加页面滚动事件 事件源是document
+        document.addEventListener('scroll', function () {
+            //3. 当页面被卷去的头部（window.pageYOffset） 大于等于 banner距离页面头部的偏移，侧边栏就要改成固定定位
+            // 并且更改侧边栏的距离
+            if (window.pageYOffset >= bannerTop) {
+                sliderbar.style.position = 'fixed';
+                sliderbar.style.top = sliderbarTop + 'px';// 重新赋值要用上style
+            } else {
+                sliderbar.style.position = 'absolute';
+                sliderbar.style.top = '300px';//改回原来的300
+            }
+            // 4. 当页面滚动到main盒子 就显示返回顶部
+            if (window.pageYOffset >= mainTop) {
+                goBack.style.display = 'block';
+            } else {
+                goBack.style.display = 'none';
+            }
+        })
+        // 3. 当点击返回顶部模块，就让窗口滚动到页面的最上方
+        goBack.addEventListener('click', function () {
+            // 里面的x y不加px 直接写数字
+            // window.scroll(0, 0);
+            animate(window, 0);
+        });
+        // 动画函数 
+        function animate(obj, target, callback) {//callback = function(){}，调用callback();
+            // 当不断点击按钮，会重复调用函数，定时器开启太多 速度会越来越快
+            // 解决方法：每次执行前先清除以前的定时器，只保留当前的定时器
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                //把步长值改为整数，不要有小数的问题 往大了取：Math.ceil()
+                // var step = Math.ceil((target - obj.offsetLeft) / 10); //步长值写在定时器里面，每次定时器执行，重新计算步长
+                // 往回走是负值，要往小了取
+                var step = (target - window.pageYOffset) / 10;
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                if (window.pageYOffset == target) {// 让当前盒子等于目标值，计时器停止
+                    clearInterval(obj.timer);// 停止动画本质就是停止计时器
+                    //回调函数写在定时器结束里面，结束之后才执行
+                    if (callback) {//如果有这个函数
+                        callback();//调用函数
+                    }
+                }
+                //每次匀速加 1 改成 慢慢变小得值
+                //让盒子每次移动距离变小 ：步长公式 = （目标值 - 现在的位置）/ 10 
+                // obj.style.left = window.pageYOffset + step + 'px'
+                window.scroll(0, window.pageYOffset + step);
+            }, 15);
+        }
+    </script>
+</body>
+
+</html>

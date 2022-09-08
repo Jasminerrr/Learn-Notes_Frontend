@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素显示与隐藏</title>
+</head>
+
+<body>
+    <h3>1.display 显示隐藏元素</h3>
+    <ul>
+        <li>display: none ；隐藏对象</li>
+        <li> display：block ；除了转换为块级元素之外，同时还有显示元素的意思</li>
+        <li>display 隐藏元素后，不再占有原来的位置。</li>
+        后面应用及其广泛，搭配 JS 可以做很多的网页特效
+    </ul>
+
+    <h3>2.visibility （可见性）显示隐藏元素(用于指定一个元素应可见还是隐藏。)</h3>
+    <ul>
+        <li>visibility：visible ; 元素可视</li>
+        <li> visibility：hidden; 元素隐藏</li>
+        <li>visibility 隐藏元素后，继续占有原来的位置！！！</li>
+        如果隐藏元素想要原来位置， 就用 visibility：hidden <br>
+        如果隐藏元素不想要原来位置， 就用 display：none (用处更多 重点）
+    </ul>
+    <h3>3.overflow 溢出部分的显示与隐藏</h3>
+    <ul>
+        <li>overflow：visible ; 不剪切内容也不添加滚动条</li>
+        <li> overflow：hidden; 不显示超过对象尺寸的内容，超出的部分隐藏掉</li>
+        <li>overflow：scroll; 不管超出内容与否，总是显示滚动条</li>
+        <li>overflow：auto; 超出自动显示滚动条，不超出则不显示</li>
+        注意：有定位的盒子，慎用hidden，因为会隐藏多余的部分！
+    </ul>
+</body>
+
+</html>

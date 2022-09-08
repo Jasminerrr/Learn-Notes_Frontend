@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .ad {
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ad"></div>
+    <script>
+        // 需求1：点击div 2s 后背景颜色变成粉色
+        let ad = document.querySelector('.ad');
+        // 普通函数
+        // ad.addEventListener('click', function () {
+        //     // 保存函数作用域下的this的值（ad）
+        //     let _this = this; // 常见有_this/that/self变量名 保存this
+        //     // 定时器
+        //     setTimeout(function () {
+        //         // this.style.backgroundColor = 'pink'; // 此时this指向window 报错
+        //         _this.style.backgroundColor = 'pink';// 当前作用域找不到_this 就会去上一层找
+        //     }, 2000)
+        // });
+        // 箭头函数
+        ad.addEventListener('click', function () {
+            setTimeout(() => {
+                // 箭头函数没有自己的this，会指向父级的this，也就是函数的this，而函数this 是指向函数调用者
+                this.style.backgroundColor = 'pink';// this指向ad
+            }, 2000);
+        })
+
+        // 需求2：从数组中返回偶数的元素
+        const arr = [1, 4, 22, 7];
+        // 普通函数
+        // const result = arr.filter(function (item) {
+        //     if (item % 2 === 0) {
+        //         return true;
+        //     } else {
+        //         return false;
+        //     }
+        // });
+        // console.log(result);// [4,22]
+        const result = arr.filter(item => item % 2 === 0);
+        console.log(result);
+
+    </script>
+</body>
+
+</html>

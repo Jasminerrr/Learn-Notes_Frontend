@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch 发送 AJAX请求</title>
+</head>
+
+<body>
+    <button>AJAX请求</button>
+    <script>
+        const btn = document.querySelector('button');
+        // fetch()方法：
+        // (1)用于发起获取资源的请求
+        // (2)返回一个promise，这个promise会在请求响应后被resolve，并传回Response对象
+        btn.onclick = function () {
+            fetch('http://127.0.0.1:8000/fetch-server?vip=10', {
+                // 请求方法
+                method: 'POST',
+                // 请求头
+                headers: {
+                    name: 'Bob'
+                },
+                // 请求体
+                body: 'username=admin&password=admin',
+            }).then(response=>{
+                // return response.text();
+                return response.json();// 如果明确响应体内容为 json 字符串，将会返回一个 object 对象
+            }).then(response=>{
+                console.log(response);
+            })
+        }
+    </script>
+</body>
+
+</html>

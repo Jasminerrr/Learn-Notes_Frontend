@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script type="module">
+        /* 
+        // 方式1： 通用的导入方式
+        // 引入 m1.js模块内容   
+        import * as m1 from "./m1.js";
+        // console.log(m1);
+
+        // 引入 m2.js模块内容
+        import * as m2 from "./m2.js";
+        // console.log(m2);
+
+        // 引入 m3.js模块内容
+        import * as m3 from "./m3.js";
+        // console.log(m3);
+        // 想要使用里面的属性或方法需要加default
+        m3.default.change();
+         */
+
+        /* 
+         //  方式2： 解构赋值形式
+        // 分别暴露
+        import{school,fn1} from "./m1.js";
+        // 统一暴露
+        import {school as team, fn2} from "./m2.js";// as 加别名后不会冲突  
+        console.log(team,fn2);
+        // 默认暴露
+        import{default as m3} from "./m3.js";// default 必须使用别名
+        console.log(m3);
+         */
+
+        /* 
+        //  方式3：简便形式 针对默认暴露
+        import m3 from "./m3.js";
+        console.log(m3);
+         */
+
+
+
+    </script>
+    
+    <script src="./js/app.js" type="module"></script>
+</body>
+
+</html>

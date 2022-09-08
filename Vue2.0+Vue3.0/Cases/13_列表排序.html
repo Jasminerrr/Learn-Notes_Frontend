@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue -->
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h2>人员列表</h2>
+        <input type="text" placeholder="请输入姓名" v-model="keyWords">
+        <button @click="sortType = 2">年龄升序</button>
+        <button @click="sortType = 1">年龄降序</button>
+        <button @click="sortType = 0">原顺序</button>
+        <ul>
+            <!-- 遍历过滤后的filPersons数组 -->
+            <li v-for="(p,index) of filPersons" :key="p.id">
+                {{p.name}}-{{p.age}}-{{p.sex}}
+                <input type="text">
+            </li>
+        </ul>
+    </div>
+    <script>
+        Vue.config.productionTip = false;// 设置为 false 以阻止 vue 在启动时生成生产提示
+        new Vue({
+            el: '#root',
+            data: {
+                keyWords: '',
+                sortType: 0,
+                persons: [
+                    { id: '001', name: '马冬梅', age: 28, sex: '女' },
+                    { id: '002', name: '周冬雨', age: 19, sex: '女' },
+                    { id: '003', name: '周杰伦', age: 20, sex: '男' },
+                    { id: '004', name: '温兆伦', age: 18, sex: '男' }
+                ]
+            },
+            computed: {
+                // 简写：computed直接调用对象属性get()的return返回值
+                // 1. get初次读取计算属性时会执行一次；
+                // 2. 当所依赖的数据（persons、keyWords）发生变化时会被get再次调用；
+                filPersons() {
+                    const arr = this.persons.filter((p) => {
+                        return p.name.indexOf(this.keyWords) !== -1
+                    })
+                    // 判断是否需要排序(排序是否为真)
+                    if (this.sortType) {
+                        arr.sort((p1, p2) => {
+                            return this.sortType === 1 ? p2.age - p1.age : p1.age - p2.age
+                        })
+                    }
+                    return arr
+                }
+            }
+
+        });
+    </script>
+</body>
+
+</html>

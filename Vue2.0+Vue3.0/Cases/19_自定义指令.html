@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue -->
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 需求1：定义一个v-big的指令，和v-text功能相似，但会把绑定的数值放大10倍； -->
+    <!-- 需求2：定义一个v-fbind的指令，和v-bind功能类似，但是可以让其所绑定的input元素默认获取焦点； -->
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h2>当前的n值是：<span v-text="n"></span></h2>
+        <h2>n的值放大10倍后为: <span v-big="n"></span></h2>
+        <!-- <h2>n的值放大10倍后为: <span v-big-number="n"></span></h2> -->
+        <button @click="n++">点我n+1</button>
+        <hr />
+        <input type="text" v-fbind:value="n">
+    </div>
+    <script>
+        Vue.config.productionTip = false;// 设置为 false 以阻止 vue 在启动时生成生产提示
+
+        // 定义全局指令：Vue.directive('指令名',对象或函数)
+        /* Vue.directive('fbind', {
+            // 指令与元素成功绑定时(一上来)调用
+            bind(element, binding) {
+                element.value = binding.value
+            },
+            // 指令所在元素被插入页面时调用
+            inserted(element, binding) {
+                element.focus()
+            },
+            // 指令所在的模板被重新解析时调用
+            update(element, binding) {
+                element.value = binding.value
+            }
+        })
+
+        Vue.directive('big', function (element, binding) {
+            element.innerText = binding.value * 10
+        })
+        */
+
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                n: 1,
+            },
+            // 定义局部指令
+            directives: {
+                // 结果不靠返回值，靠收到的参数
+                // element：真实的DOM元素
+                // binding：绑定元素和指令
+                /* big函数什么时候被调用：
+                    1. 指令与元素成功绑定时(一上来)；
+                    2. 指令所在的模板被重新解析时； */
+                big(element, binding) {// 简写方式：回调函数（bind + update）
+                    console.log('big',this);// 注意此处是window
+                    element.innerText = binding.value * 10
+                },
+                // 此时'big-number'要加引号
+                /* 'big-number'(element, binding) {// 简写方式：回调函数（bind + update）
+                    console.log('big',this);// 注意此处是window
+                    element.innerText = binding.value * 10
+                }, */
+                fbind: {
+                    // 指令与元素成功绑定时(一上来)调用
+                    bind(element, binding) {
+                        console.log('fbind-bind',this);// 注意此处是window
+                        element.value = binding.value
+                    },
+                    // 指令所在元素被插入页面时调用
+                    inserted(element, binding) {
+                        element.focus()
+                    },
+                    // 指令所在的模板被重新解析时调用
+                    update(element, binding) {
+                        element.value = binding.value
+                    }
+                }
+            }
+        });
+
+        
+    </script>
+</body>
+
+</html>

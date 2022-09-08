@@ -1,0 +1,398 @@
+body {
+    width: 100%;
+    max-width: 640px;
+    min-width: 320px;
+    margin: 0 auto;
+    font-size: 14px;
+    font-family: -apple-system, Helvetica, sans-serif;
+    color: #666;
+    /* 行高是字体的1.5倍 */
+    line-height: 1.5;
+    background-color: #ccc;
+
+    height: 2000px;
+}
+
+/*点击高亮我们需要清除清除 设置为transparent 完成透明*/
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/*在移动端浏览器默认的外观在iOS上加上这个属性才能给按钮和输入框自定义样式*/
+input {
+    -webkit-appearance: none;
+}
+
+/*禁用长按页面时的弹出菜单*/
+img,
+a {
+    -webkit-touch-callout: none;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* 去除图片底层空白缝隙top/middle */
+img {
+    vertical-align: middle;
+}
+
+.app {
+    height: 45px;
+}
+
+.app ul li {
+    float: left;
+    height: 45px;
+    line-height: 45px;
+    background-color: #333;
+    text-align: center;
+    color: #fff;
+}
+
+.app ul li:nth-child(1) {
+    width: 8%;
+}
+
+.app ul li:nth-child(1) img {
+    width: 10px;
+}
+
+.app ul li:nth-child(2) {
+    width: 10%;
+}
+
+.app ul li:nth-child(2) img {
+    width: 30px;
+    /* 图片经常要和文字居中对齐 */
+    vertical-align: middle;
+}
+
+.app ul li:nth-child(3) {
+    width: 57%;
+}
+
+.app ul li:nth-child(4) {
+    width: 25%;
+    background-color: #F63515;
+}
+
+/* 搜索 */
+.search-wrap {
+    overflow: hidden;
+    /* 改成固定定位，固定定位盒子必须有宽度 */
+    position: fixed;
+    width: 100%;
+    height: 44px;
+    min-width: 320px;
+    max-width: 640px;
+    z-index: 999;
+}
+
+.search-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 44px;
+}
+
+.search-btn::before {
+    content: " ";
+    /* 行内元素转化成块级 */
+    display: block;
+    width: 20px;
+    height: 18px;
+    background: url(../images/s-btn.png) no-repeat;
+    background-size: 20px 18px;
+    margin: 14px 0 0 15px;
+}
+
+.search-login {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 44px;
+    color: #fff;
+    line-height: 44px;
+}
+
+.search {
+    position: relative;
+    height: 30px;
+    background-color: #fff;
+    margin: 0 50px;
+    border-radius: 15px;
+    margin-top: 7px;
+}
+
+.jd-icon {
+    width: 20px;
+    height: 15px;
+    position: absolute;
+    top: 8px;
+    left: 13px;
+    background: url(../images/jd.png) no-repeat;
+    background-size: 20px 15px;
+}
+
+.jd-icon::after {
+    content: " ";
+    position: absolute;
+    right: -8px;
+    display: block;
+    width: 1px;
+    height: 15px;
+    background-color: #ccc;
+}
+
+.sou {
+    position: absolute;
+    top: 8px;
+    left: 50px;
+    width: 18px;
+    height: 15px;
+    /* 二倍精灵图做法 */
+    /* 1.在firework里面把精灵图等比例缩放为原来的一半
+    2.之后根据大小 测量坐标
+    3.注意代码里面background,注意代码里面background-size也要写： 精灵图原来宽度的一半 */
+    background: url(../images/jd-sprites.png) no-repeat -81px 0;
+    background-size: 200px auto;
+}
+
+.slider img {
+    width: 100%;
+
+}
+
+/* 复制swiper css样式 */
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 品牌日 */
+.brand {
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+}
+
+.brand div {
+    float: left;
+    width: 33.33%;
+}
+
+.brand div img {
+    width: 100%;
+}
+
+/* 导航 */
+nav {
+    overflow: hidden;
+    padding-top: 5px;
+}
+
+nav a {
+    /* 行内元素要转换，但给了浮动不需要转换块级 */
+    float: left;
+    width: 20%;
+    text-align: center;
+
+}
+
+nav a img {
+    width: 40px;
+    margin: 10px 0;
+}
+
+nav span {
+    display: block;
+}
+
+/* news */
+.news {
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.news img {
+    width: 100%;
+}
+
+.news a {
+    float: left;
+    /* css3盒子模型的边框不会撑开盒子 */
+    box-sizing: border-box;
+}
+
+.news a:nth-child(1) {
+    width: 50%;
+}
+
+/* .news a:nth-child(2),
+.news a:nth-child(3) {
+    width: 25%;
+} */
+/* n+2就是从第二个开始 */
+.news a:nth-child(n+2) {
+    width: 25%;
+    border-left: 1px solid #ccc;
+}
+
+.miaosha {
+    overflow: hidden;
+    margin-top: 6px;
+    background-color: #fff;
+}
+
+.miaosha-hd {
+    position: relative;
+
+}
+
+.miaosha-hd span {
+    font-size: 18px;
+    font-weight: 700;
+    color: red;
+}
+
+.more {
+    position: absolute;
+    top: 0;
+    right: 24px;
+    color: red;
+}
+
+.more-1 {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    background-color: #F63515;
+}
+
+.more-1::after {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    transform: rotate(45deg);
+}
+
+.miaosha-bd a {
+    box-sizing: border-box;
+    float: left;
+    width: 20%;
+    padding: 5px;
+}
+
+.price {
+    color: red;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.original {
+    color: #aaa;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: line-through;
+}
+
+.category {
+    overflow: hidden;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+
+}
+
+.category img {
+    padding: 8px;
+    width: 60px;
+}
+
+.category-lf {
+    box-sizing: border-box;
+    width: 50%;
+    font-size: 16px;
+    float: left;
+    text-align: center;
+    border-right: 1px solid #ccc;
+
+}
+
+.category-rt {
+    width: 50%;
+    font-size: 16px;
+    float: right;
+    text-align: center;
+}
+
+.classify {
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.classify a {
+    box-sizing: border-box;
+    float: left;
+    width: 25%;
+    padding: 5px;
+}
+
+.classify img {
+    width: 45px;
+}
+
+.classify a span {
+    font-size: 18px;
+    color: #333;
+    padding-left: 4px;
+}
+
+.classify a:nth-child(-n+3) {
+    border-right: 1px solid #ccc;
+}

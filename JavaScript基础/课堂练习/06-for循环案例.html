@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //for循环案例:
+
+        //案例1. 求1-100之间所有数的平均值
+        var sum = 0;
+        var average = 0;
+        for (var i = 1; i <= 100; i++) {
+            sum = sum + i;
+        }
+        average = sum / 100;
+        console.log('平均值为' + average);
+
+        //案例2. 求1-100之间所有偶数和奇数的和
+        var even = 0;
+        var odd = 0;
+        for (var i = 1; i <= 100; i++) {
+            if (i % 2 == 0) {
+                //even = even + i;
+                even += i;
+            } else {
+                //odd = odd + i;
+                odd += i;
+            }
+        }
+        console.log('偶数是' + even);
+        console.log('奇数是' + odd);
+
+        //案例3. 求1-100之间所有能被3整除的数字的和
+        var result = 0;
+        for (var i = 1; i <= 100; i++) {
+            if (i % 3 == 0) {
+                //result = result + i;
+                result += i;
+            }
+        }
+        console.log('和为：' + result);
+
+        //案例4.要求用户输入班级人数，之后依次输入每个学生的成绩，最后打印出该班级总的成绩以及平均成绩。
+        //1. 弹出输入框输入总的班级人数 ( num )
+        //2. 依次输入学生的成绩（保存起来 score），此时我们需要用到 for 循环，弹出的次数跟班级总人数有关系   条件表达式  i <= num
+        //3. 进行业务处理:  计算成绩。 先求总成绩（sum），之后求平均成绩（average）
+        //4. 弹出结果
+        var num = prompt('请输入班级的总人数：');
+        var sum = 0;
+        var average = 0;
+        for (var i = 1; i <= num; i++) {
+            score = prompt('请输入第' + i + '个学生的成绩');
+            sum += parseFloat(score); //取过来的数据为字符串，要转换为数字型
+        }
+        average = sum / num;
+        alert('总成绩为：' + sum);
+        alert('平均成绩为：' + average);
+
+        var num = prompt('请输入班级的总人数：');
+        var sum = 0;
+        var average = 0;
+        for (var i = 1; i <= num; i++) {
+            var score = prompt('请输入第' + i + '个学生的的成绩');
+            sum = sum + parseFloat(score);
+        }
+        average = sum / num;
+        alert('总成绩为' + sum);
+        alert('平均成绩为' + average);
+
+        //案例5：1. 一行打印5个星星
+        var str = '';
+        for (var i = 1; i <= 5; i++) {
+            str = str + '⭐';
+        }
+        console.log(str);
+        //2. 
+        var num = prompt('输入星星数量');
+        var str = '';
+        for (var i = 1; i <= num; i++) {
+            str = str + '⭐';
+        }
+        console.log(str);
+
+        //案例6：打印5行5列星星
+        var str = '';
+        for (var i = 1; i <= 5; i++) { //外层循环负责打印5行
+            for (var j = 1; j <= 5; j++) { //里层循环负责一行打印5个
+                str = str + '⭐';
+            }
+            str = str + '\n'; //打印完一行后要另起一行 
+        }
+        console.log(str);
+        //打印n行n列星星
+        var rows = prompt('输入打印的行数：');
+        var cols = prompt('输入打印的列数：');
+        var str = '';
+        for (var i = 1; i <= rows; i++) {
+            for (var j = 1; j <= cols; j++) {
+                str = str + '⭐';
+            }
+            str += '\n';
+        }
+        console.log(str);
+
+        // 案例7：打印倒三角形案例
+        var str = '';
+        for (var i = 1; i <= 10; i++) { //外层循环负责打印行数
+            for (var j = i; j <= 10; j++) { //里层循环打印个数不一样 j = i 
+                str = str + '⭐';
+            }
+            str = str + '\n';
+        }
+        console.log(str);
+        //正三角案例
+        var str = '';
+        for (var i = 1; i <= 10; i++) {
+            for (var j = 1; j <= i; j++) {
+                str = str + '⭐';
+            }
+            str = str + '\n';
+        }
+        console.log(str);
+        //99乘法表案例
+        var str = '';
+        for (var i = 1; i <= 9; i++) { //外层循环控制行数
+            for (var j = 1; j <= i; j++) { //里层循环控制每行的个数 j <= i
+                //str = str + '⭐';
+                //1 × 1 = 1
+                // i × j = 1
+                str += j + '×' + i + '=' + i * j + '\t';
+            }
+            str = str + '\n';
+        }
+        console.log(str);
+
+        //while循环案例：
+        //案例1：打印人的一生，从1岁到100岁
+        var year = 1;
+        while (year <= 100) {
+            console.log('第' + year + '岁啦');
+            year++;
+        }
+
+        //案例2：计算 1 ~ 100 之间所有整数的和
+        var i = 1;
+        var sum = 0;
+        while (i <= 100) {
+            sum += i;
+            i++;
+        }
+        console.log(sum);
+
+        //案例3：弹出一个提示框， 你爱我吗？  如果输入我爱你，就提示结束，否则，一直询问。
+        // 弹出输入框，要求用户输入。
+        // 判断条件比较复杂我们使用 while 循环。
+        // while 循环语句中的条件表达式只要输入的不是 我爱你，就一直循环。
+        var message = prompt('你爱我吗？');
+        while (message !== '我爱你') {
+            message = prompt('你爱我吗？');
+        }
+        alert('嗯嗯');
+
+        // do while循环案例：
+        //案例1：打印人的一生，从1岁到100岁
+        var i = 1;
+        do {
+            console.log('你' + i + '岁啦');
+            i++;
+        } while (i <= 100);
+
+        //案例2：计算 1 ~ 100 之间所有整数的和
+        var i = 1;
+        var sum = 0;
+        do {
+            sum += i;
+            i++;
+        } while (i <= 100);
+        console.log(sum);
+
+        //案例3：弹出一个提示框， 你爱我吗？  如果输入我爱你，就提示结束，否则，一直询问。
+        do {
+            var i = prompt('你爱我吗？');
+        } while (i !== '我爱你');
+        alert('嗯嗯');
+
+        //continue关键字
+        //案例1：求1~100中 除7整除外所有整数的和
+        var sum = 0;
+        for (var i = 1; i <= 100; i++) {
+            if (i % 7 == 0) {
+                continue; // 只要遇见 continue就退出本次循环，直接跳到i++
+            }
+            sum += i;
+        }
+        console.log(sum);
+
+        //break 循环
+        for (var i = 1; i <= 5; i++) {
+            if (i == 3) {
+                break;
+            }
+            console.log('我正在吃第' + i + '个包子');
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

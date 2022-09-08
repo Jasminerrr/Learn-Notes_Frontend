@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            margin: 200px;
+        }
+
+        span {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            font-size: 20px;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <span class="hour">1</span>
+        <span class="minute">2</span>
+        <span class="second">3</span>
+    </div>
+    <script>
+        // 1. 获取元素
+        var hour = document.querySelector('.hour');
+        var minute = document.querySelector('.minute');
+        var second = document.querySelector('.second');
+        var inputTime = +new Date('2022-6-22 20:00:00');// 返回的是输入时间总的毫秒数
+        countDown();// 先调用一次这个函数，防止第一次刷新有空白
+        // 2. 开启计时器，每隔一秒就调用这个函数
+        setInterval(countDown, 1000);
+        function countDown() {
+            var nowTime = +new Date();// 返回的是当前时间总的毫秒数
+            var times = (inputTime - nowTime) / 1000;// times 返回是剩余时间总的秒数
+            var h = parseInt(times / 60 / 60);//小时
+            h = h < 10 ? '0' + h : h;//用三元表达式实现前面 + 0 的效果
+            hour.innerHTML = h;// 把剩余小时给小时的黑盒子
+            var m = parseInt(times / 60 % 60);//分
+            m = m < 10 ? '0' + m : m;
+            minute.innerHTML = m;// 把剩余分钟给分钟的黑盒子
+            var s = parseInt(times % 60);  // 当前秒数（秒一直在变化）
+            s = s < 10 ? '0' + s : s;
+            second.innerHTML = s;// 把剩余秒数给秒的黑盒子
+        }
+    </script>
+</body>
+
+</html>

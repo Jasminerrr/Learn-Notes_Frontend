@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul class="nav">
+        <li>看看</li>
+        <li>刚刚</li>
+        <li>方法</li>
+        <li>让人</li>
+    </ul>
+    <button>测试1</button>
+    <button>测试2</button>
+    <button>测试3</button>
+    <script>
+        var lis = document.querySelector('.nav').querySelectorAll('li');
+        // for (var i = 0; i < lis.length; i++) {
+        //     lis[i].index = i;
+        //     lis[i].onclick = function () {
+        //         console.log(this.index);
+        //     }
+        // }
+        // (2)利用闭包的方式得到当前小li得索引号(面试题)
+        for (var i = 0; i < lis.length; i++) {
+            // 利用for循环创建了4个立即执行函数
+            // 立即执行函数也称为小闭包，因为立即执行函数里面的任何一个函数都可以使用它的i变量
+            (function (i) {
+                lis[i].onclick = function () {
+                    console.log(i);
+                }
+            })(i);
+        }
+
+        // 题2：点击按钮，打印对应的数字
+        // var btns = document.querySelectorAll('button');
+        // for (var i = 0, length = btns.length; i < length; i++) {// length这样的写法只用计算一次
+        //     // 给button设置索引号,利用动态添加属性的方式
+        //     btns[i].index = i;
+        //     btns[i].addEventListener('click', function () {
+        //         console.log('点击第' + (this.index + 1) + '个按钮');
+        //     })
+        // }
+
+        // 利用闭包
+        var btns = document.querySelectorAll('button');
+        for (var i = 0, length = btns.length; i < length; i++) {// length这样的写法只用计算一次
+            (function (i) {
+                btns[i].index = i;
+                btns[i].addEventListener('click', function () {
+                    console.log('点击第' + (this.index + 1) + '个按钮');
+                })
+            })(i);
+        }
+    </script>
+</body>
+
+</html>

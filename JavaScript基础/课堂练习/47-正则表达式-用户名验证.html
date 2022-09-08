@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .right {
+            color: green;
+        }
+
+        .wrong {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" class="uname"><span>请输入用户名</span>
+    <script>
+        // 功能需求:
+        // 如果用户名输入合法, 则后面提示信息为 :  用户名合法,并且颜色为绿色
+        // 如果用户名输入不合法, 则后面提示信息为:  用户名不符合规范, 并且颜色为红色
+        //分析:
+        // 1.用户名只能为英文字母,数字,下划线或者短横线组成, 并且用户名长度为 6~16位.
+        // 2.首先准备好这种正则表达式模式 /$[a-zA-Z0-9-_]{6,16}^/
+        // 3.当表单失去焦点就开始验证.
+        // 4.如果符合正则规范, 则让后面的span标签添加 right 类.
+        // 5.如果不符合正则规范, 则让后面的span标签添加 wrong 类.
+        var reg = /^[a-zA-Z0-9_-]{6,16}$/;
+        var uname = document.querySelector('.uname');
+        var span = document.querySelector('span');
+        // uname.addEventListener('blur', function () {// 鼠标失去焦点触发判断条件
+        //     if (reg.test(this.value)) { // this指向表单uname
+        //         span.className = 'right';
+        //         span.innerHTML = '用户名格式输入正确';
+        //     } else {
+        //         span.className = 'wrong';
+        //         span.innerHTML = '用户名不符合规范';
+        //     }
+        // })
+
+        uname.onblur = function () {// 鼠标失去焦点触发判断条件
+            if (reg.test(this.value)) { // this指向表单uname
+                span.className = 'right';// 修改类名
+                span.innerHTML = '用户名格式输入正确';// 修改表单内容
+            } else {
+                span.className = 'wrong';
+                span.innerHTML = '用户名不符合规范';
+            }
+        }
+    </script>
+</body>
+
+</html>

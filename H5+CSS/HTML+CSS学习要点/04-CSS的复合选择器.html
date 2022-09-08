@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS复合选择器</title>
+    <style>
+        /* 1.1 后代选择器:外层标签写在前面，内层标签写在后面，中间空格隔开！！ */
+        /* 语法:元素1 元素2 {样式声明}；元素2可以是儿子或孙子 */
+
+        ol li {
+            color: pink;
+            /* 表示选择ol里面所有的li标签 */
+        }
+
+        /* 元素2为孙子 */
+        ol li a {
+            color: red;
+        }
+
+        /* 元素1和元素2可以是任何基础选择器 */
+        .nav li a {
+            color: yellow;
+        }
+
+        /* 1.2 子选择器（重要）:选择最近一级子元素（亲儿子） */
+        /* 元素1>元素2，用>分隔开 */
+        .one>a {
+            color: purple;
+        }
+
+        /* 课堂练习1 */
+        .nav ul li a {
+            color: brown;
+        }
+
+        /* 练习2 */
+        .hot>a {
+            color: coral;
+        }
+
+        /* 1.3 并集选择器（重要）：可选择多组标签，同时定义相同的样式，常用于集体申明；
+        用英文","连接,可理解为“和”的意思,任何形式的选择器都可以作为并集选择器的一部分。
+        语法：元素1,元素2{样式声明} */
+        /* div,
+        p {
+            color: chocolate;
+        } */
+        /* 约定的语法规定，并集选择器要竖着写，最后一个选择器不需要加, */
+        div,
+        p,
+        .pig li {
+            color: chartreuse;
+        }
+
+        /* 1.3 伪类选择器：链接伪类选择器、：focus伪类选择器
+        1.3.1链接伪类选择器：
+        请按照LVHA的遁顺序声明！！
+        a:link(选择所有未被访问的链接)
+        a:visited(所有已被访问的链接)
+        a:hover(位于鼠标指针上的链接)
+        a:active(活动链接：鼠标按下未弹起的链接)
+        a链接会有默认的眼视光hi，实际需要给链接单独指定样式 */
+        /* 以下为实际开发中的写法 */
+        a {
+            color: chartreuse;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: cornflowerblue;
+            text-decoration: underline;
+        }
+
+        /* 1.3.2 ：focus伪类选择器：用于选取获得光标（焦点）的表单元素 
+        一般情况下<input>类表单元素才能获取*/
+        input:focus {
+            background-color: pink;
+            color: powderblue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>1. CSS复合选择器</h1>
+    <h3>1.1 后代选择器又称包含选择器（重要）：可以选择父元素里面的子元素</h3>
+    <ol>
+        <li>1111</li>
+        <li>1111</li>
+        <li><a href="#"> 我是孙子</a></li>
+    </ol>
+
+    <ul>
+        <li>123</li>
+        <li>111</li>
+    </ul>
+
+    <ul class="nav">
+        <li>123</li>
+        <li>111</li>
+        <li><a href="#"> 我是孙子</a></li>
+    </ul>
+
+    <div class="one">
+        <a href="#">我是亲儿子</a>
+        <p>
+            <a href="#">我是孙子</a>
+        </p>
+    </div>
+    <h3> 1.2 子选择器（重要）</h3>
+    <h3>课堂练习1</h3>
+    <div class="nav">
+        <ul>
+            <li><a href="#">百度</a></li>
+            <li><a href="#">百度</a></li>
+        </ul>
+    </div>
+    <h3>练习2</h3>
+    <div class="hot">
+        <a href="#">练习2</a>
+        <ul>
+            <li><a href="#">哦</a></li>
+            <li><a href="#">哦哦</a></li>
+        </ul>
+    </div>
+    <h3>并集选择器（重要）</h3>
+    <div>熊大</div>
+    <p>熊二</p>
+    <span>光头强</span>
+    <ul class="pig">
+        <li>猪1</li>
+        <li>猪2</li>
+        <li>猪3</li>
+    </ul>
+    <a href="#"></a>
+    <h3> 1.3 伪类选择器：链接伪类选择器
+        1.3.1链接伪类选择器：</h3>
+    <a href="#">链接伪类选择器</a>
+    <a href="http://www.xxx.com">未知网站</a>
+    <h3>1.3.2 ：focus伪类选择器：用于选取获得光标（焦点）的表单元素</h3>
+    <input type="text">
+    <input type="text">
+    <input type="text">
+</body>
+
+</html>

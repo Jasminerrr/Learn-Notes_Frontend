@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS高级技巧导读</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box1 {
+            height: 60px;
+            width: 60px;
+            background: url(images/sprites.png) no-repeat -182px 0;
+        }
+
+        /* 字体声明 */
+        @font-face {
+            font-family: 'icomoon';
+            src: url('fonts/icomoon.eot?lkco5t');
+            src: url('fonts/icomoon.eot?lkco5t#iefix') format('embedded-opentype'),
+                url('fonts/icomoon.ttf?lkco5t') format('truetype'),
+                url('fonts/icomoon.woff?lkco5t') format('woff'),
+                url('fonts/icomoon.svg?lkco5t#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+            font-display: block;
+        }
+
+        span {
+            /* 指定字体，要和声明font-face的一样 */
+            font-family: 'icomoon';
+            font-size: 50px;
+            color: blueviolet;
+        }
+
+        /* 3.CSS三角 */
+
+        .triangle {
+            width: 0;
+            height: 0;
+            /* 照顾兼容浏览器 */
+            line-height: 0;
+            font-size: 0;
+            /* end */
+            border: 20px solid transparent;
+            border-left-color: pink;
+            margin: 20px auto;
+        }
+
+        .jd {
+            position: relative;
+            width: 120px;
+            height: 249px;
+            background-color: brown;
+        }
+
+        .jd span {
+            position: absolute;
+            right: 15px;
+            top: -20px;
+            width: 0;
+            height: 0;
+            /* 照顾兼容浏览器 */
+            line-height: 0;
+            font-size: 0;
+            /* end */
+            border: 10px solid transparent;
+            border-bottom-color: brown;
+
+        }
+
+        .mi {
+            position: relative;
+            width: 200px;
+            height: 80px;
+            background-color: blue;
+        }
+
+        .mi span {
+            position: absolute;
+            right: -20px;
+            top: 30px;
+            width: 0;
+            height: 0;
+            /* 照顾兼容浏览器 */
+            line-height: 0;
+            font-size: 0;
+            /* end */
+            border: 10px solid transparent;
+            border-left-color: rgb(0, 255, 42);
+        }
+
+        /* 4.2去掉轮廓线 */
+        input,
+        textarea {
+            outline: none;
+        }
+
+        /* 4.3防止拖拽文本域 */
+        textarea {
+            resize: none;
+        }
+
+        /* 元素垂直对齐 */
+        img {
+            vertical-align: middle;
+        }
+
+        /* 6.单行文本溢出显示省略号 */
+        .text1 {
+            width: 100px;
+            height: 50px;
+            background-color: coral;
+            /* 如果文字显示不开自动换行（ 默认 normal 自动换行） */
+            /* white-space: normal; */
+            /* 1. 先强制一行内显示文本 */
+            white-space: nowrap;
+            /*2. 溢出的部分隐藏  */
+            overflow: hidden;
+            /* 3. 文字用省略号替代溢出的部分  */
+            text-overflow: ellipsis;
+        }
+
+        /* 7.1 margin负值运动 */
+        .near li {
+            position: relative;
+            list-style: none;
+            float: left;
+            width: 50px;
+            height: 80px;
+            border: 1px solid pink;
+            margin-left: -1px;
+        }
+
+        /* .near li:hover {
+            1.如果盒子没有定位，则鼠标经过使用相对定位，会保留盒子原先位置
+            position: relative;
+            border: 1px solid blue;
+        } */
+
+        /* 当鼠标经过li，盒子边框变色 */
+        .near li:hover {
+            /* 2.如果盒子都有定位，则利用定位叠放次序提高层级 */
+            z-index: 1;
+            border: 1px solid blue;
+        }
+
+        /* 7.2 文字围绕浮动元素 */
+        .text2 {
+            width: 300px;
+            height: 75px;
+            background-color: brown;
+            padding: 5px;
+        }
+
+        .pic {
+            float: left;
+            width: 120px;
+            height: 75px;
+            margin-right: 5px;
+        }
+
+        .pic img {
+            width: 100%;
+        }
+
+        /* 7.3行内块巧妙运用 */
+        .box2 {
+            text-align: center;
+        }
+
+        .box2 a {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            text-align: center;
+            line-height: 36px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+
+        /* 注意权重 */
+        .box2 .prev,
+        .box2 .next {
+            width: 85px;
+        }
+
+        .box2 .current,
+        .box2 .elp {
+            border: none;
+        }
+
+        .box2 input {
+            width: 36px;
+            height: 36px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        .box2 button {
+            width: 50px;
+            height: 36px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+
+        /* 7.3 CSS三角强化运用 */
+        .box3 {
+            width: 0;
+            height: 0;
+            /* 上边框宽度变大 */
+            /* border-top: 100px solid transparent;
+            border-right: 50px solid green; */
+            /* 下边框跟左边框宽度为0 */
+            /* border-bottom: 0 solid skyblue;
+            border-left: 0 solid blue; */
+
+            /* 简写代码 */
+            border-width: 100px 50px 0 0;
+            border-color: transparent green transparent transparent;
+            border-style: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>1.精灵图</h2>
+    <p>核心原理：将网页中的一些小背景图像整合到一张大图中 ，这样服务器只需要一次请求就可以了。
+        精灵技术目的：为了有效地减少服务器接收和发送请求的次数，提高页面的加载速度。
+    </p>
+    <h3>1.1 精灵图（sprites）的使用</h3>
+    <ul>
+        <li>精灵技术主要针对于背景图片使用。就是把多个小背景图片整合到一张大图片中。</li>
+        <li>这个大图片也称为 sprites 精灵图 或者 雪碧图</li>
+        <li>移动背景图片位置， 此时可以使用 background-position 。</li>
+        <li> 移动的距离就是这个目标图片的 x 和 y 坐标。注意网页中的坐标有所不同</li>
+        <li>因为一般情况下都是往上往左移动，所以数值是负值。</li>
+        <li> 使用精灵图的时候需要精确测量，每个小背景图片的大小和位置。</li>
+    </ul>
+    <div class="box1"></div>
+
+    <h3>2.字体图标优点</h3>
+    如果遇到一些结构和样式比较简单的小图标，就用字体图标。<br>
+    如果遇到一些结构和样式复杂一点的小图片，就用精灵图。
+    <h3>字体图标下载</h3>
+    icomoon 字库 http://icomoon.io <br>
+    阿里 iconfont 字库 http://www.iconfont.cn/ <br>
+
+    <h3>2.1. 字体图标追加</h3>
+    把压缩包里面的 selection.json 从新上传，然后选中自己想要新的图标，从新下载压缩包，并替换原来的文件即可。<br>
+    <span></span>
+    <span></span>
+
+    <h3>3. CSS三角</h3>
+    <div class="triangle"></div>
+    <!-- 案例 -->
+    <div class="jd">
+        <span></span>
+    </div>
+    <!-- 小米案例 -->
+    <div class="mi">
+        <span></span>
+    </div>
+
+    <h3>4. 用户界面样式</h3>
+    <h4>4.1 鼠标样式cursor（常用5个）</h4>
+    <ul>
+        <li style="cursor: default;">默认小白</li>
+        <li style="cursor: pointer;">小手</li>
+        <li style="cursor: move;">移动</li>
+        <li style="cursor: text;">文本</li>
+        <li style="cursor: not-allowed;">禁止</li>
+    </ul>
+
+    <h4>4.2 轮廓线outline</h4>
+    给表单添加 outline: 0; 或者 outline: none; 样式之后，就可以去掉默认的蓝色边框。<br>
+    <input type="text">
+
+    <h4>4.3 防止拖拽文本域 resize</h4>
+    textarea {resize:none} <br>
+    <!-- 文本域尽量写道一行上面，不然会有空白区域 -->
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+
+    <h3>5. vertical-align属性应用</h3>
+    经常用于设置图片或者表单(行内块元素）和文字垂直对齐。<br>
+    注意:用于设置一个元素的垂直对齐方式，只针对于行内元素或者行内块元素有效。<br>
+    <ul>
+        <li>baseline:基线；默认；元素放在父元素的基线</li>
+        <li>top:顶线；把元素的顶端与行中最高元素的顶端对齐</li>
+        <li>middle：中线；把此元素放在父元素的中部</li>
+        <li>bottom：底线；把元素的底端与行中最低的元素的底端对齐</li>
+    </ul>
+    <img src="images/b.jpg" alt="">就很烦的角色动画风格
+
+    <h4>5.1解决图片底部默认空白缝隙问题</h4>
+    bug：图片底侧会有一个空白缝隙，原因是行内块元素会和文字的基线对齐。<br>
+    1. 给图片添加 vertical-align:middle | top| bottom 等。（提倡使用的）<br>
+    2. 把图片转换为块级元素 display: block;<br>
+
+    <h3>6.溢出的文字用省略号显示</h3>
+    <h4>6.1单行文本溢出显示</h4>
+    <div class="text1">机房环境的是法国的</div>
+
+    <h3>6.2 多行文本溢出显示</h3>
+    <!-- 要严格控制盒子大小 -->
+    更推荐让后台人员来做这个效果，因为后台人员可以设置显示多少个字，操作更简单。
+
+    <p>overflow: hidden;
+        text-overflow: ellipsis;
+        <!-- 弹性伸缩盒子模型显示 -->
+        display: -webkit-box;
+        <!-- 限制在一个块元素显示的文本的行数 -->
+        -webkit-line-clamp: 2;
+        <!-- 设置或检索伸缩盒对象的子元素的排列方式 -->
+        -webkit-box-orient: vertical;
+    </p>
+
+    <h3>7.常见布局技巧</h3>
+
+    <h4>7.1 margin负值运用</h4>
+    1. 让每个盒子margin 往左侧移动 -1px 正好压住相邻盒子边框
+    <ul class="near">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <br><br><br><br>
+    2. 鼠标经过某个盒子的时候，提高当前盒子的层级即可（如果没有有定位，则加相对定位（保留位置），如
+    果有定位，则加z-index）<br>
+
+    <h4>7.2 文字围绕浮动元素巧妙运用 </h4>
+    <div class="text2">
+        <div class="pic">
+            <img src="images/b.jpg" alt="">
+        </div>
+        <p>改好发给首府位于如有他非要风雨哈哈哈哈哈哈哈烦烦烦哈佛好地方</p>
+    </div>
+
+    <h4>7.3 行内块巧妙运用 </h4>
+    <div class="box2">
+        <a href="#" class="prev">&lt;&lt;上一页</a>
+        <a href="#" class="current">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#" class="elp">...</a>
+        <a href="#" class="next">&gt;&gt;下一页</a>
+        到第
+        <input type="text">
+        页
+        <button>确定</button>
+    </div>
+
+    <h4>7.4 CSS三角强化 </h4>
+    <div class="box3"></div>
+
+    <h3>8.CSS初始化</h3>
+    <p>
+        不同浏览器对有些标签的默认值是不同的，为了消除不同浏览器对HTML文本呈现的差异，照顾浏览器的兼
+        容，我们需要对CSS 初始化<br>
+        简单理解： CSS初始化是指重设浏览器的样式。 (也称为CSS reset）每个网页都必须首先进行 CSS初始化。<br>
+        这里我们以 京东CSS初始化代码为例。
+        Unicode编码字体：<br>
+        把中文字体的名称用相应的Unicode编码来代替，这样就可以有效的避免浏览器解释CSS代码时候出现乱码
+        的问题。<br>
+        比如：<br>
+        黑体 \9ED1\4F53<br>
+        宋体 \5B8B\4F53<br>
+        微软雅黑 \5FAE\8F6F\96C5\9ED1
+    </p>
+</body>
+
+</html>

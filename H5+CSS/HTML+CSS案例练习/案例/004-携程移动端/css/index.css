@@ -1,0 +1,380 @@
+body {
+    max-width: 540px;
+    min-width: 320px;
+    margin: 0 auto;
+    font: normal 14px/1.5 Tahoma, "Lucida Grande", Verdana, "MicrosoftYahei", STXihei, hei;
+    color: #000;
+    background: #f2f2f2;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    text-decoration: none;
+    color: #222;
+}
+
+div {
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.search-index {
+    display: flex;
+    /* 固定定位跟父级无关，以屏幕（可视窗口）为主 */
+    position: fixed;
+    top: 0;
+    /* 定位的盒子居中，先走屏幕的一半，再往左走自己的一半 */
+    left: 50%;
+    transform: translateX(-50%);
+    /* 兼容老版本浏览器 */
+    -webkit-transform: translateX(-50%);
+    /* 固定定位的盒子要给宽度，以浏览器为主 */
+    width: 100%;
+    min-width: 320px;
+    max-width: 540px;
+    height: 44px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background-color: #f6f6f6;
+    z-index: 999;
+}
+
+.search {
+    position: relative;
+    flex: 1;
+    height: 26px;
+    /* c3盒子模型边框自减后内容区域只有24，设置26会使内容偏下，向下溢出 */
+    line-height: 24px;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    margin: 7px 10px;
+    padding-left: 25px;
+    border-radius: 5px;
+    /* 水平，垂直，模糊，透明度 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+}
+
+.search::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 15px;
+    height: 15px;
+    background: url(../images/sprite.png) no-repeat -59px -279px;
+    background-size: 104px auto;
+}
+
+.user {
+    width: 44px;
+    height: 44px;
+    font-size: 12px;
+    text-align: center;
+    color: #2eaae0;
+}
+
+.user::before {
+    content: "";
+    display: block;
+    /* 缩小一倍后的大小 */
+    width: 23px;
+    height: 23px;
+    /* 1.先缩小背景图一倍，2.量出坐标 */
+    background: url(../images/sprite.png) no-repeat -59px -194px;
+    /* 3. 背景缩放（精灵图原宽度一半） */
+    background-size: 104px auto;
+    margin: 4px auto -2px;
+}
+
+/* 返回顶部模块 */
+.goBack {
+    display: none;
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    width: 38px;
+    height: 38px;
+    background: url(../images/back.png);
+    background-size: 38px 38px;
+}
+
+/* 焦点图模块 */
+.focus {
+    overflow: hidden;
+    position: relative;
+    padding-top: 44px;
+}
+
+.focus img {
+    width: 100%;
+}
+
+.focus ul {
+    overflow: hidden;
+    width: 500%;
+    /* 走屏幕的100% */
+    margin-left: -100%;
+}
+
+.focus ul li {
+    float: left;
+    width: 20%;
+}
+
+.focus ol {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    margin: 0;
+}
+
+.focus ol li {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    background-color: #fff;
+    border-radius: 2px;
+    list-style: none;
+    transition: all .3s;
+}
+
+.focus ol li.current {
+    width: 15px;
+}
+
+/* 局部导航栏 */
+.local-nav {
+    display: flex;
+    height: 64px;
+    background-color: #fff;
+    margin: 3px 4px;
+    border-radius: 8px;
+}
+
+.local-nav li {
+    flex: 1;
+}
+
+.local-nav a {
+    display: flex;
+    /* 主轴改为y */
+    flex-direction: column;
+    /* 侧轴（x）居中对齐（单行） */
+    align-items: center;
+    font-size: 12px;
+}
+
+/* 通过类名，属性选择器 */
+.local-nav li [class^="local-nav-icon"] {
+    width: 32px;
+    height: 32px;
+    margin-top: 8px;
+    background: url(../images/localnav_bg.png) no-repeat 0 0;
+    background-size: 32px auto;
+}
+
+.local-nav li .local-nav-icon-icon2 {
+    background-position: 0 -32px;
+}
+
+.local-nav li .local-nav-icon-icon3 {
+    background-position: 0 -64px;
+}
+
+.local-nav li .local-nav-icon-icon4 {
+    background-position: 0 -96px;
+}
+
+.local-nav li .local-nav-icon-icon5 {
+    background-position: 0 -128px;
+}
+
+nav {
+    overflow: hidden;
+    border-radius: 8px;
+    margin: 0 4px 3px;
+}
+
+.nav-common {
+    display: flex;
+    height: 88px;
+    background-color: pink;
+}
+
+.nav-common:nth-child(2) {
+    margin: 3px 0;
+}
+
+.nav-items {
+    flex: 1;
+    /* 既可以做子盒子也可以做父级盒子 */
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-items a {
+    flex: 1;
+    text-align: center;
+    line-height: 44px;
+    color: #fff;
+    font-size: 14px;
+    /* 文字阴影 */
+    text-shadow: 1px 1px rgba(0, 0, 0, .2);
+}
+
+.nav-items a:nth-child(1) {
+    border-bottom: 1px solid white;
+    ;
+}
+
+.nav-items:nth-child(1) a {
+    border: 0;
+    /* 底端对齐，水平居中 */
+    background: url(../images/hotel.png) no-repeat bottom center;
+    background-size: 121px auto;
+}
+
+/* -n+2是前两个，-n+3是前三个 */
+.nav-items:nth-child(-n+2) {
+    border-right: 1px solid white;
+}
+
+.nav-common:nth-child(1) {
+    background: -webkit-linear-gradient(left, #FA5A55, #FA994D);
+}
+
+.nav-common:nth-child(2) {
+    background: -webkit-linear-gradient(left, #4937e6, #617cf5);
+}
+
+.nav-common:nth-child(3) {
+    background: -webkit-linear-gradient(left, #2bd686, #37f075);
+}
+
+.subnav-entry {
+    display: flex;
+    border-radius: 8px;
+    background-color: #fff;
+    margin: 0 4px;
+    flex-wrap: wrap;
+    padding: 5px 0;
+    box-shadow: 0 4px rgba(0, 0, 0, .2);
+
+}
+
+.subnav-entry li {
+    /* 里面的子盒子可以写百分比，相对比父级来说，站父级20% */
+    flex: 20%;
+}
+
+.subnav-entry a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subnav-entry-icon {
+    width: 28px;
+    height: 28px;
+    margin-top: 4px;
+    background: url(../images/subnav-bg.png) no-repeat;
+    background-size: 28px auto;
+}
+
+.sales-box {
+    border-top: 1px solid #bbb;
+    margin: 4px;
+}
+
+.sales-hd {
+    position: relative;
+    height: 44px;
+    border-bottom: 1px solid #ccc;
+}
+
+.sales-hd h2 {
+    position: relative;
+    /* 让文字飘出去，隐藏 */
+    text-indent: -999px;
+    overflow: hidden;
+}
+
+.sales-hd h2::after {
+    /* after伪元素是行内元素，直接设置宽高无效，加上定位，变成块级，无需转换为块级 */
+    position: absolute;
+    top: 8px;
+    left: 20px;
+    content: "";
+    width: 79px;
+    height: 15px;
+    background: url(../images/hot.png) no-repeat 0 -20px;
+    background-size: 79px auto;
+}
+
+.more {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    background: -webkit-linear-gradient(left, #FF506C, #FF6BC6);
+    border-radius: 15px;
+    padding: 3px 20px 3px 10px;
+    color: #fff;
+}
+
+.more::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    right: 8px;
+    width: 7px;
+    height: 7px;
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
+    transform: rotate(45deg);
+}
+
+.row {
+    display: flex;
+}
+
+.row a {
+    flex: 1;
+    border-bottom: 1px solid #eee;
+}
+
+.row a img {
+    width: 100%;
+}
+
+.row a:nth-child(1) {
+    border-right: 1px solid #eee;
+}
+
+footer {
+    margin-top: 4px;
+    display: flex;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+footer a {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 4px;
+    font-size: 12px;
+}
+
+.footer-icon {
+    width: 16px;
+    height: 16px;
+    background: url(../images/subnav-bg.png) no-repeat;
+    background-size: 16px auto;
+}

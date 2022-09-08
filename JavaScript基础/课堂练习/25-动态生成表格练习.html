@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        table {
+            margin: 100px auto;
+            width: 400px;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        thead tr {
+            background-color: #ccc;
+            height: 40px;
+
+        }
+
+        th,
+        td {
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>科目</th>
+                <th>成绩</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        // 1. 先创建数据
+        var datas = [
+            {
+                name: '张三',
+                subject: 'JavaScript',
+                score: 100
+            },
+            {
+                name: '李四',
+                subject: 'JavaScript',
+                score: 90
+            },
+            {
+                name: '王五',
+                subject: 'JavaScript',
+                score: 80
+            },
+            {
+                name: '王五',
+                subject: 'JavaScript',
+                score: 80
+            }
+        ];
+        // 2. 循环创建有数据的行 tr
+        var tbody = document.querySelector('tbody');
+        for (var i = 0; i < datas.length; i++) {
+            var tr = document.createElement('tr');
+            //添加tr 父亲是tbody
+            tbody.appendChild(tr);
+            // 循环遍历对象 创建单元格 td 把对象属性值给td
+            for (var k in datas[i]) {
+                var td = document.createElement('td');
+                //添加td 父级是tr
+                tr.appendChild(td);
+                td.innerHTML = datas[i][k];
+            }
+            //3. 遍历完之后再创建删除操作的行
+            var td = document.createElement('td');
+            // 添加单元格元素 父级是td
+            tr.appendChild(td);
+            //将删除单元格的值给td
+            td.innerHTML = '<a href="javascript:;">删除</a>';
+        }
+        //4. 循环添加点击删除事件 点击a 删除当前a 所在的行
+        var as = document.querySelectorAll('a');
+        for (var i = 0; i < as.length; i++) {
+            as[i].onclick = function () {
+                tbody.removeChild(this.parentNode.parentNode);
+            }
+        }
+    </script>
+</body>
+
+</html>

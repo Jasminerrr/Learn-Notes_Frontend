@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 作业1：用户名 显示隐藏内容 */
+        /* input {
+            color: #ccc;
+        }
+
+        .change {
+            outline-color: pink;
+        } */
+
+        /* 作业2：京东关闭广告（直接隐藏）*/
+        /* .box {
+            position: relative;
+            width: 1200px;
+            text-align: center;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 2px;
+            right: 24px;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            color: #fff;
+            background-color: #ccc;
+            cursor: pointer;
+        } */
+
+        /* 作业3：新浪下拉菜单（微博） */
+        /* dl {
+            width: 80px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        dl dt {
+            height: 34px;
+            line-height: 34px;
+            border-bottom: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+        }
+
+        dl dd {
+            display: none;
+            height: 34px;
+            line-height: 34px;
+            border: 1px solid rgb(249, 160, 88);
+            border-top: 0;
+            margin-left: 0;
+        } */
+        /* 作业4：开关灯案例 */
+    </style>
+
+</head>
+
+<body>
+    <!-- 作业1：用户名 显示隐藏内容  -->
+    <!-- <input type="text" value="邮箱/ID/手机号">
+    <script>
+        var text = document.querySelector('input');
+        text.onfocus = function () {
+            this.value = '';
+            this.className = 'change';
+        }
+        text.onblur = function () {
+            this.value = '邮箱/ID/手机号';
+
+        }
+    </script> -->
+
+    <!-- 作业2：京东关闭广告（直接隐藏）  -->
+    <!-- <div class="box">
+        <img src="images/ad.png" alt="">
+        <p class="close-btn">×</p>
+    </div>
+    <script>
+        var btn = document.querySelector('.close-btn');
+        var box = document.querySelector('.box');
+        btn.onclick = function () {
+            box.style.display = 'none';
+        }
+    </script> -->
+    <!-- 作业3：新浪下拉菜单（微博） -->
+    <dl id="dl">
+        <dt>&nbsp&nbsp&nbsp微博</dt>
+        <dd>&nbsp&nbsp&nbsp私信</dd>
+        <dd>&nbsp&nbsp&nbsp评论</dd>
+        <dd>&nbsp&nbsp&nbsp@我</dd>
+    </dl>
+    <script>
+        var dt = document.querySelector('dt');
+        var dl = document.getElementById('dl');
+        var dd = dl.getElementsByTagName('dd');
+        dt.onmouseover = function () {
+            dt.style.backgroundColor = '#ccc';
+            for (var i = 0; i < dd.length; i++) {
+                dd[i].style.display = 'block';
+            }
+        }
+        dt.onmouseout = function () {
+            dt.style.backgroundColor = '#fff';
+            for (var i = 0; i < dd.length; i++) {
+                dd[i].style.display = 'none';
+            }
+        }
+    </script>
+
+    <!-- 作业4：开关灯案例 -->
+    <button>开光灯</button>
+    <script>
+        var btn = document.querySelector('button');
+        var bd = document.querySelector('body');
+        var flag = 0;
+        btn.onclick = function () {
+            if (flag == 0) {
+                bd.style.backgroundColor = 'black';
+                flag = 1;
+            } else {
+                bd.style.backgroundColor = 'white';
+                flag = 0;
+            }
+        }
+    </script>
+</body>
+
+</html>

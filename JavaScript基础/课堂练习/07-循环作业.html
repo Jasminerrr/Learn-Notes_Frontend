@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 1. 求1-100之间所有数的总和与平均值
+        var sum = 0;
+        average = 0;
+        for (var i = 1; i <= 100; i++) {
+            sum += i;
+        }
+        average = sum / 100;
+        console.log('总和是:' + sum);
+        console.log('平均值是:' + average);
+
+        // 2. 求1-100之间所有偶数的和
+        var even = 0;
+        for (var i = 1; i <= 100; i++) {
+            if (i % 2 == 0) {
+                even += i;
+            }
+        }
+        console.log('偶数和是：' + even);
+
+        // 3. 求100以内7的倍数的总和
+        var sum = 0;
+        for (var i = 1; i <= 100; i++) {
+            if (i % 7 == 0) {
+                sum += i;
+            }
+        }
+        console.log('和是：' + sum);
+        // 4. 使用for 循环打印矩形，要求每次只能输出一个☆
+        var str = '';
+        for (var i = 1; i <= 4; i++) {
+            for (var j = 1; j <= 4; j++) {
+                str += '☆';
+            }
+            str += '\n';
+        }
+        console.log(str);
+
+        // 5. 使用for循环打印三角形
+        var str = '';
+        for (var i = 1; i <= 5; i++) {
+            for (var j = 1; j <= i; j++) {
+                str += '☆';
+            }
+            str += '\n';
+        }
+        console.log(str);
+
+        //6.使用for循环打印99乘法表
+        var str = '';
+        for (var i = 1; i <= 9; i++) {// 外层循环控制高度
+            for (var j = 1; j <= i; j++) {// 内层循环控制宽度，外层循环执行一次，内层执行全部次数，执行几次 宽度就为几
+                str += j + '×' + i + '=' + i * j + '\t';
+            }
+            str += '\n';
+        }
+        console.log(str);
+
+        //7.接收用户输入的用户名和密码，若用户名为 “admin” ,密码为 “123456” ,则提示用户登录成功!  否则，让用户一直输入。
+        do {
+            var username = prompt('请输入用户名');
+            var password = prompt('请输入密码');
+        } while (username !== 'admin' || password !== '123456')
+        alert('输入正确');
+
+        //8.求整数1～100的累加值，但要求跳过所有个位为3的数【用continue实现】。
+        var sum = 0;
+        for (var i = 1; i <= 100; i++) {
+            if (i % 10 == 3) {
+                continue;
+            }
+            sum += i;
+        }
+        console.log(sum);
+
+        //9.简易ATM机
+        // 里面现存有  100 块钱。
+        // 如果存钱，就用输入钱数加上先存的钱数, 之后弹出显示余额提示框
+        // 如果取钱，就减去取的钱数，之后弹出显示余额提示框
+        // 如果显示余额，就输出余额
+        // 如果退出，弹出退出信息提示框
+
+        /* var i = 0;
+        var money = 100;
+        do {
+            if (i == 0) {
+                i = prompt('请输入您要的操作：' + '\n' + '1.存钱' + '\n' + '2.取钱' + '\n' + '3.显示余额' + '\n' + '4.退出');
+            }
+            if (i == 1) {
+                var a = prompt('请您输入存的钱数：');
+                money += parseFloat(a);
+                i = 3;
+            } else if (i == 2) {
+                var b = prompt('请您输入取的钱数：');
+                money -= parseFloat(b);
+                i = 3;
+            } else if (i == 3) {
+                alert('您现在余额为' + money);
+                i = 0;
+            }
+        } while (i < 4);
+        if (i == 4) {
+            alert('您正在退出');
+        }
+ */
+        var num = 0;
+        var money = 100;
+        while (num != 4) {
+            var num = prompt('请输入您要的操作：' + '\n' + '1.存钱' + '\n' + '2.取钱' + '\n' + '3.显示余额' + '\n' + '4.退出');
+            switch (num) {
+                case '1':
+                    var save = prompt('请输入存的钱数：');
+                    money += parseFloat(save);
+                    alert('您现在余额为' + money);
+                    break;
+                case '2':
+                    var get = prompt('请输入取的钱数：');
+                    money -= parseFloat(get);
+                    if (money < 0) {
+                        alert('余额不足，请重新输入');
+                    } else {
+                        alert('您现在余额为' + money);
+                    }
+                    break;
+                case '3':
+                    alert('您现在余额为' + money);
+                    break;
+                case '4':
+                    alert('您正在退出');
+                    break;
+                default:
+                    alert('输入错误，请重新输入！');
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

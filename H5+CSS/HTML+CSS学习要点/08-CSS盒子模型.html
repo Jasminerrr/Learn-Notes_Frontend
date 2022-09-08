@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS盒子模型</title>
+    <style>
+        .nav {
+            width: 300px;
+            height: 100px;
+            /* solid为实线边框、dashed是虚线、dotted是点线 
+            border-style: solid; 
+            border-style: dashed; 
+            border-style: dotted;
+            border-color: blue; */
+            /* 复合写法 简写:
+            border: 3px solid blue; */
+            /* 上边框，其余同理 */
+            border-top: 3px dotted red;
+        }
+
+        div {
+            width: 150px;
+            height: 50px;
+            /* 层叠性 顺序不能颠倒 上面是大，下面是小，就近原则 上边框层叠了上面的border */
+            border: 3px solid red;
+            border-top: 3px solid blue;
+
+        }
+
+        /* 细线表格排行榜案例 */
+        table {
+            width: 300px;
+            height: 100px;
+        }
+
+        /* 给th(第一排)高度 */
+        th {
+            height: 35px;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid plum;
+            /* 合并相邻的边框 */
+            border-collapse: collapse;
+            font-size: 14px;
+            /* 文字居中对齐 */
+            text-align: center;
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            /* 内边距 */
+            padding-left: 10px;
+            padding-top: 10px;
+            /* 外边距复合写法 */
+            /* margin: 20px 30px; */
+            /* 让块级元素盒子水平居中，必须有width，再左右设置为auto就可 */
+            margin: 0 auto;
+            text-align: center;
+            /* 让矩形变成圆角,圆形则半径为高度/宽度一半，圆角矩形设置为高度的一半 */
+            border-radius: 15px;
+            /* 给盒子添加阴影,阴影颜色一般为半透明黑色为0.3 */
+            /* box-shadow: 10px 10px 12px -4px rgba(0, 0, 0, .3); */
+            /* 给文字添加阴影 */
+            text-shadow: 5px 5px 6px rgba(0, 0, 0, .3);
+        }
+
+        /* 当鼠标经过盒子就添加阴影效果 */
+        /* 任何盒子都可以添加：hover */
+        div:hover {
+            box-shadow: 10px 10px 12px -4px rgba(0, 0, 0, .3);
+        }
+
+        /* 1.6 清除内外边距（*为通配符选择器）
+         * {
+            padding: 0;
+            margin: 0;
+        } */
+    </style>
+</head>
+
+<body>
+    <h1>页面布局三大核心：盒子模型、浮动、定位</h1>
+    <h2>网页布局过程：利用CSS摆盒子。<br>
+        1.准备相关网页元素，基本都是盒子Box；<br>
+        2.利用CSS设置好盒子样式，并摆放到相应位置；<br>
+        3.往盒子里面装内容。<br>
+    </h2>
+    <h2>1. 盒子模型</h2>
+    <h3>1.1 盒子模型组成：CSS盒子模型本质是一个盒子封装周围的HTML元素，包括：边框、外边距、内边距、实际内容。</h3>
+
+    <h3>1.2 边框:border</h3>
+    <ul class="nav">
+        <li>border-width:边框粗细，一般单位是px</li>
+        <li>border-style:边框样式</li>
+        <li>border-color:边框颜色，不设置默认为黑色</li>
+    </ul>
+    <h3>边框复合性写法：没有顺序，通俗性约定粗细、样式、颜色</h3>
+    <h3>边框可以分开单独写：border-top、bottom、right、left</h3>
+    <div>边框层叠</div>
+
+    <h3>1.3 表格细线边框：border-collapse="collapse"为合并边框</h3>
+    <p>
+        边框会影响盒子实际大小：
+        1.测量盒子大小时，不量边框；
+        2.测量包括边框，则在width/height中减去边框宽度。
+    </p>
+
+    <h3>1.4 内边距：padding，边框与内容之间的距离，padding-top/bottom/right/left
+    </h3>
+    <h3>1.4.1 内边距复合写法</h3>
+    <ul>
+        <li>1个值 5px:上下左右各5像素边距</li>
+        <li>2个值 5px 10px：上下内边距5像素，左右内边距10像素</li>
+        <li>3个值 5px 10px 20px：上边距5，左右10，下边距20</li>
+        <li>4个值 5px 10px 20px 30px：上5，右10，下20，左30（顺时针）</li>
+        <li>内边距会影响盒子实际大小，如果盒子已经有高宽，再指定内边框会撑大盒子</li>
+        <li>保证盒子高宽不变，则在width/height中减去内边距大小。</li>
+    </ul>
+    <h3>不用给盒子宽度，直接给padding值撑开盒子宽度，小方块为两个padding+文字大小</h3>
+    <h3>1.4.2 盒子本身没有指定width/height属性，则内边距不会影响盒子大小</h3>
+    <h3>盒子内容是content</h3>
+    <div>内容是盒子</div>
+    <h3>1.5 外边距：margin；盒子与盒子间的距离，与padding写法完全一致（上下左右，复合写法）</h3>
+    <h4>1.5.1 外边距典型应用:让块级元素盒子水平居中，前提条件：</h4>
+    <ul>
+        <li>盒子必须指定了width</li>
+        <li>盒子左右的外边距都设置为auto（自动）</li>
+    </ul>
+    <h4>1.5.2 让行内/行内块元素水平居中：给父元素添加 text-align：center</h4>
+    <h3>1.5.3 外边距合并</h3>
+    <h4> 嵌套块元素垂直外边距塌陷：对于两个嵌套关系（父子关系）的块元素，父元素上有外边距，子元素也有，此时父元素会塌陷较大的外边距值:解决方案如下</h4>
+    <ul>
+        <li>为父元素定义上边距</li>
+        <li>为父元素定义上内边距</li>
+        <li>为父元素添加 overflow:hidden</li>
+        <li>如果盒子有浮动、固定、绝对定位的盒子就不会有塌陷问题</li>
+    </ul>
+    <h3>1.6 清除内外边距</h3>
+    <p>不同浏览器默认的网页元素一般都带有默认内外边距，因此在布局前要清楚网页元素内外边距</p>
+    <h3>注意:行内元素为了照顾兼容性，尽量只设置左右内外边距，不设置上下内外边距，但是转换为块级元素和行内块元素就可以了</h3>
+    <h3>1.7 圆角边框（重点）:border-radius：length;设置元素的外边框圆角,length单位为数值或者百分比形式；数值越大，圆角越大；
+        radius:圆的半径原理：圆与边框交集形成圆角效果</h3>
+    <h4>1.7.1 做一个圆形，让半径设置为正方形高度/宽度一半</h4>
+    <h4>1.7.2 圆角矩形设置为高度的一半</h4>
+    <h4>1.7.3 可以写4个值，按4个顺时针变化；2个为对角数值</h4>
+    <h4>1.7.4
+        分开写法：border-top-left-radius/border-top-right-radius/border-bottom-right-radius/border-bottom-left-radius;top和left值不能颠倒
+    </h4>
+    <h3>1.8 盒子阴影（重点）：box-shadow;盒子阴影不占用空间，不会影响其他盒子排列</h3>
+    <ul>
+        <li>h-shadow:必需，水平阴影位置，允许负值</li>
+        <li>v-shadow:必需；垂直阴影的位置，允许负值</li>
+        <li>blur:可选，模糊距离</li>
+        <li>spread:可选；阴影的尺寸</li>
+        <li>color:可选；阴影颜色</li>
+        <li>inset:可选；将外部阴影（outset）改为内部阴影;默认外部阴影，但是不准写外部阴影单词，否则阴影无效</li>
+    </ul>
+
+    <h3>1.9 文字阴影：text-shadow</h3>
+    <ul>
+        <li>h-shadow:必须，水平阴影位置，允许负值</li>
+        <li>v-shadow:必需；垂直阴影的位置，允许负值</li>
+        <li>blur:可选，模糊距离</li>
+        <li>color:可选；阴影颜色</li>
+    </ul>
+
+    <div><img src="images/06.png" alt=""></div>
+
+    <!-- 细线表格排行榜案例 -->
+    <table align="center" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th>排名</th>
+                <th>关键词</th>
+                <th>趋势</th>
+                <th>今日搜索</th>
+                <th>相关链接</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>鬼吹灯</td>
+                <td><img src="第二天/down.jpg"></td>
+                <td>345</td>
+                <td> <a href="http://www.baidu.com" target="_blank">百度</a> <a href="#">图片</a> <a href="#">百科</a> </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>西游记</td>
+                <td><img src="第二天/down.jpg"></td>
+                <td>123</td>
+                <td> <a href="http://www.baidu.com" target="_blank">百度</a> <a href="#">图片</a> <a href="#">百科</a> </td>
+            </tr>
+        </tbody>
+
+</body>
+
+</html>

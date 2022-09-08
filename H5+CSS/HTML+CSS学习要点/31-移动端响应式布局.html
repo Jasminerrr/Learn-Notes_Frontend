@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>移动端响应式布局</title>
+    <style>
+        .container {
+            height: 150px;
+            background-color: blueviolet;
+            margin: 0 auto;
+        }
+
+        /* 1. 超小屏幕下 小于768 布局宽度为100% */
+        @media screen and (max-width: 767px) {
+            .container {
+                width: 100%;
+            }
+        }
+
+        /* 2.小屏设备（平板）>= 768px ~ 《 992px :设置宽度为 750px */
+        @media screen and (min-width: 768px) {
+            .container {
+                width: 750px;
+            }
+        }
+
+        /* 3.中等屏幕（桌面显示器）>= 992px ~ 《1200px :设置宽度为 970px */
+        @media screen and (min-width: 992px) {
+            .container {
+                width: 970px;
+            }
+        }
+
+        /* 4.宽屏设备（大桌面显示器）>= 1200px:设置宽度为 1170px */
+        @media screen and (min-width: 1200px) {
+            .container {
+                width: 1170px;
+            }
+        }
+
+        /* 案例 */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container-1 {
+            width: 750px;
+            margin: 0 auto;
+        }
+
+        .container-1 ul li {
+            float: left;
+            width: 93.75px;
+            height: 30px;
+            background-color: green;
+        }
+
+        @media screen and (max-width: 767px) {
+            .container-1 {
+                width: 100%;
+            }
+
+            .container-1 ul li {
+                width: 33.33%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h2>1. 响应式开发</h2>
+    <h3>1.1 响应式开发原理</h3>
+    使用媒体查询针对不同宽度的设备进行布局和样式的设置，从而适配不同设备的目的。<br>
+    超小屏幕（手机） 《 768px <br>
+    小屏设备（平板）>= 768px ~ 《 992px <br>
+    中等屏幕（桌面显示器）>= 992px ~ 《1200px <br>
+    宽屏设备（大桌面显示器）>= 1200px <br>
+
+    <h3>1.2 响应式布局容器</h3>
+    响应式需要一个父级做为布局容器，来配合子级元素来实现变化效果。<br>
+    原理就是在不同屏幕下，通过媒体查询来改变这个布局容器的大小，再改变里面子元素的排列方式和大小，从而实现不同
+    屏幕下，看到不同的页面布局和样式变化。<br>
+    1.超小屏幕（手机） 《 768px :设置宽度为 100%<br>
+    2.小屏设备（平板）>= 768px ~ 《 992px :设置宽度为 750px<br>
+    3.中等屏幕（桌面显示器）>= 992px ~ 《1200px :设置宽度为 970px<br>
+    4.宽屏设备（大桌面显示器）>= 1200px:设置宽度为 1170px <br>
+    但是也可以根据实际情况自己定义划分
+    <!-- 响应式开发里面，首先需要一个布局容器 -->
+    <div class="container"> </div>
+    <!-- 案例 -->
+    ① 当我们屏幕大于等于800像素，我们给nav宽度为800px，因为里面子盒子需要浮动，所以nav需要清除浮动。
+    ② nav里面包含8个小li 盒子，每个盒子的宽度定为 100px， 高度为 30px，浮动一行显示。
+    ③ 当我们屏幕缩放，宽度小于800像素的时候， nav盒子宽度修改为 100% 宽度。
+    ④ nav里面的8个小li，宽度修改为 33.33%，这样一行就只能显示3个小li ，剩余下行显示。
+    <div class="container-1">
+        <ul>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+        </ul>
+    </div>
+
+    <h2>2.Bootstrap前端开发框架</h2>
+    <h3>2.1 Bootstrap 简介</h3>
+    Bootstrap 来自 Twitter（推特），是目前最受欢迎的前端框架。Bootstrap 是基于 HTML、CSS 和 JAVASCRIPT 的，它
+    简洁灵活，使得 Web 开发更加快捷。<br>
+    中文官网：http://www.bootcss.com/
+    官网：http://getbootstrap.com/
+    推荐使用：http://bootstrap.css88.com/
+    <p>
+        框架：顾名思义就是一套架构，它有一套比较完整的网页功能解决方案，而且控制权在框架本身，有预制样式库、组件和
+        插件。使用者要按照框架所规定的某种规范进行开发。
+    </p>
+    优点：
+    标准化的html+css编码规范。
+    提供了一套简洁、直观、强悍的组件。
+    有自己的生态圈，不断的更新迭代。
+    让开发更简单，提高了开发的效率。
+
+    <h3>2.2 Bootstrap 使用</h3>
+    控制权在框架本身，使用者要按照框架所规定的某种规范进行开发。<br>
+    Bootstrap 使用四步曲： 1. 创建文件夹结构 2. 创建 html 骨架结构 3. 引入相关样式文件 4. 书写内容
+
+    <h3>2.3 布局容器</h3>
+    1. container 类:响应式布局的容器 固定宽度<br>
+    2. container-fluid 类:流式布局容器 百分百宽度,占据全部视口（viewport）的容器。
+
+    <h3>3.1 栅格系统简介</h3>
+    栅格系统英文为“grid systems”,也有人翻译为“网格系统”，它是指将页面布局划分为等宽的列，然后通过列数
+    的定义来模块化页面布局。
+    Bootstrap 提供了一套响应式、移动设备优先的流式栅格系统，随着屏幕或视口（viewport）尺寸的增加，系统会
+    自动分为最多12列.
+
+    <h3>3.2 栅格选项参数</h3>
+    按照不同屏幕划分为1~12 等份,需要给列添加 类前缀!!
+    行（row） 可以去除父容器作用15px的边距
+    xs-extra small：超小； sm-small：小； md-medium：中等； lg-large：大；
+    列（column）大于 12，多余的“列（column）”所在的元素将被作为一个整体另起一行排列
+    每一列默认有左右15像素的 padding
+    可以同时为一列指定多个设备的类名，以便划分不同份数 例如 class="col-md-4 col-sm-6"
+
+    <h3>3.3 列嵌套</h3>
+    栅格系统内置的栅格系统将内容再次嵌套。简单理解就是一个列内再分成若干份小列。我们可以通过添加一个新的 .row 元素和一系
+    列 .col-sm-* 元素到已经存在的 .col-sm-* 元素内。<br>
+
+    <h3>3.4 列偏移</h3>
+    使用 .col-md-offset-* 类可以将列向右侧偏移。这些类实际是通过使用 * 选择器为当前元素增加了左侧的边距（margin）。<br>
+
+    <h3>3.5 列排序</h3>
+    通过使用 .col-md-push-* 和 .col-md-pull-* 类就可以很容易的改变列（column）的顺序。<br>
+
+    <h3>3.6 响应式工具</h3>
+    为了加快对移动设备友好的页面开发工作，利用媒体查询功能，并使用这些工具类可以方便的针对不同设备展示
+    或隐藏页面内容<br>
+    隐藏：hidden-md hidden-xs <br>
+    显示：visible-md等 <br>
+    Bootstrap 其他（按钮、表单、表格） 请参考Bootstrap 文档
+
+</body>
+
+</html>

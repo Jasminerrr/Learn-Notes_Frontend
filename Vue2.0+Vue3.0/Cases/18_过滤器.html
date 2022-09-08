@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue -->
+    <script src="../js/vue.js"></script>
+    <!-- 引入BootCDN里面的dayjs 轻量处理时间和日期的JS库 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.11.5/dayjs.min.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h1>格式化后的时间</h2>
+            <!-- 计算属性实现 -->
+            <h2>1.时间是：{{fmtTime}}</h2>
+            <!-- methods实现 -->
+            <h2>2.时间是：{{getFmtTime()}}</h2>
+            <!-- 过滤器实现 -->
+            <h2>3.时间是：{{time | timeFormater}}</h2>
+            <!-- 过滤器实现（传参） -->
+            <h2>4.时间是：{{time | timeFormater('YYYY年MM月DD日') | mySlice}}</h2>
+
+            <h2 :x="msg | mySlice">你好</h2>
+    </div>
+    <script>
+        Vue.config.productionTip = false;// 设置为 false 以阻止 vue 在启动时生成生产提示
+        // 全局过滤器
+        Vue.filter('mySlice', function (value) {
+            // 语法：slice(开始位置,结束位置)
+            return value.slice(0, 4)
+        })
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                time: 1661956778708,
+                msg: 'hello'
+            },
+            // 1. 计算属性实现
+            computed: {
+                // 计算属性简写方式
+                fmtTime() {
+                    // dayjs()：传入值，则转化/不传值，则使用当前时间
+                    // 调用format('格式化模板')是格式化时间
+                    return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+                }
+            },
+            // 2. methods实现
+            methods: {
+                getFmtTime() {
+                    return dayjs(this.time).format('YYYY年MM月DD日 HH:mm:ss')
+                }
+            },
+            // 3. 过滤器实现
+            filters: {
+                // 局部过滤器
+                timeFormater(value) {
+                    return dayjs(value).format('YYYY年MM月DD日 HH:mm:ss')
+                },
+                // ES6新语法：形参 = "默认值"
+                // 1. 没有str形参没有传值，则用默认写的值
+                // 2. 如果str形参有传入值，则用传过来的值
+                timeFormater(value, str = 'YYYY年MM月DD日 HH:mm:ss') {
+                    return dayjs(value).format(str)
+                },
+                // 过滤器切割:格式化时间后的结果传给mySlice的value
+                /* mySlice(value){
+                    return value.slice(0,5)
+                } */
+            }
+        });
+    </script>
+</body>
+
+</html>

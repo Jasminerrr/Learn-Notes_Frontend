@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ch-ZN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS</title>
+    <style>
+        /* CSS语法规范 */
+        /* CSS规则主要构成：选择器以及一条或多条声明，选择器用于指定CSS样式的HTML标签，花括号内是对象设置的具体样式*/
+        /* 给谁改样式 { 改什么样式} */
+        /* “属性：值”（键值对），以“：”分割，“；”结束 */
+        /* 冒号、选择器和大括号中间要保留空格 */
+        /* 1. 基础选择器 */
+        /* 1.1标签选择器：某一类标签全部选择并写上标签名 ，不能单独选择（使用较多）*/
+        h4 {
+            color: red;
+            /* 修改文字大小为20像素，font为字体，px为像素 */
+            font-size: 15px;
+        }
+
+        /* 1.2 类选择器：差异化不同标签，单独选一个或某几个(用class属性调用class类)（使用非常多） */
+        /* 使用“ . ”+类名（自命名）；不能用标签名 */
+        /* 长词组可以使用-来命名 */
+        /* 不准使用纯数字、中文命名，尽量使用英文字母命名规范见手册 */
+        .one {
+            color: red;
+        }
+
+        .star-sing {
+            color: green;
+        }
+
+        /* 选择器案例 */
+        /* 相同标签元素的样式放在一个类；这些标签都可以调用这个公共的类，再调用自己独有的类；统一修改很方便 */
+        .box {
+            width: 100px;
+            height: 100px;
+            font-size: 30px;
+        }
+
+        .red {
+            /* 背景颜色 */
+            background-color: red;
+        }
+
+        .green {
+            /* 背景颜色 */
+            background-color: green;
+        }
+
+        /* 1.2.1 多类名使用方式,多个类名用空格分开 */
+        .blue {
+            color: blue;
+        }
+
+        .font20 {
+            font-size: 20px;
+        }
+
+        /* 1.3 id选择器:#+id属性名（一般和js搭配） */
+        /* id选择器只能调用一次！！！！不得重复 */
+        #pink {
+            color: pink;
+        }
+
+        /* 1.4通配符选择器：使用"*"定义，选取页面所有元素（标签） */
+        /* 不需要调用，自动更改元素样式（特殊情况才使用） */
+        * {
+            color: red;
+        }
+
+        /* 2.1 字体系列:使用“font-family”属性定义文本得字体 ，提倡使用系统默认自带字体，保证能在任何用户浏览器正确显示*/
+        /* 多个字体用英文","分割；多个单词得字体用引号""进行包含，单双引都可以 */
+        /* 常见字体：body{"Microsoft YaHei" , Arial,tahoma,"Hiragino Sans GB";}*/
+        p {
+            font-family: "Microsoft YaHei", Arial;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            /* 2.2 字体大小:使用“font-size”属性定义字体大小，px大小是网页常用的单位 */
+
+            /* 标题标签比较特殊，需要单独指定文字大小！！ */
+            font-size: 16px;
+        }
+
+        h4 {
+            font-size: 16px;
+        }
+
+        /* 2.3 字体粗细：“font-weight” */
+        .bold {
+            /* font-weight: bold; */
+            /* 700后面不要跟单位，等价于bold都是加粗得效果，实际开发提倡数字，加粗或变细,normal=400 */
+            font-weight: 700;
+        }
+
+        h3 {
+            font-weight: 400;
+        }
+
+        /* 2.4 文字样式：“font-style” */
+        /* 很少用italic，一般用"em"或者“i” ；作用一般是给斜体标签改为正常*/
+        p {
+            font-style: italic;
+        }
+
+        em {
+            font-style: normal;
+        }
+
+        /* 2.5 字体复合属性：可以把以上文字样式综合写 */
+        div {
+            /* font: font-style font-weight font-size/line-height font-family; */
+            /* 文字样式 字体粗细 字体大小/行间距 字体系列 */
+            /* 必须按照这个顺序写，并每个属性以空格隔开！！！ */
+            /* style和weight和line-height可以省略，必须要有size和family！！ */
+            font: italic 700 16px "Microsoft yahei";
+        }
+
+        /* 3. CSS文本属性：文本外观样式，如颜色、对齐、装饰、缩进、行间距等 */
+        /* 3.1 文本颜色：color */
+        div {
+            /* color: pink; */
+            /* 十六进制写法：#+6个数字或字母 （使用最多！！）*/
+            /* color: #ff0000; */
+            /* RGB代码红绿蓝 */
+            color: rgb(255, 0, 255);
+        }
+
+        /* 3.2 对齐文本：test-align(水平对齐)，默认左对齐 */
+        h3 {
+            /* 本质是让h3盒子里面得文字水平居中对齐 */
+            text-align: center;
+        }
+
+        /* 3.3 装饰文本 */
+        p {
+            /* 默认为none */
+            /* 删除线 */
+            text-decoration: line-through;
+            /* 下划线：underline */
+            /* 上划线：overline */
+        }
+
+        a {
+            /* 取消默认a的下划线 */
+            text-decoration: none;
+        }
+
+        /* 3.4 文本缩进:文本首行缩进距离 */
+        p {
+            /* text-indent: 20px; */
+            /* em为当前元素（font-size）一个文字大小距离 ，如当前元素没有设置大小，则按照父元素的一个文字大小*/
+            text-indent: 2em;
+        }
+
+        /* 3.5 行间距：line-height (由上间距+文本高度+下间距组成)*/
+        p {
+            line-height: 26px;
+        }
+    </style>
+    <!-- 4. CSS引入方式 
+        4.1 CSS的三种样式表 
+        4.1.1 内部样式表（嵌入式）：写到html页面内部，将所有的CSS代码抽取出来，单独放到一个<style>标签中
+        style一般放head，方便控制整个页面元素样式，代码结构清晰，但是并没有实现结构与样式完全分离  -->
+    <!-- <style>
+        div {
+            color:pink;
+        }
+    </style>  -->
+    <!-- 4.1.2  行内样式表（行内式）：在元素标签内部的style属性中设定CSS样式，适用于修改简单样式 ,控制当前的标签样式
+    <p style="color:red;"></p> 
+    4.1.3 外部样式表（链接式）：适用于样式多，样式单独写到CSS文件中，之后把CSS文件引入到HTML页面中使用 
+    1 新建一个后缀名为.css的样式文件，把所有CSS代码放到文件中 
+    2 在HTML页面中，使用<link>标签引入文件：<link rel="stylesheet" href="css文件路径"> stylesheet为样式表
+    rel：定义当前文档与被链接文档间的关系，需要指定stylesheet，表示被链接文档是样式表文件
+    href:定义所链接外部样式表文件的URL，可以是相对路径或绝对路径-->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h4> 1.选择器 :基础选择器；复合选择器</h4>
+    <h4>基础选择器由单个选择器组成：标签选择器、类选择器、id选择器、通配符选择器</h4>
+    <ul>
+        <li class="one">啦啦啦</li>
+        <li class="one">啦啦啦</li>
+        <li>啦啦啦</li>
+        <li class="star-sing">啦啦啦</li>
+
+    </ul>
+    <div class="one">我也想变成红色</div>
+    <!-- 选择器案例 -->
+    <div class="box red">红色</div>
+    <div class="box green">绿色</div>
+    <div class="box red">红色</div>
+    <!-- 1.2.1多类名 -->
+    <div class="blue font20">谁呵护和杜</div>
+    <!-- 1.3 id选择器 -->
+    <div id="pink">i腹黑司法和</div>
+    <!-- 1.4通配符选择器 -->
+    <div>接电话就是</div>
+    <span>好的u计划</span>
+    <ul>
+        <li>结合客户</li>
+    </ul>
+    <h3>2. CSS字体属性</h3>
+    <h4>2.1 字体系列:使用“font-family”属性定义文本得字体</h4>
+    <p class="bold">我是字体</p>
+    <h4>2.2 字体大小:使用“font-size”属性定义字体大小</h4>
+    <h4>2.3 字体粗细：“font-weight”</h4>
+    <h4>2.4 文字样式：“font-style”;normal（默认）和italic（斜体）</h4>
+    <p>我是斜体样式</p>
+    <em>我要改成不倾斜样式</em>
+    <div>2.5 字体复合属性：可以把以上文字样式综合写</div>
+    <div>3. CSS文本属性：文本外观样式，如颜色、对齐、装饰、缩进、行间距等</div>
+    <h3>3.1 对齐文本：test-align(水平对齐)，默认左对齐</h3>
+    <p>3.3 装饰文本</p>
+    <a href="#">链接下划线</a>
+    <p>3.4 文本缩进:你居然复合体换热管犯得上广泛哈吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>土豆显示与隐藏案例</title>
+    <!-- 核心原理： 原先半透明的黑色遮罩看不见， 鼠标经过 大盒子，就显示出来。
+        遮罩的盒子不占有位置， 就需要用绝对定位 和 display 配合使用 -->
+    <style>
+        .tudou {
+            position: relative;
+            margin: 30px auto;
+            width: 444px;
+            height: 320px;
+            background-color: aqua;
+        }
+
+        .tudou img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .mask {
+            /* 隐藏遮罩层 */
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4) url(images/arr.png) no-repeat center;
+        }
+
+        /* 当鼠标经过土豆盒子时，盒子里面的遮罩层mask会显示出来 */
+        .tudou:hover .mask {
+            /* block也是显示元素 */
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tudou">
+        <div class="mask"></div>
+        <img src="images/tudou.png" alt="">
+    </div>
+</body>
+
+</html>

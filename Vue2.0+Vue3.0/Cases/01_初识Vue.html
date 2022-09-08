@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识Vue</title>
+    <!-- 引入Vue -->
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h1>HELLO {{name}}</h1>
+        <a v-bind:href="url">点我</a><br>
+        <a :href="url"></a><br>
+        单向数据绑定：<input type="text" :value="age" > <br>
+        双向数据绑定：<input type="text" v-model = "age">
+    </div>
+
+    <script>
+        Vue.config.productionTip = false;// 设置为 false 以阻止 vue 在启动时生成生产提示
+        const vm = new Vue({
+            // el用于指定当前Vue实例为哪个容器服务，值通常为css选择器字符串
+            // el:'#root', // el第一种写法
+            // data中用于存储数据，数据提供el所指定的容器去使用，值暂时先写出一个对象
+            // data第一种对象式：
+            /* data:{
+                name:'bob',
+                url:'http://www.baidu.com',
+                age:18
+            } */
+
+            // data第2种函数式：
+            data(){
+                console.log(this);// 此处this指向Vue实例对象
+               return{
+                name:'bob',
+                url:'http://www.baidu.com',
+                age:18
+               }
+            }
+        });
+        vm.$mount('#root');// el第二种写法
+        console.log(vm);
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Jasmine</title>
+</head>
+
+<body>
+    <h1>哔哩哔哩</h1>
+    <h3>英文名称：bilibili，简称B站</h3>
+    <p>现为早期是一个ACG（动画、漫画、游戏）内容创作与分享的视频网站。</p>
+    <p>代偏爱泛ndZ示，B站二季度营收达44.9亿元人民币，同比增长72%。</p>
+    <br />经过十年多的发展，围绕用户、创作者和内容。
+
+    <h1>块级元素、行内元素</h1>
+    <strong>我是文字</strong><b>我是文字</b>
+    <em>我是倾斜</em><i>我是倾斜</i>
+    <del>我是删除</del>
+    <ins>我是下划线</ins><u>我是下划线</u>
+    <div>一个占一行，布局标签，分割分区，大盒子</div>
+    <span>一行可放多个，跨度跨行，小盒子</span>
+
+    <p>图像标签可拥有多个属性，且必须写在标签名之后；
+        属性之间不分先后顺序，属性之间均以空格分开；
+        属性采取键值对格式，即key=value，属性=“属性值”
+        src是"img"标签的必须属性，用于指定图像文件的路径和文件名。</p>
+    <h4> alt ：替换文本 图像不能显示时用文字替换</h4>
+    <img src="./b.jpg" alt="Jasmine" />
+    <h4> title ：提示文本 鼠标放在图像显示提示文字</h4>
+    <img src="./b.jpg" alt="Jasmine" title="我是B站" />
+    <h4> width :设定图像宽度 height :图像高度，只需要设定一种，图像会自动等比缩放</h4>
+    <img src="./b.jpg" alt="Jasmine" title="我是B站" width="300" height="100" />
+    <h4> border :设定图像边框粗细</h4>
+    <img src="./b.jpg" alt="Jasmine" title="我是B站" width="200" border="15" />
+
+    <h3>1. 路径:目录文件夹，根目录,路径是图像相对于html的位置</h3>
+    <p>1.1 根目录：目录文件夹第一层</p>
+    <h4> 1.2 同一级路径</h4>
+    <img src="./b.jpg" alt="Jasmine" />
+
+    <h4> 1.3 下一级路径</h4>
+    <img src="images/b.jpg" />
+
+    <h4> 1.4 绝对路径</h4>
+    <img src="C:\Users\Administrator\Desktop\test\b.jpg" />
+    <img src="file:///C:/Users/Administrator/Desktop/test/b.jpg" />
+
+    <h3>2. 超链接标签 “a”：anchor，锚</h3>
+    <p>"href"是“ a ”标签必须属性，“target”指页面打开方式，默认为_self，_blank为新窗口</p>
+
+    <h4>2.1 外部链接：必须以“http://”开头</h4>
+    <a href="http://www.qq.com" target="_self"> 腾讯</a>
+    <a href="http://www.qq.com" target="_blank"> 腾讯</a>
+    <a href="http://block.com" target="_blank">博客</a>
+
+    <h4>2.2 内部链接：页面内相互连接，直接复制内部链接名称</h4>
+    <a href="google.html " target="_blank">谷歌</a>
+
+    <h4>2.3 空链接：用“#”</h4>
+    <a href="#">空链接</a>
+
+    <h4>2.4 下载链接：地址链接是文件.exe或zip等压缩包形式</h4>
+    <a href="b.zip">下载文件</a>
+
+    <h4>2.5 网页元素的链接:图片、文本、音频等，用“a”标签包含元素</h4>
+    <a href="http://www.baidu.com" target="_blank"><img src="b.jpg" /></a>
+
+    <h4>2.6 锚点链接：点击链接时，可以快速定位到当前页面的位置, 在链接文本的href属性中设置值为“#名字”，</h4>
+    <a href="#001" id="002">个人生活</a><br />
+    人物评价<br />
+    <h4 id="001">个人生活</h4>
+    <p>第一、败诉是民事纠纷经裁判者审理并作出判断的一种状态。
+        在这里，一个必要的条件就是败诉是由第三方裁判者作出的一种判断，凡是未经第三人裁判，而只是由当事人自主解决的民事纠纷不存在败诉的情形。
+        就判断的具体表现形式而言，在民事诉讼中有判决书、裁定书和调解书，在民商事仲裁中有仲裁裁决书，在特定的行政裁决中有行政裁决书。
+        申请执行人的请求不能够得到法院的支持同样也是一种败诉。
+    </p>
+    <a href="#002">返回顶部</a>
+    <h4>人物评价</h4>
+    <!-- 这是注释标签（ctrl+/） -->
+    <h4>&nbsp;是空格符号,&lt;是小于号，&gt;是大于号</h4>
+
+    <h3>3. 表格标签：用来展示数据</h3>
+    <p>“table”：定义表格的标签；“tr”是表格中的“行”，必须嵌套在table标签；“td”：表格中的单元格（table data 数据单元格内容），必须嵌套在“tr”标签中；</p>
+
+    <h4>3.1 表头单元格标签：“th”（table head）文本会加粗并居中显示</h4>
+
+    <h4>3.2 表头属性：通过css设置对齐</h4>
+    <p>align（left center right）;边框：border（1或默认为""表示无边框）;像素值:cellpadding指内容与单元格的留白距离，默认1像素/cellspacing指单元格之间的空白距离，默认2像素
+    </p>
+    <!-- 这些属性必须写在表格标签table内，都可省略，用css写 -->
+    <table align="center" border="1" cellpadding="0" cellspacing="0" width="200" height="100">
+        <tr>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+        </tr>
+        <tr>
+            <td>Jasmine</td>
+            <td>女</td>
+            <td>21</td>
+        </tr>
+        <tr>
+            <td>long</td>
+            <td>男</td>
+            <td>26</td>
+        </tr>
+    </table>
+
+    <h4>3.3 表头结构标签：“thead”标签表格头部；“tbody”标签表格主体</h4>
+    <table align="center" width="340" height="170" border="1" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th>排名</th>
+                <th>关键词</th>
+                <th>趋势</th>
+                <th>今日搜索</th>
+                <th>相关链接</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>鬼吹灯</td>
+                <td><img src="第二天/down.jpg"></td>
+                <td>345</td>
+                <td> <a href="http://www.baidu.com" target="_blank">百度</a> <a href="#">图片</a> <a href="#">百科</a> </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>西游记</td>
+                <td><img src="第二天/down.jpg"></td>
+                <td>123</td>
+                <td> <a href="http://www.baidu.com" target="_blank">百度</a> <a href="#">图片</a> <a href="#">百科</a> </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4>3.4 合并单元格1.跨行合并：rowspan="合并单元格个数"；2.跨列合并：colspan="合并单元格的个数"</h4>
+    <p>目标单元格（写合并代码）：跨行为最上侧；跨列为最左侧，要删除多余单元格</p>
+    <table width="200" height="100" border="1" cellspacing="0">
+        <tr>
+            <td></td>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <td rowspan="2"></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <h3>4. 列表标签 </h3>
+    <h4>4.1 （重点）无序列表标签："ul"；只能放"li"标签定义（没有顺序级别之分，并列关系，可放任何元素）</h4>
+    <h5>喜欢的食物</h5>
+    <ul>
+        <li>土豆</li>
+        <li>水果</li>
+    </ul>
+
+    <h4>4.2 有序列表标签："ol"；只能放"li"标签定义</h4>
+    <h5>排名表</h5>
+    <ol>
+        <li>Jasmine</li>
+        <li>long</li>
+    </ol>
+
+    <h4>4.3 自定义列表标签："dl"；与"td"和"dd"标签一起使用（对术语或名词解释描述，无符号）</h4>
+    <p>"dt"和"dd"没有个数限制，一个"dt"可对应多个"dd"</p>
+    <dl>
+        <dt>名词</dt>
+        <dd>名词解释1</dd>
+        <dd>名词解释2</dd>
+    </dl>
+
+    <h3>5. 表单标签 </h3>
+    <h4>5.1 表单的组成：表单域；表单控件（表单元素）；提示信息</h4>
+    <h4>5.1.1 表单域="form"标签；指包含表元素的区域，实现用户信息的收集和传递，将范围内的表单元素信息提交给服务器</h4>
+    <form action="demo.php" method="POST" name="name1"></form>
+
+    <h4>5.1.2 表单元素：1.input输入表单元素；2.selcet下拉表单元素；3.textarea文本域元素</h4>
+    <p>1."input /"标签为单标签，用于收集用户信息；用"type"不同的属性值用来指定不同的控件；除type外还有别的属性</p>
+    <h4> <input type="属性值" value="你好"> </h4>
+    type属性如下：
+    <h5>
+        button:按钮，用于通过JavaScript启动脚本<br />
+        checkbox：复选框,可多选<br />
+        file：文件域；输入字段和“浏览”按钮，供文件上传<br />
+        hidden：隐藏字段<br />
+        image：图像提交按钮<br />
+        password：密码字段，字符被掩码<br />
+        radio：单选按钮<br />
+        reset：重置按钮；会清除表单中所有数据，还原表单的重置状态<br />
+        submit：提交按钮；把表单数据发送到服务器<br />
+        text:文本，默认宽度为20个字符<br />
+        除type外的其他属性常用如下：<br />
+        name：input元素的名称,自定义；要求单选和复选按钮要有相同的name值<br />
+        value：规定input元素的值<br />
+        name和value时每个表单都有的属性值，主要给后台人员使用,文本框才能看到效果<br />
+        checked：规定此input元素首次加载时应当被选中<br />
+        maxlength:正整数；规定输入字段中字符的最大长度<br />
+    </h5>
+    <form>
+        用户名： <input type="text" name="username" value="请输入用户名" maxlength="6"><br />
+        密码: <input type="password" name="pwd"> <br />
+        性别： 男<input type="radio" name="sex" value="男"> 女 <input type="radio" name="sex" value="女"
+            checked="checked"><br />
+        爱好： 吃饭<input type="checkbox" name="hobby" value="吃饭">睡觉<input type="checkbox" name="hobby"><br />
+        <input type="submit" value="免费注册">
+        <input type="reset" value="重新填写">
+        <input type="button" value="获取验证码"><br />
+        上传头像：<input type="file">
+    </form>
+    <h4> "label"标签为input元素定义标注（标签）</h4>
+    <p>标签用于绑定表单元素，当点击label标签内的文本时，浏览器会自动将光标转到或者选择对应的表单元素上，用来增加用户体验</p>
+    <h5>label标签的for属性应与相关元素的id属性相同</h5>
+    <label for="text">用户名：</label> <input type="text" id="text">
+    <input type="radio" id="man" name="sex"> <label for="man">男</label>
+
+    <h5>2.selcet下拉表单元素:多个选项选择</h5>
+    <p>selected="selected"时，为默认选中项</p>
+    <form>
+        省份：
+        <select>
+            <option>武汉</option>
+            <option>北京</option>
+        </select>
+    </form>
+
+    <h5>3.textarea文本域元素：输入内容过多时使用</h5>
+    <p>cols:每行的字符数；rows：显示的行数；实际开发用css改变大小</p>
+    <form>
+        评论:
+        <textarea cols="20" rows="5">把啦啦啦啦啦啦啦 </textarea>
+    </form>
+    
+    <h3>5.2 查阅文档</h3>
+    <p><a href="http://www.w3school.com.cn" target="_blank">W3C</a></p>
+    <p><a href="http://developer.mozilla.org/zh-CN/" target="_blank">MDN</a></p>
+
+</body>
+
+</html>

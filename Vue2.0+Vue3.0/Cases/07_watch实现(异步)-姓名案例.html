@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue -->
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <!-- 双向绑定v-model -->
+        姓：<input type="text" v-model = "firstName"><br><br>
+        名：<input type="text" v-model = "lastName"><br><br>
+        全名：<span>{{fullName}}</span>
+    </div>
+    <script>
+        Vue.config.productionTip = false;// 设置为 false 以阻止 vue 在启动时生成生产提示
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                firstName:'张',
+                lastName:'三',
+                fullName:'张-三'
+            },
+           watch:{
+            // 简写：只考虑读取不考虑修改才能用
+            firstName(val){
+                // watch里面可以写异步任务，定时器由js的定时器模块调用(写成普通函数则this指向window)，可以写箭头函数
+                setTimeout(() => {
+                    console.log(this); // 此处this指向firstname的this：vm
+                    this.fullName = val + '-' + this.lastName;// 全名为新的姓+名
+                }, 1000);
+            },
+            lastName(val){
+                this.firstName = this.firstName + '-' + val;// 全名为新的名+姓
+            }
+           }
+        });
+    </script>
+</body>
+
+</html>

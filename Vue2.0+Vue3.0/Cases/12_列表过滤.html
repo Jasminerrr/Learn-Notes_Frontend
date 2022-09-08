@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue -->
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h2>人员列表</h2>
+        <input type="text" placeholder="请输入姓名" v-model="keyWords">
+        <ul>
+            <!-- 遍历过滤后的filPersons数组 -->
+            <li v-for="(p,index) of filPersons" :key="index">
+                {{p.name}}-{{p.age}}-{{p.sex}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        Vue.config.productionTip = false;// 设置为 false 以阻止 vue 在启动时生成生产提示
+        // 用watch实现
+        /* new Vue({
+            el: '#root',
+            data: {
+                keyWords: '',
+                persons: [
+                    { id: '001', name: '马冬梅', age: 18, sex: '女' },
+                    { id: '002', name: '周冬雨', age: 19, sex: '女' },
+                    { id: '003', name: '周杰伦', age: 20, sex: '男' },
+                    { id: '004', name: '温兆伦', age: 21, sex: '男' }
+                ],
+                filPersons: []
+            },
+            watch: {
+                keyWords: {
+                    immediate: true,// 初始化的时候让handler先调用一下：字符串为空，则全部过滤出来
+                    // 不需要旧数据 可以只用一个新数据val
+                    handler(val) {
+                        // filter()方法返回一个名字不为-1的新数组 然后赋值给filPersons
+                        this.filPersons = this.persons.filter((p) => {
+                            return p.name.indexOf(val) !== -1
+                        })
+                    }
+                }
+            }
+        }); */
+
+        // 用computed实现
+        new Vue({
+            el: '#root',
+            data: {
+                keyWords: '',
+                persons: [
+                    { id: '001', name: '马冬梅', age: 18, sex: '女' },
+                    { id: '002', name: '周冬雨', age: 19, sex: '女' },
+                    { id: '003', name: '周杰伦', age: 20, sex: '男' },
+                    { id: '004', name: '温兆伦', age: 21, sex: '男' }
+                ]
+            },
+            computed: {
+                // 简写：computed直接调用对象属性get()的return返回值
+                // 1. get初次读取计算属性时会执行一次；
+                // 2. 当所依赖的数据（persons、keyWords）发生变化时会被get再次调用；
+                filPersons() {
+                    return this.persons.filter((p) => {
+                        return p.name.indexOf(this.keyWords) !== -1
+                    })
+                }
+            }
+
+        });
+    </script>
+</body>
+
+</html>

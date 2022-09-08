@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-递增运算符练习</title>
+    <script>
+        //练习1：递增运算符练习
+        var n1 = 10, n2 = 20;//同时申明两个变量
+        var n = n1++;//n1++=10,
+        console.log('n=' + n);//n=10
+        console.log('n=' + n1);//11
+        n = ++n1;//n1=11+1=++n1
+        console.log('n=' + n);//12 
+        console.log('n=' + n1);//12
+        n = n2--;
+        console.log('n=' + n);//n=20,n2=19
+        console.log('n=' + n2);//19
+        n = --n2;
+        console.log('n=' + n);//n=18,n2=18
+        console.log('n=' + n2);//18
+
+        //练习2：运算符优先级
+        var a = 3 > 5 && 2 < 7 && 3 == 4;//false && true && false
+        console.log(a);//false
+
+        var b = 3 <= 4 || 3 > 1 || 3 != 2;//true || true ||true
+        console.log(b);//true
+
+        var c = 2 === "2";
+        console.log(c);//false
+
+        var d = !c || b && a;//true || false
+        console.log(d);//true
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

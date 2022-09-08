@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 利用递归求 1~n 的阶乘 1*2*3*4*...n
+        function fn(n) {
+            if (n == 1) {
+                return 1;
+            }
+            return n * fn(n - 1);
+        }
+        console.log(fn(3));// 输出6
+        // 详细思路：如果用户输入3
+        // 先调用外面fn(3),判断不为1，返回n * fn(n - 1)，则
+        // 1. 返回 3 * fn(3 - 1) —— return 3 * fn(2)，此时fn(2)需要重新调用函数
+        // 2. 内部fn(2)判断不为1，返回 2 * fn(1) —— 则return 3 * (2 * fn(1))，此时再调用fn(1)
+        // 3. 判断fn(1)为1，返回1，—— 则return 3 * (2 * 1)
+        // 4. return 3 * (2)
+        // 5. return 6
+    </script>
+</body>
+
+</html>

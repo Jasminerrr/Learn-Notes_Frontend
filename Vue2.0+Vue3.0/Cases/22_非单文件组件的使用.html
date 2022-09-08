@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue -->
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <hello></hello>
+        <hr>
+        <!-- 第3步：编写组件标签 -->
+        <school></school>
+        <hr>
+        <student></student>
+    </div>
+
+    <!-- 第二个容器 -->
+    <div id="root2">
+        <hello></hello>
+    </div>
+    <script>
+        Vue.config.productionTip = false;// 设置为 false 以阻止 vue 在启动时生成生产提示
+        // 第1步：创建school组件
+        const school = Vue.extend({
+            // 使用模板字符串
+            template: `
+                <div>
+                    <h1>学校名称：{{schoolName}}</h1>
+                    <h1>学校地址：{{address}}</h1>
+                </div>
+            `,
+            // el: '#root', 定义组件时，不能写el配置项，要由vm决定服务于哪个容器
+            data() {
+                return {
+                    schoolName: '尚硅谷',
+                    address: '北京'
+                }
+            }
+        })
+        // 第1步：创建student组件
+        const student = Vue.extend({
+            // 使用模板字符串
+            template: `
+                <div>
+                    <h1>学生姓名：{{studentName}}</h1>
+                    <h1>学生姓名年龄：{{age}}</h1>
+                </div>
+            `,
+            data() {
+                return {
+                    studentName: '尚硅谷',
+                    age: 18
+                }
+            }
+        })
+        //    创建hello组件
+        const hello = Vue.extend({
+            template:`
+                <div>
+                    <h2>你好</h2>
+                </div>
+            `,
+        })
+        // 全局注册组件:不同容器都可以用
+        Vue.component('hello',hello)
+
+        // 创建vm
+        new Vue({
+            el: '#root',
+            // 第2步：注册局部组件
+            components: {
+                // 对象完整写法：school:school
+                school,
+                student
+            }
+        });
+
+        new Vue({
+            el: '#root2',
+            // data可以不写
+            data:{
+                msg:'你好'
+            }
+        })
+    </script>
+</body>
+
+</html>

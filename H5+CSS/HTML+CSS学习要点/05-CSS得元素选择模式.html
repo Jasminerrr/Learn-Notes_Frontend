@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS得元素选择模式</title>
+    <style>
+        /* a {
+            width: 150px;
+            height: 45px;
+            background-color: aquamarine;
+            把行内元素 a转换为 块级元素!! 
+            display: block;
+        } */
+
+        div {
+            width: 300px;
+            height: 100px;
+            background-color: #f00;
+            /* 把块级元素div 转换为 行内元素 */
+            display: inline;
+        }
+
+        span {
+            width: 300px;
+            height: 50px;
+            background-color: blue;
+            /* 行内元素转换为行内块元素 */
+            display: inline-block;
+        }
+
+        /* 课堂案例 */
+        /* 把a转换为块级元素 */
+        a {
+            display: block;
+            /* 减掉了30px */
+            width: 200px;
+            height: 40px;
+            color: #fff;
+            font-size: 14px;
+            background-color: #55585a;
+            text-decoration: none;
+            /* 文字离左侧距离不应该用text-indent，不精确，实际开发用padding值,则盒子宽度要减30px
+            text-indent: 2em; */
+            padding-left: 30px;
+            /* 单行文字垂直居中的代码：让文字行高=盒子的高度 */
+            line-height: 40px;
+        }
+
+        /* 鼠标经过链接变换背景颜色 */
+        a:hover {
+            background-color: #ff6700;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>1.元素显示模式：了解标签特点更好的布局网页：块元素和行内元素</h2>
+    <h3>块元素和行内元素</h3>
+    <h3>1.1 块元素：h1~h6,p,div,ul,ol,li等</h3>
+    <p>特点：1.独占一行；
+        1. 高、宽、外边距、内边距都可控制；
+        2. 宽度默认是容器（父级宽度）的100%；
+        3. 是一个容器及盒子，里面可以放行内元素或块级元素。
+    </p>
+    <p>
+        注意：
+        文字类的元素不能使用块级元素；
+        p标签主要存放文字，所以不能放块级元素，特别是div;
+        同理h1~h6等都是文字类标签，也不能放块级元素。
+    </p>
+    <h3>1.2 行内元素：a,strong,b,em,i,span等（行内也可叫内联元素）</h3>
+    <!-- <span>标签是最经典得行内元素 -->
+    <p>行内元素特点：
+        1. 相邻行内元素在一行，一行可显示多个；
+        2. 高、宽直接设置无效，不能直接设置；
+        3. 默认宽度就是本身内容得宽度；
+        4. 只能容纳文本或其他行内元素。
+    </p>
+    <p>
+        注意：
+        链接里面不准放链接；
+        特殊情况链接a可以放块级元素，但是a转换一下块级模式最安全。
+    </p>
+    <h3>1.3 行内块元素：<img />,<input />,<td>,同时具有块元素和行内元素特点</h3>
+    <p>
+        行内块元素特点：
+        1. 相邻行内元素（行内块）在一行上，但是之间会有空白缝隙；一行可显示多个（行内元素特点）
+        2. 默认宽度就是本身内容得宽度（行内元素特点）
+        3. 高、行高、外边距、内边距都可控制（块级元素特点）；
+    </p>
+    <h3>1.4 元素的显示模式转换：一个模式的元素需要另外一种模式的特性</h3>
+    <h4>比如增加链接a的触发范围</h4>
+    <!-- 把行内元素a转换为 块级元素  -->
+    <a href="#">增加触发范围</a>
+    <!-- 把块级元素 转换为 行内元素  -->
+    <div>我是块级元素</div>
+    <div>我是块级元素</div>
+    <span>行内元素转换为行内块元素</span>
+
+    <h3>课堂案例：小米简洁版侧边栏</h3>
+    <a href="#">手机 电话卡</a>
+    <a href="#">电视 盒子</a>
+    <a href="#">笔记本 平板</a>
+    <a href="#">出行 穿戴</a>
+    <a href="#">智能 路由器</a>
+    <a href="#">健康 儿童</a>
+    <a href="#">耳机 音响</a>
+    <h3>单行文字垂直居中的原理：
+        行高《盒子高度，则文字偏上；
+        行高》盒子高度，则文字偏下。
+    </h3>
+</body>
+
+</html>

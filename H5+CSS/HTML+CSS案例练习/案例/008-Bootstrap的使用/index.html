@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--[if lt IE 9]>
+      <script src="https://fastly.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://fastly.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+    <!-- 一定不要忘记引入bootstrap样式文件 -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <title>Document</title>
+    <style>
+        .row>div {
+            background-color: pink;
+            height: 50px;
+        }
+
+        span {
+            font-size: 20px;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 2.3 布局容器 -->
+    <div class="container">
+        <!-- 如果子盒子得分数相加等于12,则子盒子能占满整个container得宽度 -->
+        <!-- 3.2 栅格选项参数 -->
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">1</div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">2</div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">3</div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">4</div>
+        </div>
+        <!-- 如果子盒子相加小于12,则占不满整个宽度,会有空白 -->
+        <div class="row">
+            <div class="col-lg-6"></div>
+            <div class="col-lg-2">2</div>
+            <div class="col-lg-2">3</div>
+            <div class="col-lg-1">4</div>
+        </div>
+        <!-- 如果相加大于12份,多出的那一列会另起一行显示 -->
+        <div class="row">
+            <div class="col-lg-6">1</div>
+            <div class="col-lg-2">2</div>
+            <div class="col-lg-2">3</div>
+            <div class="col-lg-3">4</div>
+        </div>
+        <!-- 3.3 列嵌套 -->
+        <div class="row">
+            <div class="col-md-4">
+                <!-- 在里面嵌套的时候最好加一个行 row ,这样可以去除父元素得padding值，而且高度喝父级一样高 -->
+                <div class="row">
+                    <div class="col-md-4">1</div>
+                    <div class="col-md-8">b</div>
+                </div>
+            </div>
+            <div class="col-md-4">2</div>
+            <div class="col-md-4">3</div>
+        </div>
+        <!-- 3.4 列偏移 -->
+        <div class="row">
+            <div class="col-md-3">左</div>
+            <!-- 便宜的份数是12-两个盒子得份数 -->
+            <div class="col-md-3 col-md-offset-6">右</div>
+        </div>
+        <!-- 如果只有一个盒子，偏移12-8份 -->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">中间</div>
+        </div>
+        <!-- 3.5 列排序 -->
+        <div class="row">
+            <div class="col-md-4 col-md-push-8">左</div>
+            <div class="col-md-8 col-md-pull-4">右</div>
+        </div>
+        <!-- 3.6 响应式工具 -->
+        <div class="row">
+            <div class="col-xs-3">
+                <span class="visible-lg">111111</span>
+            </div>
+            <div class="col-xs-3">2</div>
+            <div class="col-xs-3 hidden-md hidden-xs">3</div>
+            <div class="col-xs-3">4</div>
+        </div>
+    </div>
+</body>
+
+</html>

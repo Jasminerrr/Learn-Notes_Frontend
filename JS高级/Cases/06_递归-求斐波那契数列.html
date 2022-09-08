@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" placeholder="数值">
+    <button>按钮</button>
+    <script>
+        // 利用递归求斐波那契数列fibonacci（兔子序列）1 1 2 3 5 8 13 21...（前两项相加为第三项的和）
+        // 用户输入一个数字 n 就可以求出这个数字对应的兔子序列值
+        // 只需要知道用户输入的 n 的前面两项(n-1 n-2)就可以计算出 n 对应的序列值
+        // function fb(n) {
+        //     if (n === 1 || n === 2) {
+        //         return 1;
+        //     }
+        //     return fb(n - 1) + fb(n - 2);// 一层层调用，调用结果返回上一层函数
+        // }
+        // console.log(fb(6));
+
+
+        var input = document.querySelector('input');
+        var btn = document.querySelector('button');
+        function fb(n) {
+            return n <= 2 ? 1 : fb(n - 1) + fb(n - 2);
+        }
+        btn.addEventListener('click', function () {
+            var num = input.value;
+            var result = fb(num);
+            console.log(result);
+        })
+
+    </script>
+</body>
+
+</html>

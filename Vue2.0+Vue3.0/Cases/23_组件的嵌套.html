@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入Vue -->
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+    </div>
+    <script>
+        Vue.config.productionTip = false;// 设置为 false 以阻止 vue 在启动时生成生产提示
+        // 定义student组件
+        const student = Vue.extend({
+            template: `
+            <div>
+                <h2>学生名字：{{name}}</h2>
+                <h2>学生年龄：{{age}}</h2>            
+            </div>
+            `,
+            data() {
+                return {
+                    name: '张三',
+                    age: 19
+                }
+            },
+            
+        })
+        // 定义school组件
+        const school = Vue.extend({
+            template: `
+            <div>
+                <h2>学校名字：{{schoolName}}</h2>
+                <h2>学校地址：{{address}}</h2>
+                <button @click = "showName">点我提示学校</button>
+                <student></student>
+                </div>
+            `,
+            data() {
+                return {
+                    schoolName: '尚硅谷',
+                    address: '北京'
+                }
+            },
+            components: {
+                student
+            },
+            methods: {
+                showName(){
+                    alert(this.schoolName)
+                }
+            },
+        })
+        // 定义hello组件，与school平级
+        const hello = Vue.extend({
+            template:`<h1>{{msg}}</h1>`,
+            data(){
+                return {
+                    msg:'你好'
+                }
+            }
+        })
+        // 定义app组件：管理所有组件的组件（标准化开发）
+        const app = Vue.extend({
+            template: `
+            <div>
+                <hello></hello>
+                <school></school>
+            </div>
+            `,
+            components: {
+                school,
+                hello
+            }
+        })
+        // 创建vm
+        const vm = new Vue({
+            el: '#root', 
+            template: `<app></app>`,
+            components: {app}
+        });
+    </script>
+</body>
+
+</html>

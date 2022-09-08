@@ -1,0 +1,47 @@
+// 定义一个粉色的变量
+@color:pink;
+// 定义一个字体为14像素的变量
+@font14:14px;
+body {
+    background-color: @color;
+}
+div {
+    color: @color;
+    font-size: @font14;
+}
+// 1.less嵌套子元素得样式直接写在父元素里面
+.header {
+    width: 200px;
+    height: 200px;
+    background-color: cyan;
+    a {
+        color: darkblue;
+        // 2.如果有伪类、交集选择器、伪元素选择器，内层选择器的前面需要加上&
+        &:hover {
+            color: red;
+        }
+    }
+}
+.nav {
+    &::before {
+        content: "";
+    }
+}
+// less运算
+@baseFont:50px;
+html {
+    font-size: @baseFont;
+}
+@border:5px + 5;
+.div-2 {
+    width: 100px - 10;
+    height: (50px + 50px) * 2;
+    border: @border solid red;
+    background-color: #666 - #222;
+}
+img {
+    // width: (82 / 50rem);
+    // height: (82 / 50rem);
+    width: (82rem / @baseFont);
+    height: (82rem / @baseFont);
+}

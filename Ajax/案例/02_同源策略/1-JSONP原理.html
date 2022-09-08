@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSONP原理演示</title>
+    <style>
+        #result {
+            width: 200px;
+            height: 200px;
+            border: 1px solid skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="result"></div>
+    <script>
+        // 处理数据
+        function handle(data) {
+            // 获取元素
+            const result = document.querySelector('#result');
+            result.innerHTML = data.name;
+        }
+    </script>
+    <!-- app.js要后执行，放在后面 -->
+    <!-- <script src="http://127.0.0.1:5500/Ajax/%E6%A1%88%E4%BE%8B/02_%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/app.js"></script> -->
+    <script src="http://127.0.0.1:8000/jsonp-server"></script>
+
+</body>
+
+</html>

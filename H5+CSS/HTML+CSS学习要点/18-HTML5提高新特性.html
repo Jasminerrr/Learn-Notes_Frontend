@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5提高新特性</title>
+    <style>
+        header,
+        nav {
+            width: 800px;
+            height: 120px;
+            background-color: skyblue;
+            /* 圆角 */
+            border-radius: 15px;
+            margin: 10px auto;
+        }
+
+        video {
+            width: 100%;
+        }
+
+        /* 改变默认值文字颜色 */
+        input::placeholder {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+        HTML5 的新增特性主要是针对于以前的不足，增加了一些新的标签、新的表单和新的表单属性等。
+        这些新特性都有兼容性问题，基本是 IE9+ 以上版本的浏览器才支持，如果不考虑兼容性问题，可以大量使用这
+        些新特性。<br>
+        声明：<br>
+        1. 新特性增加了很多，但是我们专注于开发常用的新特性。<br>
+        2. 基础班我们讲解部分新特性，到了就业班还会继续讲解其他新特性。<br>
+    </p>
+
+    <h3>1. HTML5新增的语义化标签</h3>
+    <header>头部标签</header>
+    <nav>导航栏标签</nav>
+    <article>内容标签</article>
+    <section>定义文档某个区域</section>
+    <aside>侧边栏标签</aside>
+    <footer>尾部标签</footer>
+    <p>
+        这种语义化标准主要是针对搜索引擎的.
+        这些新标签页面中可以使用多次.
+        在 IE9 中，需要把这些元素转换为块级元素.
+        其实，我们移动端更喜欢使用这些标签.
+    </p>
+
+    <h3>2.多媒体标签</h3>
+    谷歌把视频和音频自动播放禁止了,视频可以添加muted属性，音频不行（通过js解决）
+
+    <h4>2.1 视频《video》</h4>
+    支持MP4/WebM/Ogg，尽量用MP4，浏览器兼容
+    <!-- autoplay自动播放/muted谷歌浏览器静音播放/loop循环播放/poster加载等待的画面图片 -->
+    <video src="media/mi.mp4" autoplay="autoplay" muted="muted" loop="loop" poster="images/mi9.jpg"></video>
+
+    <h4>2.2 音频《audio》</h4>
+    支持MP3/Wav/Ogg，尽量用MP4，浏览器兼容
+    <audio src="media/music.mp3" autoplay="autoplay" controls="controls"></audio>
+
+    <h3>3.input表单类型</h3>
+    <!-- 验证的时候必须添加form表单域 -->
+    <form action="">
+        <ul>
+            <li>邮箱: <input type="email" /></li>
+            <li>网址: <input type="url" /></li>
+            <li>日期: <input type="date" /></li>
+            <li>时间: <input type="time" /></li>
+            <li>数量: <input type="number" /></li>
+            <li>手机号码: <input type="tel" /></li>
+            <li>搜索: <input type="search" /></li>
+            <li>颜色: <input type="color" /></li>
+            <!-- 当我们点击提交按钮就可以验证表单了 -->
+            <li> <input type="submit" value="提交"></li>
+        </ul>
+    </form>
+
+    <h3>4.新增的表单属性</h3>
+    required=required(内容必填，不能为空)<br>
+    placeholder=提示文本（提示信息默认值）重点<br>
+    autofocus=autofocus(页面加载完成自动聚焦到指定表单)<br>
+    autocomplete=off/on(显示历史值，默认on，需放在表单内，同时加上name属性和成功提交)<br>
+    mutiple=multiple(可以多选文件)重点<br>
+    <form action="">
+        <input type="search" name="sear" id="" required="required" placeholder="Jasmine" autofocus="autofocus"
+            autocomplete="off">
+        <input type="file" name="" id="" multiple="multiple">
+        <input type="submit" value="提交">
+    </form>
+</body>
+
+</html>

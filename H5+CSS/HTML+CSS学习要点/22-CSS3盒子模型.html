@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS3盒子模型</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* div {
+            width: 200px;
+            height: 200px;
+            background-color: cadetblue;
+            border: 10px solid red;
+            padding: 15px;
+            box-sizing: content-box;
+        } */
+
+        p {
+            width: 200px;
+            height: 200px;
+            background-color: cadetblue;
+            border: 10px solid red;
+            padding: 15px;
+            /* CSS3盒子模型 盒子最终大小就是width 200 的大小 */
+            box-sizing: border-box;
+        }
+
+        /* 2.1 CSS3滤镜 */
+        /* blur是函数 数值越大越模糊，函数要加单位px */
+
+        img {
+            filter: blur(5px);
+        }
+
+        img:hover {
+            filter: blur(0);
+        }
+
+        .father {
+            width: 200px;
+            height: 50px;
+            background-color: blue;
+        }
+
+        .son {
+            /* width: calc(100px + 30px); */
+            width: calc(100% - 30px);
+            height: 30px;
+            background-color: rgb(230, 64, 34);
+        }
+
+        .guodu {
+            width: 200px;
+            height: 50px;
+            background-color: blue;
+            /* transition: 要过渡的属性 花费时间 运动曲线 何时开始 */
+            /* transition: width .5s ease 0s; */
+            /* 多个属性需要用，分割 */
+            /* transition: width .5s, height .5s; */
+            /* 想要多个属性变化，用all */
+            /* 谁做过渡就给谁加 */
+            transition: all .5s;
+        }
+
+        .guodu:hover {
+            width: 300px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>1.CSS3盒子模型</h3>
+    CSS3 中可以通过 box-sizing 来指定盒模型，有2个值：即可指定为 content-box、border-box，这样我们
+    计算盒子大小的方式就发生了改变。<br>
+    1. box-sizing: content-box 盒子大小为 width + padding + border （以前默认的）<br>
+    2. box-sizing: border-box 盒子大小为 width <br>
+    如果盒子模型我们改为了box-sizing: border-box ， 那padding和border就不会撑大盒子（前提padding
+    和border不会超过width宽度）
+    <div></div>
+    <p></p>
+
+    <h3>2.CSS3其他特性（了解）</h3>
+    <h4>2.1 CSS3滤镜filter</h4>
+    filter CSS属性将模糊或颜色偏移等图形效果应用于元素。<br>
+    filter: 函数(); 例如： filter: blur(5px); blur模糊处理 数值越大越模糊
+    <img src="images/b.jpg" alt="">
+
+    <h4>2.2 CSS3 calc 函数(计算的缩写)</h4>
+    width: calc(100% - 80px);<br>
+    括号里面可以使用 + - * / 来进行计算<br>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+
+    <h4>2.3 CSS3过渡效果</h4>
+    transition: 要过渡的属性 花费时间 运动曲线 何时开始
+    <ul>
+        <li> 1.属性 ： 想要变化的 css 属性， 宽度高度 背景颜色 内外边距都可以 。如果想要所有的属性都变化过渡， 写一个all 就可以。</li>
+        <li> 2. 花费时间： 单位是 秒（必须写单位） 比如 0.5s </li>
+        <li> 3. 运动曲线： 默认是 ease （可以省略）</li>
+        <li> 4.何时开始 ：单位是 秒（必须写单位）可以设置延迟触发时间 默认是 0s （可以省略）</li>
+    </ul>
+    <div class="guodu"></div>
+
+</body>
+
+</html>

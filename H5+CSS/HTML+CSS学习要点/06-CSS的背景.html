@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS的背景</title>
+    <style>
+        /* 1. 元素背景颜色：默认transparent（透明） */
+        div {
+            width: 200px;
+            height: 200px;
+            /* background-color: violet; */
+            /* 6. 背景色半透明 ,0.5可以把0省略*/
+            /* background: rgba(0, 0, 0, 0.5) */
+            background: rgba(0, 0, 0, .5)
+        }
+
+        /* 2. 背景图片：background-image:none | url(url);url是路径的意思 */
+        div {
+            width: 300px;
+            height: 250px;
+            color: aqua;
+            /* 不要落下url() */
+            background-image: url(images/b.jpg);
+            /* 3. 背景平铺：background-repeat:repeat | no-repeat | repeat-x | repeat-y
+            默认情况下背景是平铺的/不平铺/沿着横向x轴平铺/沿着纵向y轴平铺 */
+            background-repeat: no-repeat;
+            /* 页面元素既可以添加背景颜色也可以添加背景图片 只不过背景图片会压住背景颜色 */
+            /* 4. 背景图片位置：background-position:x y; 
+            可使用方位名词或者精确单位
+            4.1 方位名词position：top|center|bottom|left|center|right；两个值前后顺序无关
+            如果只指定了一个方位名词，另一个值省略，则第二个值默认居中对齐
+            background-position: center right;
+            background-position: right；
+            4.2 精确单位length：百分数|由浮点数和单位标识符组成的长度值；
+            精确值的x y位置不能变;
+            如果只指定了一个方位名词，另一个值省略，则第一个值为x,第二个值y默认居中对齐 */
+            /* background-position: 100px 100px; */
+            /* 4.3 参数是混合单位：指定两个值是精确单位和方位名词混合使用，则第一个值是x坐标，第二个是y坐标； */
+            background-position: 20px center;
+
+        }
+
+        /* 背景位置方位名词应用一 */
+        h3 {
+            width: 300px;
+            height: 40px;
+            /* background-color: rgb(240, 125, 125); */
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 40px;
+            background-image: url(images/06.png);
+            background-repeat: no-repeat;
+            background-position: left center;
+            text-indent: 4.5em;
+        }
+
+        /* 超大背景图片的做法 */
+        body {
+            /* background-image: url(images/07.png);
+            background-repeat: no-repeat;
+            一般写为水平居中，垂直靠上 
+            background-position: center top;
+
+            / background-position: center 40px; /
+            5.背景图像固定 
+            background-attachment: fixed; */
+            /* 6. 背景复合写法：属性合并简写在background一个属性中
+        无顺序要求，但习惯约定顺序为：背景颜色/背景图片地址/背景平铺/背景图像滚动/背景图片位置 */
+            background: black url(images/07.png) no-repeat fixed center top;
+            color: aquamarine;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>1. 背景位置方位名词应用一</h3>
+    <div></div>
+    <h3>5. 背景图像固定：background-attachment：scroll | fixed；默认滚动scroll
+        属性设置图像是否固定或者随着页面的其余部分滚动； 后期可以制作视差滚动效果；
+        scroll:背景图像是否随对象内容滚动
+        fixed：背景图像固定
+    </h3>
+    <P>1232344864</P>
+    <P>1232344864</P>
+    <P>1232344864</P>
+    <P>1232344864</P>
+    <P>1232344864</P>
+    <P>1232344864</P>
+    <P>1232344864</P>
+    <P>1232344864</P>
+    <P>1232344864</P>
+    <P>1232344864</P>
+    <h3>6. 背景复合写法(重要)：属性合并简写在background一个属性中
+        无顺序要求，但习惯约定顺序为：背景颜色/背景图片地址/背景平铺/背景图像滚动/背景图片位置
+    </h3>
+    <h3>7. 背景色半透明：background:rgba(0, 0, 0, 0.3)
+        a:alpha透明度(取值0~1之间)，指盒子背景半透明，盒子里面的内容不受影响
+    </h3>
+</body>
+
+</html>

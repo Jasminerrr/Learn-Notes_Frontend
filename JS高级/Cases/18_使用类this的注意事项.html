@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>按钮</button>
+    <script>
+        let that = null;
+        let _this = null;
+        class Star{
+            constructor(uname,age){// 
+                that = this;
+                this.uname = uname;
+                this.age = age;
+                // 因为new的实例对象会自动调用构造函数，可以直接在构造函数里面获取元素、调用方法
+                this.btn = document.querySelector('button');
+                this.btn.onclick = this.sing; // sing不能加小括号调用，要点击后才调用
+            }
+            sing(){
+                // 类里面 共有的属性和方法一定要添加this使用；
+                // console.log(this.uname);// 这个this指向btn，因为是btn调用了；因为btn没有name属性，所以输出undefined
+                console.log(that.uname); // that里面存的是constructor里面的this
+                console.log(this);
+            }
+            dance(){
+                // 这个this指向的是ldh，是ldh调用了
+                _this = this
+                console.log(this);
+            }
+        }
+        let ldh = new Star('刘德华');
+        ldh.dance();
+    </script>
+</body>
+</html>

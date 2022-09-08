@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS第二天导读</title>
+    <style>
+        /* 1.2 快速生成CSS样式语法 */
+        .one {
+            /* tac：水平居中*/
+            text-align: center;
+            /* ti2em:首行缩进2个字 */
+            text-indent: 2em;
+            /* w100:100像素的宽 */
+            width: 100px;
+            /* lh26:行高26像素 */
+            line-height: 26;
+            /* tdn：文本样式 */
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>1. Emmet语法</h2>
+    <h3>1.1 快速生成HTML结构语法</h3>
+    <p>1.输入标签名，按下tab键即可
+        2.多个标签*个数,如div*3,无空格！
+        <div></div>
+        <div></div>
+        3.父子级关系，用>包含即可
+        ul>li
+        <ul>
+            <li></li>
+        </ul>
+        4.兄弟关系标签，用+
+        div+p
+        <div></div>
+        <p></p>
+        5.带类名或id名，用.demo或#two 按tab键；.是类、#是id
+        <!-- 默认是div生成 -->
+        .nav
+        <div class="nav"></div>
+
+        #banner
+        <div id="banner"></div>
+        <!-- 约束p标签，给p标签加了class="one"的样式 -->
+        p.one
+        <p class="one"></p>
+        <span class="gray"></span>
+        ul>li#two
+        <ul>
+            <li id="two"></li>
+        </ul>
+        6.生成div类名有顺序时，用自增符号$
+        .demo$*3
+        <div class="demo1"></div>
+        <div class="demo2"></div>
+        <div class="demo3"></div>
+        7.想生成的标签里面默认显示几个文字用{}表示
+        div{默认文字}
+        <div>默认文字</div>
+
+        div{默认文字}*3
+        <div>默认文字</div>
+        <div>默认文字</div>
+        <div>默认文字</div>
+        <!-- 案例 -->
+        div{$}*3
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>   
+    </p>
+    <h3>1.2 快速生成CSS样式语法</h3>
+    <h3>1.3 快速格式化代码：shift+alt+f</h3>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //练习1：请用对象字面量的形式创建一个名字为可可的狗对象。   
+        // 具体信息如下：// 姓名：可可 // 类型(type)：阿拉斯加犬// 年龄：5岁，// 颜色：棕红色。// 技能：汪汪汪(bark) ，演电影 (showFilm)
+        var obj = {
+            pname: 'keke',// keke记得加引号
+            type: '阿拉斯加犬',
+            age: 5,
+            color: 'brown',
+            bark: function () {
+                console.log('bark');
+            },               // 记得用逗号分开！！
+            showFilm: function () {
+                console.log('演电影');
+            }
+        }
+        console.log(obj.pname);
+        console.log(obj['age']);
+        obj.bark();
+        obj.showFilm();
+
+        //练习2：请用new Object 形式创建一个鸣人对象。   
+        // 具体信息如下： // 姓名：鸣人 // 性别：男 // 年龄：19岁 // 技能（skill）：影分身术
+        var obj = new Object();
+        obj.name = '鸣人';
+        obj.sex = '男';
+        obj.age = 19;
+        obj.skill = function () {
+            console.log('skill');
+        }
+        console.log(obj.name);
+        console.log(obj['age']);
+        obj.skill();
+
+        //练习3：利用构造函数创建两个英雄对象。函数中的公共部分包括：姓名属性(name)，类型属性（type），血量属性（blood）和攻击方式（attack）。
+        //英雄对象的信息如下 ：廉颇   力量型    500血量    攻击 ：近战
+        //后羿   射手型    100血量    攻击： 远程
+        function Hero(name, type, blood,) {
+            this.name = name;
+            this.type = type;
+            this.blood = blood;
+            this.attack = function (attack) {
+                console.log(attack);
+            }
+        }
+        var lp = new Hero('廉颇', '力量型', 500);
+        console.log(lp.name);
+        console.log(lp.type);
+        console.log(lp['blood']);
+        lp.attack('近战');
+        var hy = new Hero('后裔', '射手型', 100);
+        console.log(hy.name);
+        console.log(hy.type);
+        console.log(hy['blood']);
+        hy.attack('近战');
+
+        //作业1：创建一个电脑对象，该对象要有颜色、重量、品牌、型号，可以看电影、听音乐、打游戏和敲代码。（利用构造函数创建对象）
+        function Computer(color, weight, brand, type) {
+            this.color = color;
+            this.weight = weight;
+            this.brand = brand;
+            this.type = type;
+            this.movie = function (film) {
+                console.log(film);
+            }
+        }
+        var dell = new Computer('pink', '1.32kg', 'dell', '燃7000II');
+        console.log(dell.brand);
+        dell.movie('星球大战');
+
+        // 作业2：创建一个按钮对象，该对象中需要包含宽，高，背景颜色和点击行为。（利用构造函数创建对象）
+        function Button(width, height, bgc) {
+            this.width = width;
+            this.height = height;
+            this.bgc = bgc;
+            this.click = function (onclick) {
+                console.log(onclick);
+            }
+        }
+        var button = new Button('100px', '100px', 'pink');
+        console.log(button.height);
+        button.click('点击');
+
+        // 作业3：写一个函数，实现反转任意数组。
+        function reverse(arr) {
+            var newArr = [];
+            for (var i = arr.length - 1; i >= 0; i--) {
+                newArr[newArr.length] = arr[i];
+            }
+            return newArr;
+        }
+        var arr1 = reverse([9, 8, 7, 6, 5]);
+        console.log(arr1);
+
+        // 作业4：写一个函数，实现对数字数组的排序。
+        function sort(arr) {
+            for (var i = 0; i < arr.length - 1; i++) {
+                for (var j = 0; j < arr.length - i - 1; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        var temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+            return arr;
+        }
+        var arr1 = sort([5, 8, 1, 4, 0]);
+        console.log(arr1);
+
+        // 作业5：做一个简易计算器
+        function Counter() {
+            this.i = prompt('欢迎使用简易计算器：' + '\n' + '1.加法运算' + '\n' + '2.减法运算' + '\n' + '3.乘法运算' + '\n' + '4.除法运算');
+            this.num1 = prompt('请输入数字一');
+            this.num2 = prompt('请输入数字二');
+            var obj = {
+                1: function (num1, num2) {
+                    return num1 + num2;
+                },
+                2: function (num1, num2) {
+                    return num1 - num2;
+                },
+                3: function (num1, num2) {
+                    return num1 * num2;
+                },
+                4: function (num1, num2) {
+                    return num1 / num2;
+                }
+            }
+            return obj[this.i](parseFloat(this.num1), parseFloat(this.num2));
+        }
+        alert(Counter());
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

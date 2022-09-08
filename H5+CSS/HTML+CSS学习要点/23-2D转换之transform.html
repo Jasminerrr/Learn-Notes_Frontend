@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D转换之transform</title>
+    <style>
+        /* 1.移动tanslate盒子的位置：定位 外边距 2D转换 */
+        div {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            background-color: pink;
+            /* x轴上移动  y轴上移动 中间用，隔开 */
+            /* transform: translate(x,y); */
+            /* transform: translate(50px, 50px); */
+            /* 1.只移动x坐标，y不能省略
+            transform: translate(50px, 0); */
+            /* transform: translateX(50px); */
+            /* 2.只移动y坐标，x不能省略
+            transform: translate(0, 50px); */
+            /* transform: translateY(50px); */
+            /* 3.参数可以用百分比（距离用盒子自身的高宽来对比）
+            transform: translateX(50%); */
+        }
+
+        /* translate最大的优点：不会影响到其他元素的位置!!!! */
+        /* div:first-child {
+            transform: translate(30px, 30px);
+        }
+        div:last-child {
+            background-color: plum;
+        } */
+        .p_1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            background-color: purple;
+            /* margin-top: -100px;
+            margin-left: -100px; */
+            transform: translate(-50%, -50%);
+        }
+
+        img {
+            /* 顺时针旋转45度 */
+            /* transform: rotate(45deg); */
+            border-radius: 50%;
+            border: 5px solid red;
+            /* 过渡写在自身上，谁过渡谁加 */
+            transition: all .3s;
+        }
+
+        img:hover {
+            transform: rotate(360deg);
+
+        }
+
+        .triangle {
+            position: relative;
+            width: 249px;
+            height: 35px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+
+        .triangle::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            right: 15px;
+            width: 10px;
+            height: 10px;
+            border-right: 1px solid #000;
+            border-bottom: 1px solid #000;
+            transform: rotate(45deg);
+            transition: all .3s;
+        }
+
+        /* 鼠标经过div,里面的三角旋转 */
+        .triangle:hover::after {
+            transform: rotate(225deg);
+        }
+
+        .div_1 {
+            width: 200px;
+            height: 200px;
+            background-color: salmon;
+            margin: 100px auto;
+            transition: all 1s;
+            /* 1.转换中心点可以跟方位名词 */
+            /* transform-origin: left bottom; */
+            /* 2. 默认的是50% 50%，等价于center center */
+            /* 3. 可以是px 像素 */
+            transform-origin: 50px 50px;
+
+        }
+
+        .div_1:hover {
+            transform: rotate(360deg);
+        }
+
+        .div_2 {
+            width: 200px;
+            height: 200px;
+            background-color: salmon;
+            margin: 100px auto;
+        }
+
+        .div_2:hover {
+            /* 1.里面写的数字不跟单位（倍数的意思，1为1倍 2为2倍） */
+            /* transform: scale(2, 2); */
+            /* 2.修改宽度2倍，高度不变 */
+            /* transform: scale(2, 1); */
+            /* 3. 等比例缩放，同时修改宽高，宽度为2倍，高度默认和第一个参数一样 */
+            /* transform: scale(2); */
+            /* 4. 小于1，就是缩放 */
+            transform: scale(0.5, 0.8);
+        }
+
+        .div_3 {
+            width: 100px;
+            height: 100px;
+            background-color: darkgreen;
+            margin: 0 auto;
+            transition: all 1s;
+        }
+
+        .div_3:hover {
+            /* 同时有位移和其他属性，要先写位移， */
+            transform: translate(100px, 100px) rotate(45deg);
+        }
+    </style>
+</head>
+
+<body>
+    <h3>1. 2D转换 transform</h3>
+    转换（transform）是CSS3中具有颠覆性的特征之一,可以实现元素的位移、旋转、缩放等效果.(可以简单理解为变形)
+
+    <h4>1.1 移动translate：</h4>
+    <p>定义 2D 转换中的移动，沿着 X 和 Y 轴移动元素
+        1.translate最大的优点：不会影响到其他元素的位置!!!!
+        2.translate中的百分比单位是相对于自身元素的 translate:(50%,50%);
+        3.对行内标签没有效果</p>
+    transform: translate(x,y);
+    或者分开写:
+    transform: translateX(n);
+    transform: translateY(n);
+    <div>
+        <p class="p_1"></p>
+    </div>
+    <!-- <div></div> -->
+
+    <h4>1.2 旋转 rotate</h4>
+    <p>
+        1. 语法 transform:rotate(度数)
+        2.rotate里面跟度数， 单位是 deg 比如 rotate(45deg)
+        3.角度为正时，顺时针，负时，为逆时针
+        4.默认旋转的中心点是元素的中心点
+    </p>
+    <img src="images/b.jpg" alt="">
+    <div class="triangle"></div>
+
+    <h4>1.3 2D转换中心点 transform-origin</h4>
+    <p>
+        1.语法：transform-origin:x y;
+        2.注意后面的参数 x 和 y 用空格隔开
+        3. x y 默认转换的中心点是元素的中心点 (50% 50%)
+        4.还可以给x y 设置 像素 或者 方位名词 （top bottom left right center）
+    </p>
+    <div class="div_1"></div>
+
+    <h4>1.4 缩放：scale</h4>
+    语法：transform:scale(x,y);
+    <p>
+        1.注意其中的x和y用逗号分隔
+        2.transform:scale(1,1) ：宽和高都放大一倍，相对于没有放大
+        3.transform:scale(2,2) ：宽和高都放大了2倍
+        4.transform:scale(2) ：只写一个参数，第二个参数则和第一个参数一样，相当于 scale(2,2)
+        5.sacle缩放最大的优势：可以设置转换中心点缩放，默认以中心点缩放的，而且不影响其他盒子
+    </p>
+    <div class="div_2"></div>
+    <h3>2. 2D转换综合写法</h3>
+    <p>
+        1.同时使用多个转换，其格式为：transform: translate() rotate() scale() ...等，
+        2. 其顺序会影转换的效果。（先旋转会改变坐标轴方向）
+        3. 当我们同时有位移和其他属性的时候，记得要将位移放到最前
+    </p>
+    <div class="div_3"></div>
+</body>
+
+</html>
