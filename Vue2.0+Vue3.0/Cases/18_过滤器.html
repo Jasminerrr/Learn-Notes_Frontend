@@ -29,11 +29,12 @@
     </div>
     <script>
         Vue.config.productionTip = false;// 设置为 false 以阻止 vue 在启动时生成生产提示
+
         // 全局过滤器
-        Vue.filter('mySlice', function (value) {
+        /* Vue.filter('mySlice', function (value) {
             // 语法：slice(开始位置,结束位置)
             return value.slice(0, 4)
-        })
+        }) */
         const vm = new Vue({
             el: '#root',
             data: {
@@ -68,9 +69,9 @@
                     return dayjs(value).format(str)
                 },
                 // 过滤器切割:格式化时间后的结果传给mySlice的value
-                /* mySlice(value){
-                    return value.slice(0,5)
-                } */
+                mySlice(value){
+                    return value.slice(0,4)
+                }
             }
         });
     </script>
