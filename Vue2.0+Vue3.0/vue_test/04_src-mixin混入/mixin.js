@@ -5,7 +5,7 @@ export const mixin = {
             alert(this.name)
         }
     },
-    // mounted钩子发生冲突，都输出，组件后执行
+    // mounted钩子发生冲突时，会先调用这个，组件后调用
     mounted() {
         console.log('aaaaaa');
     },

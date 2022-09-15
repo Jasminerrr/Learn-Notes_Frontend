@@ -17,6 +17,9 @@
         <button v-on:click = "showInfo1">点我1(不传参)</button>
         <!-- $event关键字占位，用来操作event对象 -->
         <button @click = "showInfo2($event,66)">点我2(传参)</button>
+        <hr>
+        <!-- 键盘事件 -->
+        <input type="text" placeholder="按回车提示输入" @keyup.enter="demo">
     </div>
     <script>
         Vue.config.productionTip = false;// 设置为 false 以阻止 vue 在启动时生成生产提示
@@ -35,6 +38,9 @@
                     alert('你好');
                     console.log(event,num);
                 },
+                demo(e){
+                    console.log(e.target.value);
+                }
             }
         });
     </script>

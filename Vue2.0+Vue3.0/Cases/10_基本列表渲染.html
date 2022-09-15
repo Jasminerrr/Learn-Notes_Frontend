@@ -17,7 +17,7 @@
         <h2>人员列表</h2>
         <button @click.once = "add">添加一个老刘</button>
         <ul>
-            <li v-for="(p,index) of persons" :key="index">
+            <li v-for="(p,index) of persons" :key="p.id">
                 {{p.name}}-{{p.age}}
             </li>
         </ul>

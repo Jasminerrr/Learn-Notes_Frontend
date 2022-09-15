@@ -6,6 +6,7 @@
    2. methods中配置的函数，都是被Vue所管理的函数，this指向是vm或组件实例对象；
 4. @click = "demo" 和 @click = "demo($event)"效果一致，但后者可以传参；
 5. 绑定事件加不加()都可以，但在插值语法里面调用方法要加()；
+6. @change：当input表单元素的value发生改变时触发事件；
 # 2. 事件修饰符
 1. prevent：阻止默认事件（常用）；
 2. stop：阻止事件冒泡（常用）；
@@ -105,8 +106,9 @@
 ## 8.1基本列表 v-for 指令
    1. 用于展示列表数据；
    2. 语法：
-      1. v-for = "(item, index) in xxx" :key = "yyy"；
-      2. :key：只要用遍历生成多个同样结构的数据，必须用:key给节点打标识(唯一的标识)；
+      1. v-for = "item in/of xxx" :key = "yyy"；
+      2. v-for = "(item, index) in/of xxx" :key = "yyy"；
+      3. :key：只要用遍历生成多个同样结构的数据，必须用:key给节点打标识(唯一的标识)；
    3. 可遍历：数组、对象、字符串（少）、执行次数（少）；
 ### 8.1.1 面试题：react、vue中的key有什么作用？（key的内部原理）
    1. 虚拟DOM中key的作用：
@@ -149,7 +151,7 @@
       5. splice()：替换/截取；
       6. sort()：排序；
       7. reverse()：翻转；
-# 9. 收集表单数据
+# 9. 收集表单数据(案例17)
 1. input表单类型为[text]，v-model默认收集的是value值，则用户输入的就是value值；
 2. input表单类型为[radio(单选)]，因为v-model默认收集的是value值，则要给标签配置value值；
 3. input表单类型为[chackbox(多选)]:
