@@ -54,9 +54,13 @@
                         console.log(newValue, oldValue);
                     }
                 },
-                // 2. 监视正常写法简写：只有handler时候才能简写
+                // 2. 监视正常写法简写成函数：只有handler时候才能简写
                 /* isHot(newValue, oldValue) {
                     console.log('isHot被修改了',newValue, oldValue);
+                } */
+                // 不需要旧数据-简写
+                /* isHot(value) {
+                    console.log('isHot被修改了',value);
                 } */
 
                 // 3. 监视多级解构中的【某个】属性的变化
