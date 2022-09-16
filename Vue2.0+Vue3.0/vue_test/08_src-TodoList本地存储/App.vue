@@ -23,11 +23,8 @@ export default {
   data() {
     return {
       // 由于todos是MyHeader组件和MyFooter组件都在使用，所以放在父组件App中（状态提升）
-      todos: [
-        { id: "001", title: "抽烟", done: true },
-        { id: "002", title: "蹦迪", done: false },
-        { id: "003", title: "喝酒", done: true }
-      ]
+      // 如果得到为真，返回这个对象，为空(假)，则返回空数组
+      todos: JSON.parse(localStorage.getItem('todos')) || []
     };
   },
   methods: {
@@ -53,16 +50,26 @@ export default {
     checkAllTodo(done) {
       this.todos.forEach((todo) => {
         // 将全选done赋值给原来的done
-        todo.done = done;
+        todo.done = done
       })
     },
     // 删除todo对象中done为真的值
     clearAllTodo() {
       this.todos = this.todos.filter((todo) => {
-        return !todo.done;
+        return !todo.done
       })
     }
   },
+  watch: {
+    todos: {
+      // 深度监视todos对象里面的所有属性
+      deep: true,
+      handler(value) {
+        // 检测到todos数组里面的值放到本地存储，值要通过JSON.stringify()才能展现成对象
+        localStorage.setItem('todos', JSON.stringify(value))
+      }
+    }
+  }
 };
 </script>
 

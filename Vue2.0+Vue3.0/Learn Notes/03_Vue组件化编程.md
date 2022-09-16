@@ -91,7 +91,7 @@
    4. 真正开发中几乎不用；
 ## 2.4 单文件组件
    1. 一个 .vue 文件的组成(3 个部分)：
-      1. 模板页面<template></template>；
+      1. 模板页面<template></template>：Vue模板中使用任何数据都不需要写this；
       2. JS 模块对象：
       ```
       <script>

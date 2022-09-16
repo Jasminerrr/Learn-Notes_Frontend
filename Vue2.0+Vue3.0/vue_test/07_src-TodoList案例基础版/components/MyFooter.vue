@@ -1,21 +1,21 @@
 <template>
-<!-- 当total返回值为0以外的长度，则true显示，否则不显示 -->
-<div class="todo-footer" v-show="total">
-  <label>
-    <!-- <input type="checkbox" :checked="isAll" @change="checkAll" /> -->
-    <input type="checkbox" v-model="isAll" />
-  </label>
-  <span>
-    <span>已完成{{ doneTotal }}</span> / 全部{{ total }}
-  </span>
-  <button class="btn btn-danger" @click="clearAll">清除已完成任务</button>
-</div>
+  <!-- 当total返回值为0以外的长度，则true显示，否则不显示 -->
+  <div class="todo-footer" v-show="total">
+    <label>
+      <!-- <input type="checkbox" :checked="isAll" @change="checkAll" /> -->
+      <!-- <input type="checkbox" v-model="isAll" /> -->
+    </label>
+    <span>
+      <span>已完成{{ doneTotal }}</span> / 全部{{ total }}
+    </span>
+    <button class="btn btn-danger" @click="clearAll">清除已完成任务</button>
+  </div>
 </template>
 
 <script>
 export default {
   name: "MyFooter",
-  props: ["todos", "checkAllTodo",'clearAllTodo'],
+  props: ["todos", "checkAllTodo", 'clearAllTodo'],
   computed: {
     // 全部项
     total() {
@@ -34,7 +34,7 @@ export default {
       get() {
         return this.doneTotal === this.total && this.total > 0;
       },
-      set(value) {this.checkAllTodo(value);},
+      set(value) { this.checkAllTodo(value); },
     },
   },
   methods: {
@@ -42,7 +42,7 @@ export default {
       // 调用App里面的全选框
       this.checkAllTodo(e.target.checked);
     }, */
-    clearAll(){
+    clearAll() {
       this.clearAllTodo()
     }
   }

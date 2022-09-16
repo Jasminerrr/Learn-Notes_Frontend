@@ -1,113 +1,66 @@
 <template>
-  <div id="root">
-    <div class="todo-container">
-      <div class="todo-wrap">
-        <MyHeader :addTodo="addTodo" />
-        <MyList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo" />
-        <MyFooter :todos="todos" :checkAllTodo="checkAllTodo" :clearAllTodo="clearAllTodo"/>
-      </div>
-    </div>
+  <div class="app">
+    <h1>{{msg}}</h1>
+    <!-- 通过父组件给子组件 传递函数类型的props实现：子给父传递数据 -->
+    <SchoolInfo :getSchoolName="getSchoolName"/>
+
+    <!-- 第一种写法：使用@ 或 v-on --> 
+    <!-- 给谁绑定自定义事件，就找谁触发 -->
+     <!-- 通过父组件给子组件 绑定一个自定义事件实现：子给父传递数据 -->
+    <!-- <StudentInfo @atguigu="getStudentName" @demo="m1"/> -->
+    <!-- 触发一次事件  -->
+    <!-- <StudentInfo @atguigu.once="getStudentName"/> -->
+
+    <!-- 第二种写法：使用ref -->
+    <!-- 通过父组件给子组件 绑定一个自定义事件实现：子给父传递数据 -->
+    <StudentInfo ref="student" @click.native="show"/>
+
+ 
   </div>
 </template>
 
 <script>
-// 引入组件
-import MyHeader from "./components/MyHeader";
-import MyFooter from "./components/MyFooter";
-import MyList from "./components/MyList";
-// 默认暴露-直接暴露组件配置对象
-export default {
-  name: "App",
-  // 注册组件
-  components: { MyHeader, MyFooter, MyList },
-  data() {
-    return {
-      // 由于todos是MyHeader组件和MyFooter组件都在使用，所以放在父组件App中（状态提升）
-      todos: [
-        { id: "001", title: "抽烟", done: true },
-        { id: "002", title: "蹦迪", done: false },
-        { id: "003", title: "喝酒", done: true },
-      ],
-    };
-  },
-  methods: {
-    // 添加一个todo对象
-    addTodo(todoObj) {
-      this.todos.unshift(todoObj);
-    },
-    // 勾选or不勾选todo对象
-    checkTodo(id) {
-      // 先循环遍历对象，找到对象的id，将done状态取反
-      this.todos.forEach((todo) => {
-        if (todo.id === id) todo.done = !todo.done;
-      });
-    },
-    // 删除一个todo对象（过滤掉不想要的）
-    deleteTodo(id) {
-      // filter过滤，会返回一个新数组，所以要重新赋值给数组
-      this.todos = this.todos.filter((todo) => {
-        return todo.id !== id;
-      });
-    },
-    // 全选框状态
-    checkAllTodo(done){
-      this.todos.forEach((todo)=>{
-        // 将全选done赋值给原来的done
-        todo.done = done
-      })
-    },
-    // 删除todo对象中done为真的值
-    clearAllTodo(){
-      this.todos = this.todos.filter((todo)=>{
-        return !todo.done
-      })
+    // 引入SchoolName组件
+    import StudentInfo from './components/StudentInfo'
+    import SchoolInfo from './components/SchoolInfo'
+    // 默认暴露-直接暴露组件配置对象
+    export default {
+        name:'App',
+        // 注册组件
+        components:{StudentInfo,SchoolInfo},
+        data(){
+          return {
+            msg:'你好啊'
+          }
+        },
+        methods:{
+          getSchoolName(name){
+            console.log(name);
+          },
+          // ...params接收剩余数组参数
+          getStudentName(name,...params){
+            console.log(name,params);
+          },
+          m1(){
+            console.log('demo事件被触发了');
+          },
+          show(){
+          alert('aaaa')
+        }
+        },
+        // 挂载后
+        mounted(){
+          // this.$refs.student获得组件实例对象，$on：当atguigu事件触发时，调用回调函数
+          // this.$refs.student.$on('atguigu',this.getStudentName)
+          // 只能触发一次事件
+          // this.$refs.student.$once('atguigu',this.getStudentName)
+        },
+        
     }
-  },
-};
 </script>
-
-<style>
-/*base*/
-body {
-  background: #fff;
-}
-
-.btn {
-  display: inline-block;
-  padding: 4px 12px;
-  margin-bottom: 0;
-  font-size: 14px;
-  line-height: 20px;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 1px 2px rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
-}
-
-.btn-danger {
-  color: #fff;
-  background-color: #da4f49;
-  border: 1px solid #bd362f;
-}
-
-.btn-danger:hover {
-  color: #fff;
-  background-color: #bd362f;
-}
-
-.btn:focus {
-  outline: none;
-}
-
-.todo-container {
-  width: 600px;
-  margin: 0 auto;
-}
-.todo-container .todo-wrap {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
+<style scoped>
+  .app{
+    background-color: gray;
+    padding: 5px;
+  }
 </style>

@@ -2,7 +2,7 @@
 1. 绑定事件监听：[v-on:xxx]，简写[@xxx]，xxx为事件名(click等)；
 2. 事件的回调需要配置在methods对象中，最终会在vm上；
 3. 语法：methods:{回调函数}
-   1. methods中配置的函数，不要用箭头函数，否则this指向不再是vm；
+   1. methods中配置的函数，不要用箭头函数，否则指向不再是vm；
    2. methods中配置的函数，都是被Vue所管理的函数，this指向是vm或组件实例对象；
 4. @click = "demo" 和 @click = "demo($event)"效果一致，但后者可以传参；
 5. 绑定事件加不加()都可以，但在插值语法里面调用方法要加()；
@@ -251,6 +251,7 @@
    5. beforeUpdate：数据是新的，但页面是旧的(页面还没有和数据保持同步)；
    6. update：数据是新的，页面也是新的(页面和数据保持同步)；
    7. beforeDestroy：vm中所有数据：data、methods、指令等 都处于可用状态，马上要执行销毁过程；
+   8. destroyed：销毁vm,移除掉vm中所有的watchs、child components、event listeners；
 7. 面试点：
    1. 哪个生命周期钩子中页面和数据尚未保持同步？
       1. beforeUpdate；
