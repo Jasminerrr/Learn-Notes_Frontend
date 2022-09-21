@@ -83,7 +83,7 @@
 ## 6.2 style样式
       1. :style = "{fontSize:xxx}"，xxx是动态值；
       2. :style = "[a,b]"，其中a/b是样式对象(key要是存在的css属性，不能瞎写)；
-# 7. 条件渲染
+# 7. 条件渲染（案例09）
 ## 7.1 v-show
    1. 动态控制节点是否展示；
    2. 写法：v-show = "表达式"；
@@ -102,7 +102,7 @@
       1. v-if可以和v-else-if、v-else一起使用，但v-if一定要是最开始使用，且要求结构不能被'打断'；
       2. 使用v-if时，元素可能无法获取到，而v-show一定能获取到；
    6. v-if 和 template配合使用：template不会影响页面结构；
-# 8. 列表渲染
+# 8. 列表渲染(案例10)
 ## 8.1基本列表 v-for 指令
    1. 用于展示列表数据；
    2. 语法：
@@ -124,12 +124,12 @@
    4. 开发中如何选择key:
       1. 最好使用每条数据的唯一标识作为key：id、手机号、身份证号、学号等唯一值；
       2. 如果不存在对数据的逆序添加、逆序删除等破坏顺序操作，仅用于渲染列表用于展示，使用index作为key是没有问题的；
-## 8.2 Vue.set()
+## 8.2 Vue.set()（案例14）
    1. 语法：
-      1. Vue.set(target,propertyName/index,value)；
-      2. vm.$set(target,propertyName/index,value)；
+      1. Vue.set(target,'propertyName'/index,value)；
+      2. vm.$set(target,'propertyName'/index,value)；
       3. 返回值：设置的值；
-   2. 用法：向响应式对象中添加一个property，并确保这个新property同样也是响应式的，且触发试图更新；
+   2. 用法：向响应式对象中添加一个property（属性），并确保这个新property同样也是响应式的，且触发试图更新；
    3. 注意：对象不能是Vue实例，或者Vue实例的跟数据对象（data/_data）；
 ## 8.3 Vue检测数据的原理
    1. Vue会监视data中所有层次的数据；

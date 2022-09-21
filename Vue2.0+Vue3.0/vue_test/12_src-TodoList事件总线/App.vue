@@ -4,11 +4,7 @@
       <div class="todo-wrap">
         <MyHeader @addTodo="addTodo" />
         <MyList :todos="todos" />
-        <MyFooter 
-          :todos="todos"
-          @checkAllTodo="checkAllTodo" 
-          @clearAllTodo="clearAllTodo" 
-          />
+        <MyFooter :todos="todos" @checkAllTodo="checkAllTodo" @clearAllTodo="clearAllTodo" />
       </div>
     </div>
   </div>
@@ -43,13 +39,6 @@ export default {
         if (todo.id === id) todo.done = !todo.done;
       });
     },
-    // 更新一个todo对象
-    updateTodo(id,title) {
-      // 先循环遍历对象，找到对象的id，将title改为传过来的title
-      this.todos.forEach((todo) => {
-        if (todo.id === id) todo.title = title;
-      });
-    },
     // 删除一个todo对象（过滤掉不想要的）
     deleteTodo(id) {
       // filter过滤，会返回一个新数组，所以要重新赋值给数组
@@ -81,16 +70,13 @@ export default {
       }
     }
   },
-  // 事件挂载后，绑定事件('事件名',回调名)
   mounted(){
     this.$bus.$on('checkTodo',this.checkTodo)
     this.$bus.$on('deleteTodo',this.deleteTodo)
-    this.$bus.$on('updateTodo',this.updateTodo)
   },
   beforeDestroy(){
     this.$bus.$off('checkTodo')
     this.$bus.$off('deleteTodo')
-    this.$bus.$off('updateTodo')
   }
 };
 </script>
@@ -125,12 +111,7 @@ body {
   color: #fff;
   background-color: #bd362f;
 }
-.btn-edit{
-  color: #fff;
-  background-color: skyblue;
-  border: 1px solid rgb(38, 218, 231);
-  margin-right: 5px;
-}
+
 .btn:focus {
   outline: none;
 }

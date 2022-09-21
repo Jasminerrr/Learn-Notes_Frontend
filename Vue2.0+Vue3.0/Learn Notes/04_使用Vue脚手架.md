@@ -6,7 +6,7 @@
 ## 1.1 vue.config.js配置文件
    1. 使用vue inspect > output.js可以查看到Vue脚手架的默认配置；
    2. 使用vue.config.js可以对脚手架进行个性化定制，详情见：https://cli.vuejs.org/zh；
-## 2. ref属性
+# 2. ref属性
    1. 被用来给元素或子组件注册引用信息(打标识)（id的替代者）；
    2. 应用在html标签上获取的是真实DOM元素，应用在组件标签上是组件实例对象（vc）；
    3. 使用方式：
@@ -104,3 +104,73 @@
 6. 组件上也可以绑定原生DOM事件，需要使用```native```修饰符。
 7. 注意：
    1. 通过```this.$refs.xxx.$on('atguigu',回调)```绑定自定义事件时，回调<span style="color:red">要么配置在methods中</span>，<span style="color:red">要么用箭头函数</span>，否则this指向会出问题！
+# 9. 全局事件总线（GlobalEventBus）
+1. 一种组件间通信的方式，适用于<span style="color:red">任意组件间通信</span>。
+2. 安装全局事件总线：
+   ```js
+   new Vue({
+   	......
+   	beforeCreate() {
+   		Vue.prototype.$bus = this //安装全局事件总线，$bus就是当前应用的vm
+   	},
+       ......
+   }) 
+   ```
+3. 使用事件总线：本质就是自定义事件，不过是给$bus（当前vm）绑定的，触发人是<Root>:vm
+   1. 接收数据：A组件想接收数据，则在A组件中给$bus绑定自定义事件，[事件的回调]留在A组件自身;
+
+      ```js
+      methods(){
+        demo(data){......}
+      }
+      ......
+      mounted() {
+        this.$bus.$on('xxxx',this.demo) // 此处可以直接写回调，但必须是箭头函数
+      }
+      ```
+   2. 提供数据：谁要传数据，就在哪个组件里面触发事件（调用）
+      1. ```this.$bus.$emit('xxxx',数据)```
+4. 注意：
+   1. 最好在beforeDestroy钩子中，用$off去解绑[当前组件所用到的]事件。
+# 10. 消息订阅与发布（pubsub）
+1. 一种组件间通信的方式，适用于<span style="color:red">任意组件间通信</span>。
+2. 使用步骤：
+   1. 安装pubsub：```npm i pubsub-js```
+   2. 引入: ```import pubsub from 'pubsub-js'```
+   3. 接收数据：A组件想接收数据，则在A组件中订阅消息，订阅的<span style="color:red">回调留在A组件自身。</span>
+      ```js
+      methods(){
+        demo(data){......}
+      }
+      ......
+      mounted() {
+        this.pid = pubsub.subscribe('xxx',this.demo) //订阅消息
+      }
+      ```
+   4. 提供数据：```pubsub.publish('xxx',数据)```
+   5. 最好在beforeDestroy钩子中，用```PubSub.unsubscribe(pid)```去<span style="color:red">取消订阅。</span>
+# 11. nextTick(test 15)
+1. 语法：```this.$nextTick(回调函数)```
+2. 作用：在下一次 DOM 更新结束后执行其指定的回调。
+3. 什么时候用：当改变数据后，要基于更新后的新DOM进行某些操作时，要在nextTick所指定的回调函数中执行。
+# 12. Vue封装的过度与动画
+1. 作用：在插入、更新或移除 DOM元素时，在合适的时候给元素添加样式类名。
+2. 图示：<img src="https://img04.sogoucdn.com/app/a/100520146/5990c1dff7dc7a8fb3b34b4462bd0105" style="width:60%" />
+3. 写法：
+   1. 准备好样式：
+      - 元素进入的样式：
+        1. v-enter：进入的起点 =  v-leave-to：离开的终点
+        2. v-enter-active：进入过程中
+        3. v-enter-to：进入的终点 = v-leave：离开的起点
+      - 元素离开的样式：
+        1. v-leave：离开的起点
+        2. v-leave-active：离开过程中
+        3. v-leave-to：离开的终点
+
+   2. 使用```<transition>```包裹要过度的元素，并配置name属性：
+      ```vue
+      <transition name="hello">
+      	<h1 v-show="isShow">你好啊！</h1>
+      </transition>
+      ```
+   3. 备注：若有多个元素需要过度，则需要使用：```<transition-group>```，且每个元素都要指定```key```值。

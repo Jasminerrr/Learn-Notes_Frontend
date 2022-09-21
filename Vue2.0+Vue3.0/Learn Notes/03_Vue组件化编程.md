@@ -76,6 +76,7 @@
    3. this指向：
       1. 组件配置中：data/methods/watch/computed中的函数，this都是 [VueComponent实例对象]；
       2. new Vue(options)配置中：data/methods/watch/computed中的函数，this都是 [Vue实例对象]；
+      3. 回调函数中：this指向调用该事件的vc对象（App中绑定的事件回调在Student组件调用时，this指向Student组件的实例对象vc）
    4. VueComponent的实例对象 也称为 组件实例对象；
    5. 重点：每次调用Vue.extend，返回的都是一个全新的VueComponent；
    6. 理解组件实例对象：
