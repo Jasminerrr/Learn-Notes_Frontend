@@ -17,6 +17,7 @@
         const btns = document.querySelectorAll('button');
         // 配置 baseURL
         axios.defaults.baseURL = 'http://127.0.0.1:8000';
+        
         // GET请求：axios.get(url,[config])
         // 函数返回结果是一个promise对象，用then回调处理结果
         btns[0].onclick = function () {
