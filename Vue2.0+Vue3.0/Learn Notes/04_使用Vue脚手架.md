@@ -140,11 +140,13 @@
    3. 接收数据：A组件想接收数据，则在A组件中订阅消息，订阅的<span style="color:red">回调留在A组件自身。</span>
       ```js
       methods(){
-        demo(data){......}
+         <!-- 要接收两个参数，msgName为默认监听事件名字 -->
+        demo(msgName,data){......}
       }
       ......
       mounted() {
-        this.pid = pubsub.subscribe('xxx',this.demo) //订阅消息
+         //订阅消息 pubsub.subscribe()方法
+        this.pid = pubsub.subscribe('xxx',this.demo) //此处可以直接写回调，但必须是箭头函数
       }
       ```
    4. 提供数据：```pubsub.publish('xxx',数据)```

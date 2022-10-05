@@ -1,21 +1,18 @@
 <template>
-  <div class="container">
-    <MySearch/>
-    <MyList/>
+  <div>
+    <MyCount/>
   </div>
 </template>
 
 <script>
-  import MySearch from './components/MySearch.vue';
-  import MyList from './components/MyList.vue';
+  import MyCount from './components/MyCount';
   // 默认暴露-直接暴露组件配置对象
   export default {
     name: "App",
-    components: { MySearch, MyList }
+    components: { MyCount },
+    mounted(){
+      console.log('App',this);
+    }
   };
 </script>
 
-<style>
-  
-
-</style>

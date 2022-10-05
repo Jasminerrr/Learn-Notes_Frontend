@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import pubsub from 'pubsub-js';
+  import pubsub from 'pubsub-js';
 
   export default {
     name:'StudentInfo',
