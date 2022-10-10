@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h3>当前求和为{{sum}}</h3>
+    <!-- 组件中读取vuex中的数据：$store.state.sum -->
+    <h3>当前求和为{{$store.state.sum}}</h3>
+    <h2>当前求和放大10倍为{{$store.getters.bigSum}}</h2>
     <!-- v-model.number强制转换为number类型 -->
     <select v-model.number="n">
       <option value="1">1</option>
@@ -20,25 +22,21 @@
     data(){
       return {
         n:1,
-        sum:0
       }
     },
     methods:{
       increment(){
-        this.sum += this.n
+        // 没有网络请求或业务逻辑直接调用commit
+        this.$store.commit('JIA',this.n)
       },
       decrement(){
-        this.sum -= this.n
+        this.$store.commit('JIAN',this.n)
       },
       incrementOdd(){
-        if(this.sum % 2){
-          this.sum += this.n
-        }
+        this.$store.dispatch('jiaOdd',this.n)
       },
       incrementWait(){
-        setTimeout(() => {
-          this.sum += this.n
-        }, 500);
+        this.$store.dispatch('jiaWait',this.n)
       },
     }
   }
