@@ -16,7 +16,7 @@
 
 <script>
   export default {
-    name:'MyMessage'
+    name:'MyMessage',
   }
 </script>
 

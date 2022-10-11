@@ -11,7 +11,6 @@
           <router-link class="list-group-item" active-class="active" to="/home/message">Message</router-link>
         </li>
       </ul>
-      <!-- 让不展示的路由组件保持挂载，不被销毁 -->
       <keep-alive include="MyNews">
       <!-- 指定组件呈现位置 -->
       <router-view></router-view>

@@ -11,10 +11,16 @@
           <router-link class="list-group-item" active-class="active" to="/home/message">Message</router-link>
         </li>
       </ul>
-      <!-- 让不展示的路由组件保持挂载，不被销毁 -->
+      <!-- 缓存路由组件：keep-alive让不展示的路由保持挂载，不被销毁，includes写的是【组件名】 -->
+      <!-- 需要写在展示区所在的位置 -->
+
+      <!-- 缓存多个路由组件 -->
+      <!-- <keep-alive :include="['MyNews','MyMessage']"></keep-alive> -->
+      
+      <!-- 缓存一个路由组件 -->
       <keep-alive include="MyNews">
-      <!-- 指定组件呈现位置 -->
-      <router-view></router-view>
+        <!-- 指定组件呈现位置 -->
+        <router-view></router-view>
       </keep-alive>
     </div>
   </div>

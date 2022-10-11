@@ -49,8 +49,9 @@ export default {
         // Vue.$set()方法，在响应式对象里面添加一个属性
         this.$set(todo,'isEdit',true)
       }
-      // 在执行代码改变数据后，下次更新的DOM模板解析完成后再调用nextTick
+      // 在执行代码改变数据后，下次更新的DOM模板解析完成后vue再调用nextTick(生命周期钩子)
       this.$nextTick(function () {
+        // 点完编辑后，让input表单再次获取焦点
         this.$refs.inputTitle.focus()
       })   
     },

@@ -19,7 +19,7 @@
       <div class="col-xs-6">
         <div class="panel">
           <div class="panel-body">
-            <!-- 路由视图：指定组件的呈现位置(占位) -->
+            <!-- 指定组件的呈现位置(占位) -->
             <router-view></router-view>
           </div>
         </div>
