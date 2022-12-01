@@ -6,12 +6,20 @@
     <button @click="sendStudentName">点我把学生名给App</button>
     <button @click="unbind">点击解绑事件</button>
     <button @click="death">点击销毁student组件实例</button>
+    <br/>
+
+    <!-- 组件通信方式的一种：sync属性修饰符，可以实现父子组件数据同步 -->
+    
+    <span>儿子每点一次花100</span>
+    <button @click="$emit('update:money',money-100)">花100</button>
+    <span>爸爸还剩{{money}}元</span>
   </div>
 </template>
 
 <script>
   export default {
     name:'StudentInfo',
+    props:['money'],
     data() {
         return {
           name:'张三',

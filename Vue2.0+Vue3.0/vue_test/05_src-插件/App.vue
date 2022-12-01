@@ -3,6 +3,7 @@
     <StudentInfo/>
     <hr>
     <SchoolInfo/>
+    <input type="text" :value="msg" @input="msg = $event.target.value">
   </div>
 </template>
 

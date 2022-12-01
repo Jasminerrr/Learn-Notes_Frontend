@@ -47,7 +47,7 @@
             watch: {
                 // 1. 监视正常写法
                 isHot: {
-                    // immediate:true,// 初始化的时候让handler调用一下
+                    // immediate:true,// 初始化的时候让handler调用一下（不管数据有没有变化，立即监听一次）
                     // handler是监视对象的函数，当isHot发生改变时，才会被调用
                     // 返回新的值和旧的值（可以用来做逻辑）
                     handler(newValue, oldValue) {

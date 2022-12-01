@@ -13,17 +13,17 @@
    import Vue from 'vue'
    //引入Vuex
    import Vuex from 'vuex'
-   //应用Vuex插件
+   //应用Vuex插件 是一个对象 身上有store方法
    Vue.use(Vuex)
    
    //准备actions对象——响应组件中用户的动作
-   const actions = {}
+   const actions = {}            
    //准备mutations对象——修改state中的数据
    const mutations = {}
    //准备state对象——保存具体的数据
    const state = {}
    
-   //创建并暴露store
+   //创建并暴露stores实例
    export default new Vuex.Store({
    	actions,
    	mutations,

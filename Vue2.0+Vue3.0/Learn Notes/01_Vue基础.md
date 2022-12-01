@@ -46,18 +46,27 @@
          2. 必须要返回一个对象，对象里面的数据就是所需要的；
          3. 必须写成普通函数(里面指向Vue实例对象)，不能使用箭头函数；
    3. 由Vue管理的函数，不能写箭头函数，不再是Vue实例；
+
 # 3. 数据绑定
 ## 3.1 单向绑定(v-bind)：
    1. 数据只能从data流向页面；
    2. [v-bind] 简写 [:]；
-## 3.2 双向绑定(v-model)：
+   
+## 3.2 双向绑定(v-model)：组件通信方式的一种
    1. 数据不仅能从data流向页面，还可以从页面流向data；
    2. 双向绑定一般都应用在表单类元素上：input、select等；
    3. [v-model:value]可以简写为[v-model]，因为v-model默认收集的就是value值；
-   4. [v-model]的三个修饰符:
+   4. 原生DOM当中有oninput事件，经常结合表单元素一起使用，当表单元素文本内容发生变化时，就会触发一次回调；
+      ```vue
+      <input type="text" :value="msg" @input="msg = $event.target.value">
+      <Demo v-model="msg"/>
+      ``` 
+   5. value与input事件实现：可以通过v-model实现父子组件数据同步（vue2）；
+   6. [v-model]的三个修饰符:
       1. lazy：失去焦点再收集数据； 
       2. number：输入字符串转为有效的数字；
       3. trim：输入首尾空格过滤；
+
 # 4. MVVM模型
 1. M 模型(Model)：data中的数据；
 2. V 视图(View)：模板代码；
@@ -65,6 +74,7 @@
 4. 注意：
    1. data中的属性，vm身上都有；
    2. vm身上所有的属性 以及 Vue原型上的所有属性，在Vue模板中都可以直接使用；
+   
 # 5. 数据代理
 ## 5.1 Object.defineProperty()方法(案例02)
 1. 用来给对象添加(定义)新属性 或 修改原有的属性； 

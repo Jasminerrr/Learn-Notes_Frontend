@@ -10,12 +10,14 @@
 
   // 创建并暴露一个路由器 （创建router实例对象，去管理一组一组的路由规则）
   const router = new VueRouter({
+    // #及其后面的内容就是hash值，不会包含在HTTP请求中：hash值不会带给服务器
+    mode:'history',// 路由器默认是hash：
     routes:[
       {
         name:'guanyu', // 给路由命名
         path:'/about',
         component:MyAbout,
-        meta:{title:'关于'},
+        meta:{isAuth:true,title:'关于'},// isAuth:true 需要进行权限校验
       },
       {
         name:'zhuye',
@@ -29,6 +31,19 @@
             path:'news', //此处一定不要写：/news
             component:MyNews,
             meta:{isAuth:true,title:'新闻'}, // 配置meta 路由元信息
+            // 独享路由守卫
+            /* beforeEnter: (to, from, next) => {
+              console.log('独享路由守卫',to,from);
+              if(to.meta.isAuth){// 判断当前路由是否需要鉴定权限
+                if(localStorage.getItem('school') === 'abc'){ // 权限控制的具体规则
+                  next()// 放行
+                }else{
+                  alert('学校名不对，无权限')
+                }
+              }else{
+                next()
+              }
+            } */
           },
           {
             name:'xiaoxi',
@@ -62,10 +77,10 @@
       }
     ]
   })
-  
+
   // 全局前置路由守卫
   // beforeEach:指定一个路由 初始化的时候被调用、每次切换之前被调用
-  router.beforeEach((to,from,next)=>{
+  /* router.beforeEach((to,from,next)=>{
     console.log('全局前置路由守卫',to,from);
     if(to.meta.isAuth){// 判断当前路由是否需要鉴定权限
       if(localStorage.getItem('school') === 'abc'){ // 权限控制的具体规则
@@ -76,9 +91,11 @@
     }else{
       next()
     }
-  })
+  }) */
+
+  // 全局后置路由守卫 afterEach:指定一个路由 初始化的时候被调用、每次切换之后被调用
   router.afterEach((to,from)=>{
     console.log('全局后置路由守卫',to,from);
-    document.title = to.meta.title || '硅谷系统'
+    document.title = to.meta.title || '硅谷系统' // 更改网页的title
   })
   export default router

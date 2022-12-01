@@ -1,9 +1,20 @@
-# 1. 路由
-
+# 1. vue-router
+1. vue的一个插件库，专门来实现SPA应用；
+2. SPA应用：
+   1. 单页Web应用(single page web application,SPA)；
+   2. 整个应用只有一个完整的页面；
+   3. 点击页面中的导航链接不会刷新页面，只会做页面的局部更新；
+   4. 数据需要通过Ajax请求获取
+# 1.1 路由
 1. 理解： 一个路由（route）就是一组映射关系（key - value），多个路由需要路由器（router）进行管理。
-2. 前端路由：key是路径，value是组件。
+2. 前端路由：
+   1. key是路径，value是component组件，用于展示页面内容；
+   2. 工作过程：当浏览器的路径改变时，对应的组件就会显示；
+3. 后端路由：
+   1. key是路径，value是function函数，用于处理客户端提交的请求；
+   2. 工作过程：服务器接收到一个请求，根据请求路径找到匹配的函数来处理请求，返回响应数据；
 
-## 1.1 基本使用
+## 1.2 路由的基本使用
 
 1. 安装vue-router，命令：```npm i vue-router```
 
@@ -47,7 +58,7 @@
    ```vue
    <router-view></router-view>
    ```
-## 1.2 几个注意点
+## 1.3 几个注意点
 
 1. 路由组件通常存放在```pages```文件夹，一般组件通常存放在```components```文件夹。
 2. 通过切换，“隐藏”了的路由组件，默认是被销毁掉的，需要的时候再去挂载。
@@ -100,7 +111,7 @@
    		path:'/home/message/detail',
    		query:{
    		   id:666,
-               title:'你好'
+         title:'你好'
    		}
    	}"
    >跳转</router-link>
@@ -112,7 +123,7 @@
    $route.query.id
    $route.query.title
    ```
-# 5.命名路由
+# 5.命名路由(声明式路由导航)
 
 1. 作用：可以简化路由的跳转。
 
@@ -130,7 +141,7 @@
       			component:Test,
       			children:[
       				{
-                            name:'hello' //给路由命名
+                name:'hello' //给路由命名
       					path:'welcome',
       					component:Hello,
       				}
@@ -155,11 +166,12 @@
       		name:'hello',
       		query:{
       		   id:666,
-                  title:'你好'
+              title:'你好'
       		}
       	}"
       >跳转</router-link>
       ```
+			
 # 6.路由的params参数
 
 1. 配置路由，声明接收params参数
@@ -178,7 +190,7 @@
    			children:[
    				{
    					name:'xiangqing',
-   					path:'detail/:id/:title', //使用占位符声明接收params参数
+   					path:'detail/:id/:title', //使用占位符 : 声明接收params参数
    					component:Detail
    				}
    			]
@@ -198,8 +210,8 @@
    	:to="{
    		name:'xiangqing',
    		params:{
-   		   id:666,
-               title:'你好'
+   		    id:666,
+          title:'你好'
    		}
    	}"
    >跳转</router-link>
@@ -227,7 +239,7 @@
 	//第一种写法：props值为对象，该对象中所有的key-value的组合最终都会通过props传给Detail组件
 	// props:{a:900}
 
-	//第二种写法：props值为布尔值，布尔值为true，则把路由收到的所有params参数通过props传给Detail组件
+	//第二种写法：props值为布尔值，布尔值为true，则把路由收到的所有【params参数】通过props传给Detail组件
 	// props:true
 	
 	//第三种写法：props值为函数，该函数返回的对象中每一组key-value都会通过props传给Detail组件
@@ -237,6 +249,8 @@
 			title:route.query.title
 		}
 	}
+	// 箭头函数写法
+	// props:(route)=>({id:route.query.id,title:route.query.title})
 }
 ```
 
@@ -248,12 +262,13 @@
 
 # 9.编程式路由导航
 
-1. 作用：不借助```<router-link> ```实现路由跳转，让路由跳转更加灵活
+1. 作用：不借助```<router-link> ```实现路由跳转，让路由跳转更加灵活；
+2. 写在html里面用声明式，js代码里面用编程式；
 
-2. 具体编码：
+3. 具体编码：
 
    ```js
-   444444‘；3   this.$router.push({
+    this.$router.push({
    	name:'xiangqing',
    		params:{
    			id:xxx,
@@ -296,8 +311,14 @@
 1. 作用：对路由进行权限控制
 
 2. 分类：全局守卫、独享守卫、组件内守卫
+   1. to：跳转到哪个路由；
+   2. from：从哪个路由来；
+   3. next：放行函数
+      1. next();
+      2. next(path);
+      3. next(false)：中断当前的导航，如果URL改变就会触发，URL地址会重置到from路由对应的地址；（从哪来回哪去）
 
-3. 全局守卫:
+3. 全局路由守卫:
 
    ```js
    //全局前置守卫：初始化时执行、每次路由切换前执行
@@ -326,7 +347,7 @@
    })
    ```
 
-4. 独享守卫:
+4. 路由独享守卫:
 
    ```js
    beforeEnter(to,from,next){
@@ -344,7 +365,7 @@
    }
    ```
 
-5. 组件内守卫：
+5. 组件内守卫：用的少
 
    ```js
    //进入守卫：通过路由规则，进入该组件时被调用
@@ -354,3 +375,14 @@
    beforeRouteLeave (to, from, next) {
    }
    ```
+# 13.路由器的两种工作模式
+1. 对于一个url来说，什么是hash值？—— #及其后面的内容就是hash值。
+2. hash值不会包含在 HTTP 请求中，即：hash值不会带给服务器。
+3. hash模式：
+   1. 地址中永远带着#号，不美观 。
+   2. 若以后将地址通过第三方手机app分享，若app校验严格，则地址会被标记为不合法。
+   3. 兼容性较好。
+4. history模式：
+   1. 地址干净，美观 。
+   2. 兼容性和hash模式相比略差。
+   3. 应用部署上线时需要后端人员支持，解决刷新页面服务端404的问题。

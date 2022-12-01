@@ -47,6 +47,7 @@
       /* bigSum(){
         return this.$store.state.bigSum
       } */
+      
       // 借助mapGetters生成计算属性，从Getters中读取数据（对象写法）
       // ...mapGetters({bigSum:'bigSum'})
       // 数组写法

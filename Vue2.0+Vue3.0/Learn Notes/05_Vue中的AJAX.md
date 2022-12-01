@@ -96,7 +96,7 @@ module.exports = {
       </template>
     ```
 
-  3. 作用域插槽：
+  3. 作用域插槽：子组件的数据来源于父组件，子组件是决定不了自身结构与外观（样式）
 
     1. 理解：<span style="color:red">数据在组件的自身，但根据数据生成的结构需要组件的使用者来决定。<span>（games数据在Category组件中，但使用数据所遍历出来的结构由App组件决定）
     2. 具体编码：
@@ -118,11 +118,9 @@ module.exports = {
        	</template>
        </Category>
      子组件中：
-       <template>
            <div>
                <slot :games="games"></slot>
            </div>
-       </template>
   
        <script>
            export default {

@@ -85,7 +85,7 @@
 # 8. 组件的自定义事件
 1. 一种组件间通信的方式，适用于：<strong style="color:red">子组件 ===> 父组件</strong>；
 2. 使用场景：
-   1. 父组件 给 子组件传数据：父中给子绑定自定义事件（<span style="color:red">事件的回调在父中</span>）；
+   1. 子组件 要给 父组件传数据：父中给子绑定自定义事件（<span style="color:red">事件的回调在父中</span>）；
 3. 绑定自定义事件：
     1. 第一种方式，在父组件中：
        1. ```<Demo @atguigu="test"/>``` 
@@ -101,9 +101,12 @@
     3. 若想让自定义事件只能触发一次，可以使用```once```修饰符，或```$once```方法。
 4. 触发自定义事件：```this.$emit('atguigu',数据)```		
 5. 解绑自定义事件```this.$off('atguigu')```
-6. 组件上也可以绑定原生DOM事件，需要使用```native```修饰符。
+6. 组件上也可以绑定原生DOM事件，需要使用```native```修饰符：
+   1. <Demo @click.native="test"/>;
+   2. 原理：其实是给子组件的根节点绑定了点击事件 --- 利用事件委派；
 7. 注意：
-   1. 通过```this.$refs.xxx.$on('atguigu',回调)```绑定自定义事件时，回调<span style="color:red">要么配置在methods中</span>，<span style="color:red">要么用箭头函数</span>，否则this指向会出问题！
+   1. 通过```this.$refs.xxx.$on('atguigu',回调)```绑定自定义事件时，回调要么配置在methods中，要么用箭头函数，否则this指向会出问题！
+   2. 给原生DOM绑定自定义事件没有任何意义，因为没有办法触发$emit函数；
 # 9. 全局事件总线（GlobalEventBus）
 1. 一种组件间通信的方式，适用于<span style="color:red">任意组件间通信</span>。
 2. 安装全局事件总线：
@@ -133,7 +136,7 @@
 4. 注意：
    1. 最好在beforeDestroy钩子中，用$off去解绑[当前组件所用到的]事件。
 # 10. 消息订阅与发布（pubsub）
-1. 一种组件间通信的方式，适用于<span style="color:red">任意组件间通信</span>。
+1. 一种组件间通信的方式，适用于<span style="color:red">任意组件间通信</span>。（工作用的少,react框架用得多）
 2. 使用步骤：
    1. 安装pubsub：```npm i pubsub-js```
    2. 引入: ```import pubsub from 'pubsub-js'```
@@ -151,14 +154,18 @@
       ```
    4. 提供数据：```pubsub.publish('xxx',数据)```
    5. 最好在beforeDestroy钩子中，用```PubSub.unsubscribe(pid)```去<span style="color:red">取消订阅。</span>
+   
 # 11. nextTick(test 15)
 1. 语法：```this.$nextTick(回调函数)```
 2. 作用：在下一次 DOM 更新结束后执行其指定的回调。
 3. 什么时候用：当改变数据后，要基于更新后的新DOM进行某些操作时，要在nextTick所指定的回调函数中执行。
-# 12. Vue封装的过度与动画
+4. 可以保证页面有结构，并且经常跟很多插件一起使用（需要DOM已经存在）。
+
+# 12. Vue封装的过度与动画((test 16)
 1. 作用：在插入、更新或移除 DOM元素时，在合适的时候给元素添加样式类名。
-2. 图示：<img src="https://img04.sogoucdn.com/app/a/100520146/5990c1dff7dc7a8fb3b34b4462bd0105" style="width:60%" />
-3. 写法：
+2. 过渡动画的前提：组件或元素要有v-if或v-show指令才能进行过渡动画
+3. 图示：<img src="https://img04.sogoucdn.com/app/a/100520146/5990c1dff7dc7a8fb3b34b4462bd0105" style="width:60%" />
+4. 写法：
    1. 准备好样式：
       - 元素进入的样式：
         1. v-enter：进入的起点 =  v-leave-to：离开的终点
@@ -176,3 +183,11 @@
       </transition>
       ```
    3. 备注：若有多个元素需要过度，则需要使用：```<transition-group>```，且每个元素都要指定```key```值。
+# 13. $attrs 与 $Listeners (组件通信方式的一种 test:39)
+1. 两者都是组件实例身上的属性，可以获取到到父组件给子组件传递的props与自定义事件；
+2. 但如果子组件通过props接受的属性，则在$attrs属性中是获取不到的;
+# 14. $children 与 $parent
+1. $refs可以获取到某个组件的子组件；
+2. $children：组件实例身上的属性，可以获取到当前组件中的全部子组件；
+   1. 注意：多个组件返回是一个数组，不能通过数组索引值操作，因为组件多了之后不能确定第0项；
+3. $parent：组件实例身上的属性，可以获取到某一组件的父组件，操作父组件的数据和方法；

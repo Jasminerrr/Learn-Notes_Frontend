@@ -8,7 +8,7 @@ import MyNews from '../pages/MyNews'
 import MyMessage from '../pages/MyMessage'
 
 // 创建并暴露一个路由器 （创建router实例对象，去管理一组一组的路由规则）
-// 整个应用只有一个router，可以通过组件的$router属性获取到。
+// 整个应用只有一个router，可以通过组件实例对象身上的$router属性获取。
 export default new VueRouter({
   // 配置路由规则
   routes:[
