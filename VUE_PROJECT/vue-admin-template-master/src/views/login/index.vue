@@ -6,9 +6,10 @@
       <div class="title-container">
         <h3 class="title">登 录</h3>
       </div>
-      <!-- el-form经常结合el-form-item一起使用 表示某一项 -->
+      <!-- el-form经常结合el-form-item一起使用, form-item表示某一项 -->
       <el-form-item prop="username">
         <span class="svg-container">
+          <!-- 此处是图标 -->
           <svg-icon icon-class="user" />
         </span>
         <el-input
@@ -41,9 +42,9 @@
           <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
         </span>
       </el-form-item>
-
+      <!-- loading：加载转圈的效果 -->
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登录</el-button>
-
+ 
       <div class="tips">
         <span style="margin-right:20px;">username: admin</span>
         <span> password: any</span>
@@ -59,6 +60,8 @@ import { validUsername } from '@/utils/validate'
 export default {
   name: 'Login',
   data() {
+    // 先忽略：此处在进行表单验证，验证用户名与密码操作（eUI表单验证的一种规则）
+    // 回头再看
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
         callback(new Error('Please enter the correct user name'))
@@ -106,14 +109,19 @@ export default {
         this.$refs.password.focus()
       })
     },
-    // 登录业务：
+    // 登录业务：发请求，带着用户名与密码给服务器（成功与失败）
     handleLogin() {
       // 验证表单元素（用户名、密码）是否符合规则
       this.$refs.loginForm.validate(valid => {
+        // 如果符合验证规则
         if (valid) {
+          // 按钮会有一个loading效果
           this.loading = true
+          // 派发一个action:user/login，带着用户名和密码载荷
           this.$store.dispatch('user/login', this.loginForm).then(() => {
+            // 登录成功进行路由的跳转
             this.$router.push({ path: this.redirect || '/' })
+            // 按钮loading效果结束
             this.loading = false
           }).catch(() => {
             this.loading = false

@@ -149,5 +149,3 @@
       6. onmousemove:鼠标移动；
       7. onmouseup:鼠标弹起；
       8. onmousedown:鼠标按下；
-
-    

@@ -30,6 +30,8 @@ import Layout from '@/layout'
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
+
+// 申明常量，在数组里面存放路由信息
 export const constantRoutes = [
   {
     path: '/login',
@@ -44,119 +46,49 @@ export const constantRoutes = [
   },
 
   {
+    // 访问/会到Layout，但立马会重定向到dashboard首页
     path: '/',
     component: Layout,
     redirect: '/dashboard',
     children: [{
       path: 'dashboard',
       name: 'Dashboard',
+      // 用到路由懒加载
       component: () => import('@/views/dashboard/index'),
+      // meta：路由元信息，title是侧边栏文字 ，icon是图标
       meta: { title: 'Dashboard', icon: 'dashboard' }
     }]
   },
-
   {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
-    children: [
+    path:'/product',
+    component:Layout,
+    name:'Product',
+    meta:{title:'商品管理',icon:'el-icon-goods'},
+    children:[
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path:'/tradeMark',
+        component:()=>import('@/views/product/tradeMark'),
+        name:'TradeMark',
+        meta:{title:'品牌管理'},
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
-      }
-    ]
-  },
-
-  {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
-      }
-    ]
-  },
-
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
+        path:'/attr',
+        component:()=>import('@/views/product/Attr'),
+        name:'Attr',
+        meta:{title:'平台属性管理'},
       },
       {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
-      }
-    ]
-  },
-
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
+        path:'/spu',
+        component:()=>import('@/views/product/Spu'),
+        name:'spu',
+        meta:{title:'Spu管理'},
+      },
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
-      }
+        path:'/sku',
+        component:()=>import('@/views/product/Sku'),
+        name:'sku',
+        meta:{title:'Sku管理'},
+      },
     ]
   },
 
@@ -164,12 +96,14 @@ export const constantRoutes = [
   { path: '*', redirect: '/404', hidden: true }
 ]
 
+
 const createRouter = () => new Router({
   // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
+  scrollBehavior: () => ({ y: 0 }), // 滚动行为y=0
+  routes: constantRoutes // 配置相关路由
 })
 
+// 函数一执行，会返回一个路由器对象
 const router = createRouter()
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
@@ -178,4 +112,5 @@ export function resetRouter() {
   router.matcher = newRouter.matcher // reset router
 }
 
+// 对外暴露路由器
 export default router

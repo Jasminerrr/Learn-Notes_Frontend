@@ -36,7 +36,16 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    before: require('./mock/mock-server.js')
+    // 配置代理跨域
+    proxy: {
+      '/dev-api': {
+        target: 'http://gmall-h5-api.atguigu.cn',
+        // 重写路径
+        pathRewrite: { '^/dev-api': '' },
+        // ws: true, // 用于支持websocket
+        changeOrigin: true // 用于控制请求头中的host值
+      }
+    }
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
@@ -87,7 +96,7 @@ module.exports = {
             .plugin('ScriptExtHtmlWebpackPlugin')
             .after('html')
             .use('script-ext-html-webpack-plugin', [{
-            // `runtime` must same as runtimeChunk name. default is `runtime`
+              // `runtime` must same as runtimeChunk name. default is `runtime`
               inline: /runtime\..*\.js$/
             }])
             .end()

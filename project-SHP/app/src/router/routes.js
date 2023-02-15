@@ -16,7 +16,8 @@ import Center from '@/pages/Center' */
 import GroupOrder from "@/pages/Center/GroupOrder"; */
 
 /*
-路由懒加载：当打包构建应用时，js包会变得非常大，影响页面加载；
+路由懒加载：
+当打包构建应用时，js包会变得非常大，影响页面加载；
 如果能把不同路由对应的组件分割成不同的代码块，当路由被访问时才加载对应组件，这样会更高效；
 */
 // 右边是一个箭头函数，返回的是一个Promise对象（使用的时候调用回调，不使用就没有）

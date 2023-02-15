@@ -1,12 +1,14 @@
 // 引入接口函数
 import {reqGoodsInfo,reqAddOrUpdateShopCart} from '@/api'
 import {getUUID} from '@/utils/uuid_token'
+
 // 产品详情模块的小仓库
 const state = {
   goodInfo : {},
   // 游客临时身份 包装成一个函数
   uuid_token:getUUID()
 }
+
 //处理用户动作，可以写自己的业务逻辑或处理异步
 const actions = {
   // 获取产品信息的action
@@ -29,12 +31,14 @@ const actions = {
     }
   }
 }
+
 // 修改state的唯一手段
 const mutations = {
   GETGOODINFO(state,goodInfo){
     state.goodInfo = goodInfo
   }
 }
+
 // 理解为计算属性，用于简化仓库数据，需要用return返回结果
 // 接收到的参数就是state，对当前仓库的state进行加工
 const getters = {
@@ -53,6 +57,7 @@ const getters = {
     return state.goodInfo.spuSaleAttrList || []
   }
 }
+
 // 对外暴露
 export default {
   state,
