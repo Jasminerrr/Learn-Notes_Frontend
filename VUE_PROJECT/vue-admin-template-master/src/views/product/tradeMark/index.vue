@@ -35,11 +35,10 @@
         5.设置每一页展示多少条数据：page-sizes
         6.分页器布局：layout（布局取决于顺序） 
         7. @current-change="currentChange"：current-page改变时触发，默认会将点击的页码传进去（pager）
-        8. @size-change="sizeChange" ：page-size改变时触发，参数为每条页数     
+        8. @size-change="sizeChange" ：page-size每页展示条数改变时触发，参数为每页数据个数    
     -->
     <el-pagination 
-      style="margin-top: 20px; 
-      text-align: center;" 
+      style="margin-top: 20px; text-align: center;" 
       :current-page="page" 
       :total="total" 
       :page-size="limit"
