@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 引入echarts依赖包 -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.1/echarts.js"></script>
+  <style>
+     *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 800px;
+            height: 400px;
+        }
+  </style>
+</head>
+<body>
+  <!-- echarts使用：里面的配置项需要参考文档
+      1. 引入echarts依赖包；
+      2. 绘制一个简单的图表：在绘图前需要为ECharts准备一个定义了宽高的DOM容器
+
+   -->
+   <!-- 准备一个容器：容器就是显示图表区域 -->
+   <div></div>
+
+</body>
+</html>
+
+<script>
+  // 基于准备好的DOM，初始化echarts实例
+  // 获取元素
+  let dom = document.querySelector('div')
+  // 创建实例
+  let mycharts = echarts.init(dom)
+  // 指定图表的配置项和数据
+  mycharts.setOption({
+    // 图表的标题
+    title:{
+      // 主标题的设置
+      text:'数据可视化',
+      // 子标题
+      subtext:'echarts的使用',
+      // 主标题的颜色
+      textStyle:{
+        color:'skyblue'
+      },
+      // 设置标题位置
+      left:'center'
+    },
+    // x轴的配置项
+    xAxis:{
+      // 数据
+      data:['食品','电影','游戏','商品']
+    },
+    // y轴的配置项
+    yAxis:{
+      // 显示Y轴的轴线
+      axisLine:{
+        show:true
+      },
+      // 显示Y轴的刻度
+      axisTick:{
+        show:true
+      }
+    },
+    // series系列的设置：绘制什么类型的图表、数据的展示
+    series:[
+      {
+        // 图表类型的设置：bar：柱状图 line：折线图 pie：饼状图
+        type:'bar',
+        // 图表的数据
+        data:[10,20,30,40],
+        color:'red',
+      }
+    ],
+  })
+</script>

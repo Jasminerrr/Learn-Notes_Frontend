@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0px;
+      padding: 0px;
+    }
+  </style>
+</head>
+<body>
+  <!-- canvas画布：
+      1. 是HTML5中新增的特性，是双闭合标签；
+      2. canvas有默认的宽高度为300*150；
+      3. 浏览器认为canvas标签是一张图片；
+      4. 给canvas画布添加文本内容、canvas标签添加子节点没有任何意义；
+    操作canvas画布：
+      1. 画布当中绘制图形、显示一个文字，都必须通过JS完成；
+      2.canvas标签的宽高必须通过canvas标签属性width|height设置；
+      3.切记不能通过样式去设置画布的宽度与高度；(坐标体系会出问题，绘制图形也会有问题)
+      4.用JS绘制呈现的图片是由像素点组成的像素群，页面当中的只有一个dom是canvas；
+    getContext():目前参数只有'2d'
+      1. context是封装了很多绘图功能的对象；
+      2. 在页面创建一个canvas后，要先使用getContext()获取canvas的上下文环境；
+      3. getContext('2d')对象：是内建的HTML5对象，拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法
+    注意：
+      1.样式必须在绘制之前完成；
+   -->
+  <canvas width="400" height="500"></canvas>
+</body>
+</html>
+<script>
+  // cavas的标签中任何操作必须通过JS完成
+
+  // 获取canvas节点
+  let canvas = document.querySelector('canvas')
+  // 使用getContext()获取canvas的上下文环境
+  let ctx = canvas.getContext('2d')
+  // 绘制线段：moveTo() 设置绘制线段的起点（画布拥有xy坐标，原点在左上角）
+  ctx.moveTo(50,50)
+  // 设置其他点：可以有多个
+  ctx.lineTo(100,100)
+  ctx.lineTo(100,200)
+  // 设置线段的颜色
+  ctx.strokeStyle = 'blue'
+  // 线段宽度
+  ctx.lineWidth = '10'
+  // 设置图形填充颜色
+  ctx.fillStyle = 'pink'
+  // 设置填充样式后，需要调用此方法
+  ctx.fill()
+  // 可以设置起点和最终结束点连接在一起
+  ctx.closePath()
+  // 用stroke()方法绘制线段（样式必须在绘制之前完成）
+  ctx.stroke()
+
+</script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0px;
+      padding: 0px;
+    }
+    canvas{
+      border:1px solid red
+    }
+  </style>
+</head>
+<body>
+
+  <canvas width="400" height="500"></canvas>
+  
+</body>
+
+</html>
+<script>
+  // cavas的标签中任何操作必须通过JS完成
+  // 获取元素
+  let canvas = document.querySelector('canvas')
+  // 获取上下文
+  let ctx = canvas.getContext('2d')
+  ctx.fillRect(200,200,100,200)
+  // 1. 清除画布方法：clearRect(x,y,w,h)
+  // 清除整个画布
+  // ctx.clearRect(200,200,100,200)
+  // 清除部分
+  ctx.clearRect(200,200,50,50)
+
+  // 2.绘制文本方法：fillText(text,x,y,maxWidth)
+  // 设置文字大小
+  ctx.font = '20px 微软雅黑'
+  // 设置文字颜色
+  ctx.fillStyle = 'red'
+  ctx.fillText('数据可视化',50,50)
+
+</script>

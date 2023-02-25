@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0px;
+      padding: 0px;
+    }
+    canvas{
+      border:1px solid red
+    }
+  </style>
+</head>
+<body>
+
+  <canvas width="400" height="500"></canvas>
+  
+</body>
+
+</html>
+<script>
+  // cavas的标签中任何操作必须通过JS完成
+  // 获取元素
+  let canvas = document.querySelector('canvas')
+  // 获取上下文
+  let ctx = canvas.getContext('2d')
+  // 绘制矩形方法一：strokRect(x,y,width,height)方法只能描边，不能填充
+  ctx.strokeRect(50,200,100,200)
+  
+  // 方式二：填充矩形 fillRect(x,y,width,height)，填充默认黑色
+  // 可设置填充颜色
+  ctx.fillStyle = 'blue'
+  ctx.fill()
+  // 样式必须在绘制之前完成
+  ctx.fillRect(200,200,100,200)   
+
+
+
+
+</script>

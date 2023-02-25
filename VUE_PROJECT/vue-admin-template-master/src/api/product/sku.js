@@ -9,8 +9,10 @@ export const reqSkuList = (page,limit) => request({url:`/admin/product/list/${pa
 // 上架商品接口：GET /admin/product/onSale/{skuId}
 export const reqSale = (skuId) => request({url:`/admin/product/onSale/${skuId}`,method:'GET'})
 
-
 // 下架接口：GET /admin/product/cancelSale/{skuId}
 export const reqCancel = (skuId) => request({url:`/admin/product/cancelSale/${skuId}`,method:'GET'})
+
+// 获取SKU详情接口：GET /admin/product/getSkuById/{skuId}
+export const reqSkuById = (skuId) => request({url:`/admin/product/getSkuById/${skuId}`,method:'GET'})
 
 

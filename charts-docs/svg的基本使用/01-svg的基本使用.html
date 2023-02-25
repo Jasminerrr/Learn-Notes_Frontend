@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 800px;
+            height: 800px;
+        }
+  </style>
+</head>
+<body>
+      <!-- svg：可缩放的矢量图形（放大不会失真）,IE8以下不兼容
+        1.默认宽度与高度300 * 150，对于浏览器而言就是一个标签；
+        2.可以通过样式去设置svg的宽度与高度
+        2.svg绘制图形务必在svg标签内部使用绘制图形；
+        3.<svg>：包裹并定义整个矢量图，<svg>标签之于矢量图如同<html>标签之于一个web页面
+      基本的svg元素：
+        1. <line>：创建一条直线，四个属性(两个点的坐标)；
+        2. <polyline>：创建折线；
+        3. <rect>：创建矩形；
+        4. <circle>：创建圆；
+        5. <ellipse>：创建圆和椭圆；
+        6. <polygon>：创建多边形；
+        7. <path>：通过指定点 以及点和点之间的线来创建任意形状；
+      -->
+      <svg class="box">
+        <!-- 1. 创建一条直线，<line x1="" y1="" x2="" y2=""></line>四个属性(两个点的坐标) -->
+        <line x1="100" y1="100" x2="200" y2="200" stroke="red"></line>
+        <line x1="100" y1="200" x2="200" y2="100" stroke="red" stroke-width="5"></line>
+
+        <!-- 2. 绘制折线：<polyline points="x1 y1,x2 y2,x3 y3"></polyline> 
+          可以添加多个点，写的适合最好带有,逗号;
+          stroke="blue"：设置描边颜色；
+          fill-opacity="0"：填充透明的为0，默认是填充的
+        -->
+        <polyline points="300 100,50 50,100 150" stroke="blue" fill-opacity="0"></polyline>
+        <polyline points="300 100,50 50,100 150,150 200" stroke="blue" fill-opacity="0"></polyline>
+
+        <!-- 3. 绘制矩形：<rect x="" y="" width="" height=""></rect>
+          fill="pink"：填充的颜色
+         -->
+        <rect x="400" y="400" width="150" height="50" fill="pink"></rect>
+
+        <!-- 4. 绘制圆形：<circle cx="70" cy="95" r="50"></circle>
+          cx="70" cy="95"：圆心点坐标；
+          r：半径；
+          style：样式
+         -->
+        <circle cx="70" cy="95" r="50" style="stroke:black;fill:none"></circle>
+
+        <!-- 5.绘制圆形或椭圆
+          <ellipse cx="500" cy="500" rx="50" ry="50"></ellipse>
+          cx="500" cy="500"：圆心点坐标；
+           rx="50" ry="50"：水平半径，垂直半径
+          style：样式
+         -->
+         <ellipse cx="500" cy="500" rx="50" ry="50" style="fill:black"></ellipse>
+         <ellipse cx="400" cy="500" rx="50" ry="100" style="fill:black"></ellipse>
+
+         <!-- 6. 绘制多边形：
+          <polygon points="x1 y1,x2 y2,x3 y3"></polygon>
+         -->
+         <polygon points="500 350,200 300,100 400" stroke="blue" fill-opacity="0"></polygon>
+
+         <!-- 7.通过指定点 以及点和点之间的线来创建任意形状；
+          <path d="
+            M x1 y1
+            L x2 y2
+            L x3 y3
+            L x4 y4
+            L x3 y3
+            L x5 y5
+            L x6 y6
+            L x7 y8
+            Z
+            "></path>
+            M：移动到初始位置；
+            L：画线；
+            Z：将结束和开始点闭合
+         -->
+         <path fill-opacity="0"
+         stroke="red"
+          d="
+            M 400 50
+            L 200 400
+            L 150 100
+            L 450 370
+            L 100 120
+            L 80 96
+            L 56 99
+            L 200 300
+            Z
+            
+            "></path>
+      </svg>
+
+</body>
+</html>
+
+<script>
+  
+</script>

@@ -47,3 +47,10 @@
 .el-range-separator {
   box-sizing: content-box;
 }
+// 修改card的外边距
+.el-card {
+  margin: 10px 0px;
+}
+/* .el-card__header{
+  border-bottom:none;
+} */

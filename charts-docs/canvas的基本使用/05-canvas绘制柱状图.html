@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0px;
+      padding: 0px;
+    }
+    canvas{
+      border:1px solid black
+    }
+  </style>
+</head>
+<body>
+
+  <canvas width="800" height="425"></canvas>
+  
+</body>
+
+</html>
+<script>
+  // cavas的标签中任何操作必须通过JS完成
+  // 1.获取元素
+  let canvas = document.querySelector('canvas')
+  // 2.获取上下文
+  let ctx = canvas.getContext('2d')
+  // 3.绘制文字
+  ctx.font = '20px 微软雅黑'
+  ctx.fillStyle = 'black'
+  ctx.fillText('数据可视化',80,50)
+  // 4.绘制x和y轴线段
+  ctx.moveTo(100,100)
+  ctx.lineTo(100,400)
+  ctx.lineTo(700,400)
+  ctx.stroke()
+  // 5.绘制其他线段
+  ctx.moveTo(100,100)
+  ctx.lineTo(700,100)
+  ctx.stroke()
+  ctx.fillText('150',60,110)
+  ctx.moveTo(100,160)
+  ctx.lineTo(700,160)
+  ctx.stroke()
+  ctx.fillText('120',60,165)
+  ctx.moveTo(100,220)
+  ctx.lineTo(700,220)
+  ctx.stroke()
+  ctx.fillText('90',70,226)
+  ctx.moveTo(100,280)
+  ctx.lineTo(700,280)
+  ctx.stroke()
+  ctx.fillText('60',70,285)
+  ctx.moveTo(100,340)
+  ctx.lineTo(700,340)
+  ctx.stroke()
+  ctx.fillText('30',70,350)
+  ctx.fillText('0',80,405)
+  // 6.绘制y轴底下3个线段以及文字
+  ctx.moveTo(250,400)
+  ctx.lineTo(250,410)
+  ctx.stroke()
+  ctx.fillText('食品',165,420)
+  ctx.moveTo(400,400)
+  ctx.lineTo(400,410)
+  ctx.stroke()
+  ctx.fillText('数码',310,420)
+  ctx.moveTo(550,400)
+  ctx.lineTo(550,410)
+  ctx.stroke()
+  ctx.fillText('服饰',460,420)
+  ctx.fillText('箱包',615,420)
+  // 7.绘制填充矩形
+  ctx.fillStyle = 'red'
+  ctx.fillRect(125,200,100,200)
+  ctx.fillRect(275,180,100,220)
+  ctx.fillRect(425,220,100,180)
+  ctx.fillRect(575,280,100,120)
+
+
+</script>
