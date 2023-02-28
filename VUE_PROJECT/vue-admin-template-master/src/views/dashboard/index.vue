@@ -16,7 +16,10 @@ export default {
   // 注册子组件
   components:{
     Card,Sale,Observe
-  }
+  },
+  mounted() {
+    this.$store.dispatch('getData')
+  },
 }
 </script>
 

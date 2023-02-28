@@ -88,6 +88,7 @@ import echarts from 'echarts'
 // 引入dayjs
 import dayjs from 'dayjs'
 
+import {mapState} from 'vuex'
 export default {
   name:'',
   data() {
@@ -121,7 +122,7 @@ export default {
       xAxis: [
         {
           type: 'category',
-          data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月','八月','九月','十月','十一月','十二月',],
+          data: [],
           axisTick: {
             alignWithLabel: true
           }
@@ -137,7 +138,7 @@ export default {
           name: 'Direct',
           type: 'bar',
           barWidth: '60%',
-          data: [40, 62, 200, 334, 390, 330, 220,99,80,110,150,300],
+          data: [],
           color:'skyblue'
         }
       ]
@@ -174,7 +175,10 @@ export default {
     // 标题
     title(){
       return this.activeName=='sale'?'销售额':'访问量'
-    }
+    },
+    ...mapState({
+      listState:state => state.home.list
+    })
   },
   // 监听属性
   watch:{
@@ -183,10 +187,65 @@ export default {
     title(){
       this.mycharts.setOption({
         title:{
-          text:this.title
-        }
+          text:this.title+'趋势',
+        },
+        xAxis:{
+          data:this.title == '销售额'? this.listState.orderFullYearAxis:this.listState.userFullYearAxis
+        },
+        series:[
+          {
+            name: 'Direct',
+            type: 'bar',
+            barWidth: '60%',
+            color:'skyblue',
+            data:this.title == '销售额'? this.listState.orderFullYear:this.listState.userFullYear
+          }
+        ]
       })
     },
+    // 监听listState，有数据的时候，立马使用（因为第一次挂载数据为空）
+    listState(){
+      this.mycharts.setOption({
+      title:{
+        text:this.title+'趋势',
+      },
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        }
+      },
+      grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+      },
+      xAxis: [
+        {
+          type: 'category',
+          data: this.listState.orderFullYearAxis,
+          axisTick: {
+            alignWithLabel: true
+          }
+        }
+      ],
+      yAxis: [
+        {
+          type: 'value'
+        }
+      ],
+      series: [
+        {
+          name: 'Direct',
+          type: 'bar',
+          barWidth: '60%',
+          data: this.listState.orderFullYear,
+          color:'skyblue'
+        }
+      ]
+    })
+    }
   }
 }
 </script>

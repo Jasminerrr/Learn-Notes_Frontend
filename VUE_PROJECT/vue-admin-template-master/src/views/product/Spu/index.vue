@@ -45,7 +45,7 @@
       <!-- 添加sku -->
       <sku-form v-show="scene==2" ref="sku" @changeScenes="changeScenes"/>
     </el-card>
-    <!-- 对话框 -->
+    <!-- 查看spu的对话框 -->
     <el-dialog :title="`${spu.spuName}的sku列表`" :visible.sync="dialogTableVisible" :before-close="close">
       <!-- 自定义指令v-loading，值为布尔值，用来显示加载效果 -->
       <el-table :data="skuList" style="width:100%" border  v-loading="loading">

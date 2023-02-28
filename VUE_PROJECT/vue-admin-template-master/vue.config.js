@@ -45,7 +45,9 @@ module.exports = {
         // ws: true, // 用于支持websocket
         changeOrigin: true // 用于控制请求头中的host值
       }
-    }
+    },
+    // 开启mock数据
+    after:require('./mock/mock-server')
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that

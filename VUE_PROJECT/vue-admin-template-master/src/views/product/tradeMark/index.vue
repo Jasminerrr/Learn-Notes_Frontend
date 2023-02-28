@@ -97,7 +97,7 @@ export default {
     return {
       // 代表的分页器第几页
       page: 1,
-      // 当前页数展示数据的条数
+      // 限制当前页数展示数据的条数
       limit: 3,
       // 数据总条数
       total: 0,
@@ -197,7 +197,7 @@ export default {
       // 当全部验证字段通过，再去书写逻辑 validate 表单验证
       this.$refs.ruleForm.validate(async (success) => {
         if (success) {
-          // 先让让对话框隐藏
+          // 先让对话框隐藏
           this.dialogFormVisible = false
           // 发请求（修改或添加品牌）需要携带参数
           let result = await this.$API.trademark.reqAddOrUpdateTradeMark(this.tmForm)

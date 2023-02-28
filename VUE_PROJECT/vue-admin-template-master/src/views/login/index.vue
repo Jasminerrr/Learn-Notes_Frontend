@@ -99,6 +99,7 @@ export default {
     }
   },
   methods: {
+    // 显示密码
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''

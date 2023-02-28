@@ -81,7 +81,7 @@ export default {
       page:1, // 当前页
       limit:10, // 每页展示数据条数
       records:[], // 存储SKU列表的数据
-      total:0, // 分页器展示的总数据条数\
+      total:0, // 分页器展示的总数据条数
       skuInfo:{},  // 存储sku数据
       drawer:false, // 抽屉初始值为假
     }
