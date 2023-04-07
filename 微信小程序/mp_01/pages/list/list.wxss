@@ -1,0 +1,23 @@
+/* swiper轮播图样式
+.swiper-container {
+  height: 150px;
+}
+.item {
+  height: 100%;
+  text-align: center;
+  line-height: 150px;
+}
+swiper-item:nth-child(1) .item {
+  background-color: greenyellow;
+}
+swiper-item:nth-child(2) .item {
+  background-color: skyblue;
+}
+swiper-item:nth-child(3) .item {
+  background-color: pink;
+} */
+
+
+
+
+

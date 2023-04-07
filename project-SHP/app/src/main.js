@@ -44,9 +44,9 @@ Vue.use(VueLazyload, {
 // 引入表单校验插件vee-validate
 import '@/plugins/validate'
 
+ // 注册路由： router:router，省略 router
 new Vue({
   render: h => h(App),
-  // 注册路由： router:router，省略 router
   // 可以让全部的组件都可以获取到$route和$router的属性
   // $route：路由，可以获取到路由信息（path、query、params）
   // $router：进行编程式导航路由跳转 push、replace

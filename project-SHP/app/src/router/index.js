@@ -2,7 +2,7 @@
 import Vue from 'vue'
 // 引入路由插件
 import VueRouter from 'vue-router'
-// 使用插件
+// 使用路由插件
 Vue.use(VueRouter)
 // 引入路由
 import routes from './routes'

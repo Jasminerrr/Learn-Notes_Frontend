@@ -13,7 +13,7 @@ window.addEventListener('load', function () {
         // 清除定时器变量
         timer = null;
     })
-    // 鼠标离开轮播图 ，显示左右箭头
+    // 鼠标离开轮播图 ，不显示左右箭头
     focus.addEventListener('mouseleave', function () {
         arrow_l.style.display = 'none';
         arrow_r.style.display = 'none';

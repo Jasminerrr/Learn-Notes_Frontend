@@ -1,11 +1,11 @@
 <template>
   <div>
-    <!-- 行内表格 -->
+    <!-- 行内表单 -->
     <el-form inline>
       <el-form-item>
         <el-input placeholder="用户名" v-model="tempSearchObj.username"></el-input>
       </el-form-item>
-      <!-- 查询与情况的按钮 -->
+      <!-- 查询与清空的按钮 -->
       <el-button type="primary" icon="el-icon-search" @click="search">查询</el-button>
       <el-button @click="clear">清空</el-button>
     </el-form>
@@ -14,7 +14,7 @@
       <el-button type="primary" @click="addUser">添加</el-button>
       <el-button type="danger" @click="removeUsers" :disabled="selectedIds.length < 1">批量删除</el-button>
     </div>
-    <!-- table表单 selection-change：选择项发生变化时会触发该事件 -->
+    <!-- table表格展示用户信息 selection-change：选择项发生变化时会触发该事件 -->
     <el-table :data="users" border stripe v-loading="listLoading" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="50" align="center"></el-table-column>
       <el-table-column type="index" label="序号" align="center" width="80"></el-table-column>
@@ -61,7 +61,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="cancel">取 消</el-button>
-        <el-button type="primary" @click="addOrUpdateUser">确 定</el-button>
+        <el-button type="primary" @click="addOrUpdateUser" :loading="loading">确 定</el-button>
       </div>
     </el-dialog>
 
@@ -83,7 +83,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogRolesVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogRolesVisible = false">确 定</el-button>
+        <el-button type="primary" @click="addUserRoles" :loading="loading">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -112,7 +112,6 @@ export default {
       page:1,  //当前页初始值为1
       total:0, // 总条数
       limit:3, //初始值展示条数为3
-
       searchObj:{  //包含请求搜索条件数据的对象
         username:'', //用户名
       },
@@ -120,6 +119,7 @@ export default {
         username: ''
       },
       listLoading:false, // 是否显示列表加载的提示
+      loading:false, // 是否正在提交请求中
       dialogUserVisible:false, // 用户对话框默认隐藏
       dialogRolesVisible:false, // 角色对话框默认隐藏
       userRules: {  // 添加用户表单验证规则
@@ -145,7 +145,7 @@ export default {
     this.getUsers()
   },
   methods: {
-    // 获取当前用户权限列表的回调
+    // 获取当前用户权限列表的回调（带搜索）
     async getUsers(pager = 1){
       this.page = pager
       const {page,limit,searchObj} = this
@@ -163,12 +163,13 @@ export default {
     },
     // 点击页码条数展示数据改变时
     handleSizeChange(pageSize){
+      // 将展示的条数改为触发事件时传入的参数
       this.limit = pageSize
       this.getUsers()
     },
     // 点击查询按钮回调
     search(){
-      // 将收集到的数据浅拷贝一份给searchObj（为了不破坏对象）
+      // 将收集到的数据浅拷贝一份给searchObj（用户在更改数据时，点击第二页仍然显示第一次搜索数据）
       this.searchObj = {...this.tempSearchObj}
       // 带着params参数再次获取列表
       this.getUsers()
@@ -189,7 +190,7 @@ export default {
       this.user = {}
       // 显示对话框
       this.dialogUserVisible = true
-      // 在对话框节点渲染完毕后再调用一次
+      // 在对话框节点渲染完毕后再调用一次，清除表单验证规则
       this.$nextTick(() => this.$refs.userForm.clearValidate())
     },
     // 点击修改用户
@@ -271,7 +272,7 @@ export default {
     },
     // 获取用户分配角色回调
     async userRoles(row){
-      this.user.username = row.username
+      this.user = row
       // 显示对话框
       this.dialogRolesVisible = true
       let result = await this.$API.user.reqAssignRoles(row.id)
@@ -284,7 +285,7 @@ export default {
       this.checkAll = allRolesList.length === assignRoles.length
       this.isIndeterminate = assignRoles.length > 0 && assignRoles.length < allRolesList.length
     },
-    // 监听勾选状态发生改变的时候
+    // 监听分配角色勾选状态发生改变的时候
     handleCheckedChange(){
       if(this.assignRoles.length > 0){
         this.isIndeterminate = true
@@ -298,7 +299,7 @@ export default {
         this.checkAll = false
       }
     },
-    // 监听全选框的状态
+    // 监听分配角色全选框的状态
     handleCheckAllChange(){
       // 再点击全选框时，判断是否已经全部选中
       if(this.allRolesList.length === this.assignRoles.length){
@@ -309,6 +310,35 @@ export default {
       }else{
         this.assignRoles = this.allRolesList.map(item => item.id)
       }
+    },
+    // 点击分配角色对话框确定按钮的回调
+    async addUserRoles(){
+      // 发请求，将选中的数据上传服务器(当前用户id和带id角色的数组)
+      const userId = this.user.id
+      // assignRoles里面是存放了多个带有id的数组，需要用,分割成字符串（将所有被选中的角色传给服务器）
+      const roleId = this.assignRoles.join(',')
+      this.loading = true
+      let result = await this.$API.user.reqAddUserRoles(userId,roleId)
+      if(result.code == 20000){
+        this.loading = false
+        this.$message({type:'success',message:'分配角色成功'})
+        // 清除上一次的对话框数据
+        this.resetRoleData()
+        // 重新获取用户列表数据
+        this.getUsers()
+        // 如果登录用户名与当前的角色分配名相同时，则再次加载页面（需要重新加载路由，获取最新的权限页面）
+        if(this.$store.getters.name == this.user.username){
+          window.location.reload
+        }
+      }
+    },
+    // 清除角色对话框数据
+    resetRoleData(){
+      this.dialogRolesVisible = false
+      this.allRolesList = []
+      this.assignRoles = []
+      this.checkAll = false
+      this.indeterminate = false
     },
   },
 }

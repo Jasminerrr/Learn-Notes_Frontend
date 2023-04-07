@@ -1,9 +1,11 @@
+// 引入Vue和Vue-router路由插件
 import Vue from 'vue'
 import Router from 'vue-router'
 
+// 使用路由插件
 Vue.use(Router)
 
-/* Layout */
+/* 引入最外层骨架的一级路由组件 */
 import Layout from '@/layout'
 
 /**
@@ -31,9 +33,12 @@ import Layout from '@/layout'
  * all roles can be accessed
  */
 
-// 申明常量，在数组里面存放路由信息
+// 路由配置 在数组里面存放路由信息
+// 需要把项目中的路由进行拆分（因为不同用户登录需要展示不同的菜单信息）
+// 常量路由--不管什么什么都能看见的路由：登录、404、首页
 export const constantRoutes = [
   {
+    // 登录
     path: '/login',
     component: () => import('@/views/login/index'),
     hidden: true
@@ -59,6 +64,14 @@ export const constantRoutes = [
       meta: { title: 'Dashboard', icon: 'dashboard' }
     }]
   },
+
+ 
+
+  // 404 page must be placed at the end !!!
+]
+
+// 异步路由--不同用户需要过滤筛选出的路由：
+export const asyncRoutes = [
   // 权限管理数据相关路由
   {
     name: 'Acl',
@@ -106,6 +119,7 @@ export const constantRoutes = [
       },
     ]
   },
+  // 商品管理相关路由
   {
     path:'/product',
     component:Layout,
@@ -138,11 +152,10 @@ export const constantRoutes = [
       },
     ]
   },
-
-  // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
 ]
 
+// 任意路由：当路径出现错误时，重定向到404
+export const anyRoutes = { path: '*', redirect: '/404', hidden: true }
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support

@@ -194,7 +194,7 @@ export default {
     },
     // 点击对话框确定按钮，添加品牌/修改品牌
     addOrUpdateTradeMark() {
-      // 当全部验证字段通过，再去书写逻辑 validate 表单验证
+      // 当全部验证字段通过，再去书写逻辑 ，validate：表单验证
       this.$refs.ruleForm.validate(async (success) => {
         if (success) {
           // 先让对话框隐藏

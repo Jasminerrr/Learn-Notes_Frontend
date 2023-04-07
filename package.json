@@ -11,6 +11,8 @@
     "vuex": "^3.6.2"
   },
   "devDependencies": {
-    "babel-plugin-component": "^1.1.1"
+    "babel-plugin-component": "^1.1.1",
+    "webpack": "^5.76.1",
+    "webpack-cli": "^5.0.1"
   }
 }

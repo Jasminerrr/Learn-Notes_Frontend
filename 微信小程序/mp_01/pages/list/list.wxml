@@ -1,0 +1,43 @@
+<!--pages/list/list.wxml-->
+<!--swiper轮播图
+  最外层一定要放swiper容器组件：轮播图
+  有几张轮播图就需要放几张swiper-item项 可以放image/view
+  indicator-dots：指示点 默认false
+  indicator-color：指示点颜色
+  indicator-active-color：当前选中的指示点颜色
+  autoplay：是否自动切换 默认false
+  interval：自动切换时间 默认5000ms
+  circular：衔接滑动 默认false
+-->
+<!-- <swiper class="swiper-container" indicator-dots indicator-color="white" indicator-active-color="gray" interval="2000" circular>
+  <swiper-item>
+    <view class="item">A</view>
+  </swiper-item>
+  <swiper-item>
+    <view class="item">B</view>
+  </swiper-item>
+  <swiper-item>
+    <view class="item">C</view>
+  </swiper-item>
+</swiper> -->
+
+<!-- 常用基础内容组件：text 和 rich-text 用法
+  1. 小程序长按选中必须使用text组件，并添加user-select属性
+  2. rich-text组件：通过组件的node属性节点，把HTML字符串渲染为对应的UI结构
+ -->
+<!-- <view>
+  text文本手机号长按支持选中效果
+  <text user-select>12333333444</text>
+</view>
+<rich-text nodes="<h1 style='color:red'>标题</h1>"/> -->
+
+  
+
+
+
+
+
+
+
+
+

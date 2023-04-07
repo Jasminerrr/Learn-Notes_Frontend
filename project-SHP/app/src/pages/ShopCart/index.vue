@@ -58,7 +58,7 @@
       </div>
       <div class="money-box">
         <div class="chosed">已选择
-          <span>0</span>件商品
+          <span>{{checkedNum}}</span>件商品
         </div>
         <div class="sumprice">
           <em>总价（不含运费） ：</em>
@@ -85,7 +85,7 @@ export default {
     getData() {
       this.$store.dispatch('getShopCart')
     },
-    // 修改购物车某个产品个数(需要用到函数节流)
+    // 修改购物车某个产品个数(需要用到函数节流：采用键值对形式创建函数，将handler定义为节流函数，设置50ms才会执行一次，防止用户触发频繁)
     handler: throttle(async function (type, disNum, cart) {
       // type：区别这三个元素点击是哪个
       // disNum：变化量（+、-），input里面的最终个数（不是变化量）
@@ -101,7 +101,7 @@ export default {
           disNum = 1
           break;
         case 'change':
-          // 如果用户属于非法的最终量（汉字字母|负数），或则传0（数量不变）
+          // 如果用户输入非法的最终量（汉字字母|负数），则传0（数量不变）
           if (isNaN(disNum) || disNum < 1) {
             disNum = 0
           } else {
@@ -138,11 +138,12 @@ export default {
         // 修改成功之后再发请求 获取服务器里面购物车的新数据
         this.getData();
       } catch (error) {
-        alert(error.message)
+        // 失败也需要获取购物车当前的数据
+        this.getData();
       }
     },
     // 删除选中状态的全部产品
-    // 此回调无法获取刀有用的数据（不传参）
+    // 此回调无法获取到有用的数据（不传参）
     async deleteAllCheckedCart() {
       try {
         await this.$store.dispatch('deleteAllCheckedCart')
@@ -176,7 +177,9 @@ export default {
     totalPrice() {
       let sum = 0
       this.cartInfoList.forEach(item => {
-        sum += item.skuPrice * item.skuNum
+        if(item.isChecked){
+          sum += item.skuPrice * item.skuNum
+        }
       })
       return sum
     },
@@ -185,6 +188,15 @@ export default {
     isAllChecked() {
       // 遍历购物车数组里面的元素 isChecked是否都为1 全为1 返回真
       return this.cartInfoList.every(item => item.isChecked == 1)
+    },
+    checkedNum(){
+      let num = 0
+      this.cartInfoList.forEach(item => {
+        if(item.isChecked){
+          num += item.skuNum
+        }
+      })
+      return num
     }
   }
 }

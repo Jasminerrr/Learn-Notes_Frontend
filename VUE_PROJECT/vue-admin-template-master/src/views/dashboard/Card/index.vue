@@ -70,6 +70,11 @@ import barCharts from './barCharts'
 import progressCharts from './progressCharts'
 export default {
   name:'Card',
+  data() {
+    return {
+      
+    }
+  },
   components:{
     Detail,lineCharts,barCharts,progressCharts
   }

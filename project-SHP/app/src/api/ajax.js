@@ -22,6 +22,7 @@ const requests = axios.create({
 // 请求拦截器：在发请求之前，请求拦截器可以检测到，并在发出之前做一些事情
 requests.interceptors.request.use((config)=>{
   // config:配置对象，里面有个属性很重要：headers请求头
+  // config内主要是对请求头header配置
   if(store.state.detail.uuid_token){
     // 请求头添加一个字段：userTempId 不能瞎写，是后台商量好的
     config.headers.userTempId = store.state.detail.uuid_token

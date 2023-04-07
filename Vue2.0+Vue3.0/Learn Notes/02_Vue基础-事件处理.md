@@ -250,7 +250,7 @@
    3. befroreMount：页面呈现的是未经Vue编译的DOM结构，所有对DOM的操作，最终都不奏效；
    4. mounted：页面呈现的是经过Vue编译的DOM，对DOM的操作均有效(尽可能避免)；
    5. beforeUpdate：数据是新的，但页面是旧的(页面还没有和数据保持同步)；
-   6. update：数据是新的，页面也是新的(页面和数据保持同步)；
+   6. updated：数据是新的，页面也是新的(页面和数据保持同步)；
    7. beforeDestroy：vm中所有数据：data、methods、指令等 都处于可用状态，马上要执行销毁过程；
    8. destroyed：销毁vm,移除掉vm中所有的watchs、child components、event listeners；
 7. 面试点：
