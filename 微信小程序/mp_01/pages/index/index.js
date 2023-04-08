@@ -14,7 +14,7 @@ Page({
 
   },
   // 定义时间处理函数
-  btnTapHandler(e){
+  btnTapHandler(e){ 
     console.log(e);
   },
 
