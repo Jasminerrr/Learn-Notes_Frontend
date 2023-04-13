@@ -1,2 +1,9 @@
-<!--pages/message/message.wxml-->
-<text>pages/message/message.wxml</text>
+<view>{{numA}} + {{numB}} = {{sum}}</view>
+
+<!-- 自定义属性传参：data-参数名="{{实参}}" -->
+<van-button type="primary" bindtap="btnHandler1" data-step="{{1}}">numA + 1</van-button>
+<van-button type="danger" bindtap="btnHandler1" data-step="{{-1}}">numA - 1</van-button>
+
+<view>~~~``~~~~分割线~~~~~~~~~~~</view>
+
+<my-numbers></my-numbers>

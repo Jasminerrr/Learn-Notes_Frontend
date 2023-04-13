@@ -1,0 +1,5 @@
+/* custom-tab-bar/index.wxss */
+/* 使用css变量自定义组件样式 */
+.van-tabbar-item {
+  --tabbar-item-margin-bottom:0;
+}

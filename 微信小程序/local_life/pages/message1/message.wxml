@@ -1,0 +1,22 @@
+<!-- <my-test></my-test> -->
+
+<!-- 在页面使用组件 -->
+<!-- <my-test1>
+  // 插槽：这部分内容会被放在组件<slot>位置上s
+  <view slot="before">这是通过插槽1填充的内容</view>
+  <view slot="after">这是通过插槽2填充的内容~~~</view>
+</my-test1> -->
+
+<!-- 通过数据绑定-父给子传数据 （只能传简单数据类型）-->
+<!-- <view>父组件中count值为{{count}}</view>
+
+<view>~~~~~~~~~~~~~~`</view>
+<my-test1 count="{{count}}"></my-test1> -->
+
+<!-- 2. 通过绑定自定义事件bind:事件名=“”，将父组件的方法传递给了子组件 -->
+<view>父组件中count值为{{count}}</view>
+<view>~~~~~~~~~~~~~~`</view>
+<my-test1 bind:sync="syncCount" count="{{count}}"  class="child"></my-test1> 
+
+<button bindtap="getChild">点击获取子组件的实例对象</button>
+

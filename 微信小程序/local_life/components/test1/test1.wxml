@@ -1,0 +1,20 @@
+<!-- 
+  使用插槽
+  <view>
+  <slot name="before"></slot>
+  <view>这里是组件内部结构</view>
+  // slot:占位符，封装组件时，还不确定里面放什么，将来由使用者来进行填充（
+  一个组件上限只能放一个插槽），多个插槽需要在options配置multipleSlots
+  <slot name="after"></slot>
+</view> -->
+
+<view>
+  子组件的count值 {{count}}
+</view>
+<button type="default" bindtap="addCount">点击子组件+1</button>
+
+
+<view>
+  在behavior中定义的用户名是{{username}}
+</view>
+

@@ -9,13 +9,12 @@
     </swiper-item>
 </swiper>
 
-<!-- 九宫格
- -->
+<!-- 九宫格区域-->
 <view class="grid-list">
-    <view class="grid-item" wx:for="{{gridList}}" wx:key="id">
+    <navigator class="grid-item" wx:for="{{gridList}}" wx:key="id" url="/pages/shoplist/shoplist?id={{item.id}}&title={{item.name}}">
         <image src="{{item.icon}}"/>
         <text>{{item.name}}</text>
-    </view>
+    </navigator>
 </view>
 
  <!-- 图片 -->
@@ -23,3 +22,9 @@
     <image src="/images/link-01.png" mode="widthFix"/>
     <image src="/images/link-02.png" mode="widthFix"/>
 </view>
+
+<!-- 声明式导航：
+1. navigator组件跳转到tabBar页面：url地址必须以/开头，指定open-type="switchTab"
+2. 跳转到非abBar页面：url地址必须以/开头，【指定open-type="navigate"（可省略）】 -->
+<navigator url="/pages/message/message" open-type="switchTab">导航到消息页面</navigator>
+

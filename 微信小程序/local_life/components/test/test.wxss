@@ -1,0 +1,11 @@
+/* components/test/test.wxss */
+/* 在全局写的样式对组件无效（组件样式隔离），仅限于class选择器，修改样式隔离需要配置styleI solution */
+.box{
+  width: 100%;
+  height: 200rpx;
+  text-align: center;
+  line-height: 200rpx;
+  color: white;
+  text-shadow: 0rpx,0rpx,2rpx,black;
+}
+

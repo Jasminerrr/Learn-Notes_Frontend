@@ -1,0 +1,23 @@
+// wxs文件不支持es6语法
+
+// 将号码用-分割
+
+function splitPhone(str){
+  // 先判断是否为空
+  if(str!=null){
+    // 再判断长度不为11的，则返回不处理
+    if(str.length != 11) return str
+    // 将字符串分割成数组
+    var arr = str.split('')
+    // splice()数组方法：删除指定位置的元素
+    arr.splice(3,0,'-')
+    arr.splice(8,0,'-')
+    // jion()：将数组转换为字符串
+    return arr.join('')
+  }
+  return '未知'
+}
+module.exports = {
+  // 不支持对象简写
+  splitPhone:splitPhone
+}

@@ -1,4 +1,5 @@
 /**app.wxss**/
+/* 此处是全局样式 */
 .container {
   height: 100%;
   display: flex;
@@ -8,3 +9,10 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+/* 1.使用css变量定制vant主题样式,需要使用--开头
+2. 在跟节点中配置，每个页面就可以访问到，变量名查找vant官方文档
+*/
+page{
+  --button-danger-background-color:#C00000;
+  --button-danger-border-color:#C00000;
+}

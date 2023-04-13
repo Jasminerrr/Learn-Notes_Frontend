@@ -1,16 +1,43 @@
 {
-  "pages":[
+  "pages": [
     "pages/home/home",
     "pages/message/message",
-    "pages/contact/contact"
+    "pages/contact/contact",
+    "pages/shoplist/shoplist"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "preloadRule": {
+    "pages/contact/contact":{
+      "packages": ["p1"],
+      "network": "all"
+    }
+  },
+  "subPackages": [
+    {
+      "root": "pkgA",
+      "name": "p1",
+      "pages": [
+        "pages/one/one",
+        "pages/two/two"
+      ]
+    },
+    {
+      "root": "pkgB",
+      "name": "p2",
+      "pages": [
+        "pages/three/three",
+        "pages/four/four"
+      ],
+      "independent": true
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff888",
     "navigationBarTitleText": "本地生活",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
+    "custom": true,
     "list": [
       {
         "pagePath": "pages/home/home",
@@ -32,6 +59,13 @@
       }
     ]
   },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "my-test": "/components/test/test",
+    "my-test1": "/components/test1/test1",
+    "van-button": "@vant/weapp/button/index",
+    "my-numbers":"/components/numbers/numbers",
+    "van-tabbar": "@vant/weapp/tabbar/index",
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index"
+  }
 }
