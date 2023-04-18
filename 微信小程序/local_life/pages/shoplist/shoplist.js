@@ -17,7 +17,7 @@ Page({
    * 生命周期函数--监听页面加载（获取页面初始数据）,option:可以获取当前页面路径中的参数
    */
   onLoad(options) {
-    // 需要讲options参数在data里面转存，供其他方法使用（函数内部不可读）
+    // 需要将options参数在data里面转存，供其他方法使用（因为函数内部不可读）
     this.setData({
       query:options
     }),
